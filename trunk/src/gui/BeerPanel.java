@@ -20,7 +20,7 @@ public class BeerPanel extends JPanel implements Observer{
 		current = 0;
 		setLayout(new SpringLayout());		
 	     String[] labels = {"Webadress: ", "Namn: ", "Land: ", "Distrikt: ", "Färg: ",
-                 "Doft: ", "Smak: " , "Användning: " };			
+                 "Doft: ", "Smak: " , "Användning: ", "Tom: " };			
         int numPairs = labels.length;
         textField = new JTextField[numPairs];
         for (int i = 0; i < numPairs; i++) {
@@ -38,7 +38,7 @@ public class BeerPanel extends JPanel implements Observer{
         progressBar.setIndeterminate(true);
         add(progressBar);
         
-		SpringUtilities.makeCompactGrid(this, 9, 2, 6, 6, 6, 6);		
+		SpringUtilities.makeCompactGrid(this, 10, 2, 6, 6, 6, 6);		
 	}
 	
 	public void update(Observable arg0, Object arg1) {		
