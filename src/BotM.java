@@ -4,13 +4,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class BotM {
 
 	public static void main(String[] args) throws IOException {
 		String ur = "";
-		ArrayList<String> list = new ArrayList<String>();
-		SystemBolagetURL sb = new SystemBolagetURL();
+		SystemBolagetDatabase db = new SystemBolagetDatabase();
 		for (int k = 1; k <= 13; k++) {
 			URL url = new URL(
 					"http://www.systembolaget.se/Applikationer/Sok/ResultatLista.htm?NRMODE=Publish"
@@ -22,16 +22,16 @@ public class BotM {
 							+ "a%3a%3a%3a0%3a100%3a0%3a%3aTrue%3a%3a%3a&SokOrdinarieSort"
 							+ "=True&Sok=Av&SokStrangar=%u00d6L%3aAlla+l%u00e4nder%3aAlla+storlekar%3a%3a%3aBeska%3aFyllighet%3aS%u00f6tma%3a&Asc=1&Butik=0&SortKol=namn&sidNr="
 							+ k);
-			list = sb.beerID(url);
+			db.beerID(url);
 		}
 		Random random = new Random();
-		String beer = list.get(random.nextInt(list.size()));
-		ur = "http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=" + beer
+		ArrayList<Integer> idArray = db.getKeyArray();
+		int beer = idArray.get(random.nextInt(idArray.size()));
+		ur = "http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=" + 169803
 				+ "&Butik=0&SokStra"
 				+ "gar=%u00d6L%3aAlla+l%u00e4nder%3aAlla+storlekar%3a%3a%3aBe"
-				+ "ska%3aFyllighet%3aS%u00f6tma%3a";
-		URL url = new URL(ur);		
+				+ "ska%3aFyllighet%3aS%u00f6tma%3a";	
 		System.out.println(ur);
-		System.out.println(sb.getBeer(url));
+		System.out.println(db.get(beer));
 	}
 }
