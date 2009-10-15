@@ -55,10 +55,7 @@ public class SystemBolagetURL extends Observable {
 				}
 				setChanged();
 				notifyObservers(beername);				
-			} else if(s.contains("Land")){					
-				while(!s.contains("class=\"text_tabell\">")){									
-					s = scan.next();				
-				}				
+			} else if(s.contains("class=\"text_tabell\">")){					
 				Tokenizer tok = new Tokenizer(s);	
 				while(tok.hasMoreTokens()){					
 					String token = tok.nextToken();	
@@ -69,14 +66,14 @@ public class SystemBolagetURL extends Observable {
 						StringBuilder sb = new StringBuilder();
 						token = tok.nextToken();							
 						sb.append(token);		
-						while(!tok.peekAtNextToken().equals("<")){
+						while(tok.hasMoreTokens() && !tok.peekAtNextToken().equals("<")){
 							token = tok.nextToken();								
 							sb.append(token);							
 						}
 						String country = sb.toString();
 						beername = beername + "\n" + country;
-						setChanged();
-						notifyObservers(country);
+						//setChanged();
+						//notifyObservers(country);
 						break;
 					}							
 				}	
