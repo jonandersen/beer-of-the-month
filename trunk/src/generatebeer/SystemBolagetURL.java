@@ -1,9 +1,13 @@
+package generatebeer;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
-public class SystemBolagetURL {
+public class SystemBolagetURL extends Observable {
 	private ArrayList<String> list;
 
 	public SystemBolagetURL() {
@@ -31,27 +35,55 @@ public class SystemBolagetURL {
 				}
 			}
 			s = scan.next();
-		}
+		}		
 		return list;
 	}
 
 	public String getBeer(URL url) throws IOException {
+		setChanged();
+		notifyObservers(url.toString());
 		Scanner scan = new Scanner(url.openStream());
 		String s = scan.next();
 		String beername = "";		
 		while (scan.hasNext()) {
-			if (s.contains("class=\"rubrikstor\">")) {
+			if(s.contains("class=\"rubrikstor\">")) {
 				beername = s.substring(19, s.length());
 				s = scan.next();
 				while (!s.contains("<")) {
 					beername = beername + " " + s;
 					s = scan.next();
 				}
-				return beername;
+				setChanged();
+				notifyObservers(beername);				
+			} else if(s.contains("Land")){					
+				while(!s.contains("class=\"text_tabell\">")){									
+					s = scan.next();				
+				}				
+				Tokenizer tok = new Tokenizer(s);	
+				while(tok.hasMoreTokens()){					
+					String token = tok.nextToken();	
+					if(token.equals(">") && tok.hasMoreTokens()){
+						if(tok.peekAtNextToken().equals("<")){
+							break;
+						}						
+						StringBuilder sb = new StringBuilder();
+						token = tok.nextToken();							
+						sb.append(token);		
+						while(!tok.peekAtNextToken().equals("<")){
+							token = tok.nextToken();								
+							sb.append(token);							
+						}
+						String country = sb.toString();
+						beername = beername + "\n" + country;
+						setChanged();
+						notifyObservers(country);
+						break;
+					}							
+				}	
+				
 			}
 			s = scan.next();
-
 		}
-		return null;
+		return beername;
 	}
 }

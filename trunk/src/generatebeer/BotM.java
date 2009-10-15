@@ -1,3 +1,7 @@
+package generatebeer;
+
+import gui.BeerGUI;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,10 +11,12 @@ import java.util.Scanner;
 
 public class BotM {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {		
 		String ur = "";
 		ArrayList<String> list = new ArrayList<String>();
 		SystemBolagetURL sb = new SystemBolagetURL();
+		BeerGUI b = new BeerGUI();
+		sb.addObserver(b);		
 		for (int k = 1; k <= 13; k++) {
 			URL url = new URL(
 					"http://www.systembolaget.se/Applikationer/Sok/ResultatLista.htm?NRMODE=Publish"
@@ -26,12 +32,8 @@ public class BotM {
 		}
 		Random random = new Random();
 		String beer = list.get(random.nextInt(list.size()));
-		ur = "http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=" + beer
-				+ "&Butik=0&SokStra"
-				+ "gar=%u00d6L%3aAlla+l%u00e4nder%3aAlla+storlekar%3a%3a%3aBe"
-				+ "ska%3aFyllighet%3aS%u00f6tma%3a";
+		ur = "http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=" + beer + "&Butik=0&SokStrangar= ";
 		URL url = new URL(ur);		
-		System.out.println(ur);
 		System.out.println(sb.getBeer(url));
 	}
 }
