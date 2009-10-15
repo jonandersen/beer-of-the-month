@@ -1,4 +1,3 @@
-import java.awt.List;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,12 +25,12 @@ public class SystemBolagetURL {
 					}
 				}
 				if (b) {
-					list.add(s);
+					if(!s.contains(" ")){
+						list.add(s);
+					}					
 				}
-
 			}
 			s = scan.next();
-
 		}
 		return list;
 	}
