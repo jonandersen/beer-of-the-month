@@ -33,14 +33,15 @@ public class SystemBolagetURL extends Observable {
 		 * tags from a String that contains multiple lines. Multiple lines are
 		 * handled with the Pattern.MULTILINE flag.
 		 */
-
+		//s.replaceAll("\\<.*?>","");
 		// the pattern we want to search for
+		
 		Pattern p = Pattern.compile("ue=\"(\\w+)\"", Pattern.MULTILINE);
 		Matcher m = p.matcher(s);
 
 		// print all the matches that we find
 		while (m.find()) {
-			// System.out.println(m.group(1));
+			//System.out.println(m.group(1));
 			list.add(m.group(1));
 		}
 
