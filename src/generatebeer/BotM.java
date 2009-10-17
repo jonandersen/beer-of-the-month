@@ -13,6 +13,7 @@ public class BotM {
 
 	public static void main(String[] args) throws IOException {		
 		String ur = "";
+		String HtmlSource = null;
 		ArrayList<String> list = new ArrayList<String>();
 		SystemBolagetURL sb = new SystemBolagetURL();
 		BeerGUI b = new BeerGUI();
@@ -28,8 +29,13 @@ public class BotM {
 							+ "a%3a%3a%3a0%3a100%3a0%3a%3aTrue%3a%3a%3a&SokOrdinarieSort"
 							+ "=True&Sok=Av&SokStrangar=%u00d6L%3aAlla+l%u00e4nder%3aAlla+storlekar%3a%3a%3aBeska%3aFyllighet%3aS%u00f6tma%3a&Asc=1&Butik=0&SortKol=namn&sidNr="
 							+ k);
-			list = sb.beerID(url);
+			
+			HtmlSource+=sb.getHtmlSource(url);
 		}
+		
+		
+		list = sb.beerID(HtmlSource);
+		
 		Random random = new Random();
 		String beer = list.get(random.nextInt(list.size()));
 		ur = "http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=" + beer + "&Butik=0&SokStrangar= ";
