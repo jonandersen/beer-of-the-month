@@ -1,11 +1,17 @@
 package generatebeer;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
+import sun.net.www.URLConnection;
 
 public class SystemBolagetURL extends Observable {
 	private ArrayList<String> list;
@@ -16,27 +22,38 @@ public class SystemBolagetURL extends Observable {
 	}
 
 	public ArrayList<String> beerID(URL url) throws IOException {
+		
+
+		/**
+		 * A complete Java program to demonstrate how to extract multiple
+		 * HTML tags from a String that contains multiple lines. Multiple
+		 * lines are handled with the Pattern.MULTILINE flag.
+		 */
+	
+		
 		Scanner scan = new Scanner(url.openStream());
+		
 		String s = "";
-		s = scan.next();
+		
 		while (scan.hasNext()) {
-			if (s.contains("value=")) {
-				boolean b = true;
-				s = s.substring(7, s.length() - 1);
-				for (int i = 0; i < s.length(); i++) {
-					if (!Character.isDigit(s.charAt(i)) || s.length() < 6) {
-						b = false;
-					}
-				}
-				if (b) {
-					if(!s.contains(" ")){
-						list.add(s);
-					}					
-				}
-			}
-			s = scan.next();
-		}		
+			s += scan.next();
+		}
+		 
+		    //System.out.println(s);
+		    
+		    // the pattern we want to search for
+		    Pattern p = Pattern.compile("ue=\"(\\w+)\"", Pattern.MULTILINE);
+		    Matcher m = p.matcher(s);
+
+		    // print all the matches that we find
+		    while (m.find())
+		    {
+		    	  //System.out.println(m.group(1));
+		    	list.add(m.group(1));
+		      }
+		    
 		return list;
+		//http://www.devdaily.com/blog/post/java/how-extract-multiple-html-tags-groups-multiline-string
 	}
 
 	public String getBeer(URL url) throws IOException {
