@@ -23,9 +23,12 @@ public class Beer implements Beverage{
 	private void makeBeer() throws MalformedURLException, IOException{
 		String htmlcode =URLParser.parseURL(new URL("http://www.systembolaget" +
 				".se/SokDrycker/Produkt?VaruNr=" + id + "&Butik" +
-						"=0&SokStrangar= ")).replaceAll("\\<.*?>","");		;
-		//System.out.println(htmlcode.replaceAll("\\<.*?>",""));		
-		name = beerParse("var __varuNamn = \"(\\w+\\s\\w+|\\w+|\\w+\\s\\w+\\s\\w+)\"", htmlcode);
+		"=0&SokStrangar= ")).replaceAll("\\<.*?>","");		;
+		
+		name = beerParse("var __varuNamn = \"(.+)\"", htmlcode);	
+		//if(name == "Finns ej")
+			//System.out.println(htmlcode.replaceAll("\\<.*?>",""));		
+
 	}
 	
 	private String beerParse(String pattern, String site){
