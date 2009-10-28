@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,10 +11,10 @@ public class Beer extends Beverage{
 	
 	
 	public Beer(String id) throws MalformedURLException, IOException{
-		this.id = id;
-		System.out.println("en öl skapas snart");
+		this.id = id;		
 		makeBeer();	
 		System.out.println(name);
+		System.out.println(alchohol);
 	}
 	
 	public String toString(){
@@ -23,11 +24,24 @@ public class Beer extends Beverage{
 	private void makeBeer() throws MalformedURLException, IOException{
 		String htmlcode =URLParser.parseURL(new URL("http://www.systembolaget" +
 				".se/SokDrycker/Produkt?VaruNr=" + id + "&Butik" +
-		"=0&SokStrangar= ")).replaceAll("\\<.*?>","");		;
+		"=0&SokStrangar= ")).replaceAll("\\<.*?>","");
+		Scanner scan = new Scanner(htmlcode);
+		String line = scan.nextLine();
+		while(scan.hasNextLine()){
+			//System.out.println(line);
+			String tempName = beerParse("var __varuNamn = \"(.+)\"", line);
+			if(!tempName.equals("Finns ej")){
+				name = tempName;
+			}
+			String tempAlchohol = beerParse("Alkoholhalt (.+) %", line) + " %";
+			if(!tempAlchohol.equals("Finns ej")){
+				alchohol = tempAlchohol;
+			}
+			line = scan.nextLine();			
+		}
 		
-		name = beerParse("var __varuNamn = \"(.+)\"", htmlcode);	
-		//if(name == "Finns ej")
-			//System.out.println(htmlcode.replaceAll("\\<.*?>",""));		
+
+		//System.out.println(htmlcode.replaceAll("\\<.*?>",""));		
 
 	}
 	
