@@ -8,10 +8,10 @@ public class SystemBolagetDatabase extends ArrayList<HashMap<String,? extends Be
 	private static final int BEER = 0;
 	private static final int Wine = 1;
 	private static final int BOOZE = 0;	
-	private ArrayList<HashMap<String, Beverage>> database;
+	private ArrayList<HashMap<String, ? extends Beverage>> database;
 	
 	public SystemBolagetDatabase() {		
-		database = new ArrayList<HashMap<String, Beverage>>();
+		database = new ArrayList<HashMap<String, ? extends Beverage>>();
 
 	}
 
