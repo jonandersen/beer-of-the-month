@@ -24,7 +24,7 @@ public class SystemBolagetDatabase extends ArrayList<HashMap<String,? extends Be
 		database.add(BEER, map);
 		String s = null;
 		BeerParser bp = new BeerParser();
-		for (int i = 0; i < 13; i++) {
+		for (int i = 1; i <= 12; i++) {
 			try {
 				s = URLParser
 						.parseURL(new URL(

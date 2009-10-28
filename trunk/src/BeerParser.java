@@ -8,14 +8,17 @@ public class BeerParser {
 	public HashMap<String, Beer> beerID(String s) throws IOException {
 		HashMap<String, Beer> map = new HashMap<String, Beer>();
 		// the pattern we want to search for
-
-		Pattern p = Pattern.compile("ue=\"(\\w+)\"", Pattern.MULTILINE);
+		int i = 0;
+		Pattern p = Pattern.compile("value=\"(\\w+)\"", Pattern.MULTILINE);
 		Matcher m = p.matcher(s);
 
 		// print all the matches that we find
-		while (m.find()) {
-			// System.out.println(m.group(1));
+		while (m.find() && i < 30) {
+			i ++;
+			// System.out.println(m.group(1));			
 			map.put(m.group(1), new Beer(m.group(1)));
+			
+			
 		}
 		return map;
 	}

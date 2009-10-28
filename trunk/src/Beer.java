@@ -33,10 +33,14 @@ public class Beer extends Beverage{
 			if(!tempName.equals("Finns ej")){
 				name = tempName;
 			}
-			String tempAlchohol = beerParse("Alkoholhalt (.+) %", line) + " %";
-			if(!tempAlchohol.equals("Finns ej")){
-				alchohol = tempAlchohol;
+			if(line.contains("Alkoholhalt")){
+				line  = scan.nextLine();
+				alchohol = line.trim();
 			}
+			//String tempAlchohol = beerParse("Alkoholhalt (.+) %", line) + " %";
+			//if(!tempAlchohol.equals("Finns ej")){
+			//	alchohol = tempAlchohol;
+			//}
 			line = scan.nextLine();			
 		}
 		
