@@ -25,7 +25,7 @@ public class Beer implements Beverage{
 				".se/SokDrycker/Produkt?VaruNr=" + id + "&Butik" +
 						"=0&SokStrangar= ")).replaceAll("\\<.*?>","");		;
 		//System.out.println(htmlcode.replaceAll("\\<.*?>",""));		
-		name = beerParse("var __varuNamn = \"(\\w+)\"", htmlcode);
+		name = beerParse("var __varuNamn = \"(\\w+\\s\\w+|\\w+|\\w+\\s\\w+\\s\\w+)\"", htmlcode);
 	}
 	
 	private String beerParse(String pattern, String site){
