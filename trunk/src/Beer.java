@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Beer implements Beverage{
+public class Beer extends Beverage{
 	private String id,name,country,alchohol;
 	
 	

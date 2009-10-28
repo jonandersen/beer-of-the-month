@@ -1,4 +1,7 @@
 
-public interface Beverage {
-
+public class Beverage {
+	
+	public Beverage(){
+		
+	}
 }
