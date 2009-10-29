@@ -5,21 +5,34 @@ import java.util.regex.Pattern;
 
 public class BeerParser {
 
-	public HashMap<String, Beer> beerID(String s) throws IOException {
-		HashMap<String, Beer> map = new HashMap<String, Beer>();
-		// the pattern we want to search for
-		int i = 0;
-		Pattern p = Pattern.compile("value=\"(\\w+)\"", Pattern.MULTILINE);
-		Matcher m = p.matcher(s);
+	public HashMap<Integer, Beer> beerID(String s) throws IOException {
+		HashMap<Integer, Beer> map = new HashMap<Integer, Beer>();		
+		Pattern pid = Pattern.compile("name=\"checkbox\" value=\"(\\w+)\"", Pattern.MULTILINE);
+		Matcher mid = pid.matcher(s);
+		
+		Pattern ptype = Pattern.compile("<td nowrap=\"nowrap\" align=\"Left\" width=\"40\">(\\w+)<", Pattern.MULTILINE);
+		Matcher mtype = ptype.matcher(s);
+		
+		Pattern pvolume = Pattern.compile("<td align=\"Right\" width=\"55\">(\\w+)<", Pattern.MULTILINE);
+		Matcher mvolume = pvolume.matcher(s);
+		
+		Pattern plitreprice = Pattern.compile("<td align=\"Right\" width=\"62\">(\\w+)<", Pattern.MULTILINE);
+		Matcher mlitreprice = plitreprice.matcher(s);
+		
+		Pattern punitprice = Pattern.compile("<td align=\"Right\" width=\"57\"><b>(\\w+)<", Pattern.MULTILINE);
+		Matcher munitprice = punitprice.matcher(s);
 
-		// print all the matches that we find
-		while (m.find() && i < 30) {
-			i ++;
-			// System.out.println(m.group(1));			
-			map.put(m.group(1), new Beer(m.group(1)));
-			
-			
-		}
+
+		while (mid.find()) {
+			System.out.println(s);
+			mtype.find();
+			mvolume.find();
+			mlitreprice.find();
+			munitprice.find();
+			Beer beer = new Beer(mid.group(1), mtype.group(1),mvolume.group(1),mlitreprice.group(1),munitprice.group(1));			
+			map.put(new Integer(beer.hashCode()), beer);	
+		
+			}
 		return map;
 	}
 	

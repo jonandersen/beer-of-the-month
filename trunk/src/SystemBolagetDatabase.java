@@ -4,14 +4,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SystemBolagetDatabase extends ArrayList<HashMap<String,? extends Beverage>> {
+public class SystemBolagetDatabase extends ArrayList<HashMap<Integer,? extends Beverage>> {
 	private static final int BEER = 0;
 	private static final int Wine = 1;
 	private static final int BOOZE = 0;	
-	private ArrayList<HashMap<String, ? extends Beverage>> database;
+	private ArrayList<HashMap<Integer, ? extends Beverage>> database;
 	
 	public SystemBolagetDatabase() {		
-		database = new ArrayList<HashMap<String, ? extends Beverage>>();
+		database = new ArrayList<HashMap<Integer, ? extends Beverage>>();
 
 	}
 
@@ -20,11 +20,11 @@ public class SystemBolagetDatabase extends ArrayList<HashMap<String,? extends Be
 	}
 
 	public void reScrapeBeer() {
-		HashMap<String, Beer> map = new HashMap<String, Beer>();
+		HashMap<Integer, Beer> map = new HashMap<Integer, Beer>();
 		database.add(BEER, map);
 		String s = null;
 		BeerParser bp = new BeerParser();
-		for (int i = 1; i <= 12; i++) {
+		for (int i = 1; i <= 15; i++) {
 			try {
 				s = URLParser
 						.parseURL(new URL(

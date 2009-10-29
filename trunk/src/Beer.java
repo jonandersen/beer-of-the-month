@@ -7,14 +7,36 @@ import java.util.regex.Pattern;
 
 
 public class Beer extends Beverage{
-	private String id,name,country,alchohol;
+	private String id,name,country,alchohol,taste,type,volume,litrePrice,unitPrice;
 	
 	
-	public Beer(String id) throws MalformedURLException, IOException{
-		this.id = id;		
+	public Beer(String id, String type, String volume, String litrePrice, String unitPrice) throws MalformedURLException, IOException{
+		this.volume = volume;
+		this.litrePrice = litrePrice;
+		this.unitPrice = unitPrice;
+		this.id = id;
+		this.type = type;
 		makeBeer();	
 		System.out.println(name);
 		System.out.println(alchohol);
+		System.out.println(type);
+		System.out.println(volume);
+		System.out.println(litrePrice);
+		System.out.println(unitPrice);
+		
+	}
+	
+	public boolean equals(Object obj) {
+		if(obj != null && obj instanceof Beer){
+			Beer beer = (Beer) obj;
+			return id.equals(beer.id);
+		}
+		return false;
+	}
+
+	
+	public int hashCode() {		
+		return id.hashCode() + type.hashCode();
 	}
 	
 	public String toString(){
@@ -27,8 +49,7 @@ public class Beer extends Beverage{
 		"=0&SokStrangar= ")).replaceAll("\\<.*?>","");
 		Scanner scan = new Scanner(htmlcode);
 		String line = scan.nextLine();
-		while(scan.hasNextLine()){
-			//System.out.println(line);
+		while(scan.hasNextLine()){			
 			String tempName = beerParse("var __varuNamn = \"(.+)\"", line);
 			if(!tempName.equals("Finns ej")){
 				name = tempName;
@@ -37,25 +58,16 @@ public class Beer extends Beverage{
 				line  = scan.nextLine();
 				alchohol = line.trim();
 			}
-			//String tempAlchohol = beerParse("Alkoholhalt (.+) %", line) + " %";
-			//if(!tempAlchohol.equals("Finns ej")){
-			//	alchohol = tempAlchohol;
-			//}
+			if(line.contains("Land")){
+				line  = scan.nextLine();
+				country = line.trim();
+			}	
+			if(line.contains("Smak")){
+				line  = scan.nextLine();
+				taste = line.trim();
+			}	
+			
 			line = scan.nextLine();			
 		}
-		
-
-		//System.out.println(htmlcode.replaceAll("\\<.*?>",""));		
-
-	}
-	
-	private String beerParse(String pattern, String site){
-        Pattern p = Pattern.compile(pattern, Pattern.MULTILINE);
-        Matcher m = p.matcher(site);        
-        while (m.find()) {                
-                return m.group(1);
-        }
-
-        return "Finns ej";
 	}
 }
