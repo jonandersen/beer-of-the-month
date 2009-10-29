@@ -12,19 +12,18 @@ public class BeerParser {
 		
 		Pattern ptype = Pattern.compile("<td nowrap=\"nowrap\" align=\"Left\" width=\"40\">(\\w+)<", Pattern.MULTILINE);
 		Matcher mtype = ptype.matcher(s);
-		
-		Pattern pvolume = Pattern.compile("<td align=\"Right\" width=\"55\">(\\w+)<", Pattern.MULTILINE);
+
+		Pattern pvolume = Pattern.compile("<td align=\"Right\" width=\"55\">(.+)</td><td align=\"Right\" width=\"62\">", Pattern.MULTILINE);
 		Matcher mvolume = pvolume.matcher(s);
-		
-		Pattern plitreprice = Pattern.compile("<td align=\"Right\" width=\"62\">(\\w+)<", Pattern.MULTILINE);
+
+		Pattern plitreprice = Pattern.compile("<td align=\"Right\" width=\"62\">(.+)</td><td align=\"Right\" width=\"57\"><b>", Pattern.MULTILINE);
 		Matcher mlitreprice = plitreprice.matcher(s);
 		
-		Pattern punitprice = Pattern.compile("<td align=\"Right\" width=\"57\"><b>(\\w+)<", Pattern.MULTILINE);
+		Pattern punitprice = Pattern.compile("<td align=\"Right\" width=\"57\"><b>(.+)</b>", Pattern.MULTILINE);
 		Matcher munitprice = punitprice.matcher(s);
 
 
 		while (mid.find()) {
-			System.out.println(s);
 			mtype.find();
 			mvolume.find();
 			mlitreprice.find();

@@ -33,6 +33,10 @@ public class Beer extends Beverage{
 		}
 		return false;
 	}
+	
+	public int getBeerBang(){	
+		return 0;
+	}
 
 	
 	public int hashCode() {		
