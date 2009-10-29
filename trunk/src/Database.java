@@ -5,12 +5,14 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 
 public class Database implements Serializable{
 	private static final long serialVersionUID = -3112184169542680377L;
 	
 	private ArrayList<SystemBolagetDatabase> list;
+	
 	public static final int BEER = 0;
 	public static final int WINE = 1;
 	public static final int BOOZE = 2;	
@@ -44,20 +46,19 @@ public class Database implements Serializable{
 		
 	}
 	
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(list.get(BEER));
+		return sb.toString();
+	}
+	
 	public void save() throws IOException{
-		System.out.println("Saving");
-		// Write to disk with FileOutputStream
-		FileOutputStream f_out = new 
-			FileOutputStream("db.data");
-
-		// Write object with ObjectOutputStream
-		ObjectOutputStream obj_out = new
-			ObjectOutputStream (f_out);
-
-		// Write object out to disk
-		obj_out.writeObject ( this );
-		
-		System.out.println("Saved");
+		System.out.println("Saving please enter a name for the database");
+		Scanner scan = new Scanner(System.in);		
+		FileOutputStream f_out = new FileOutputStream(scan.next()+".data");		
+		ObjectOutputStream obj_out = new ObjectOutputStream (f_out);		
+		obj_out.writeObject ( this );		
+		System.out.println("Successfully saved");
 	}
 	
 }

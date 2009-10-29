@@ -3,12 +3,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Beverage implements Serializable{
+public abstract class Beverage implements Serializable{
 	private static final long serialVersionUID = 33337594920058035L;
 
-	public Beverage(){
-		
-	}
+
 	
 	protected String beerParse(String pattern, String site){
         Pattern p = Pattern.compile(pattern, Pattern.MULTILINE);

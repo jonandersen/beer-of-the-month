@@ -16,6 +16,10 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 	public void update() {
 
 	}
+	
+	public String toString(){
+		return database.toString();
+	}
 
 	public void reScrape() {
 		HashMap<Integer, Beer> beerBase = new HashMap<Integer, Beer>();		
