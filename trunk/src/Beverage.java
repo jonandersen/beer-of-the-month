@@ -1,9 +1,11 @@
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Beverage {
-	
+public class Beverage implements Serializable{
+	private static final long serialVersionUID = 33337594920058035L;
+
 	public Beverage(){
 		
 	}

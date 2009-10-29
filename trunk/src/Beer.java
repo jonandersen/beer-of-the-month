@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
@@ -6,7 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Beer extends Beverage{
+public class Beer extends Beverage implements Serializable{
+	
+	private static final long serialVersionUID = -2265435447685608288L;
 	private String id,name,country,alchohol,taste,type,volume,litrePrice,unitPrice;
 	
 	
@@ -18,11 +21,11 @@ public class Beer extends Beverage{
 		this.type = type;
 		makeBeer();	
 		System.out.println(name);
-		System.out.println(alchohol);
-		System.out.println(type);
-		System.out.println(volume);
-		System.out.println(litrePrice);
-		System.out.println(unitPrice);
+		//System.out.println(alchohol);
+		//System.out.println(type);
+		//System.out.println(volume);
+		//System.out.println(litrePrice);
+		//System.out.println(unitPrice);
 		
 	}
 	
