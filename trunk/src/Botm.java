@@ -17,7 +17,7 @@ public class Botm {
 		ObjectInputStream obj_in = new ObjectInputStream (f_in);
 		Object obj = obj_in.readObject();		
 		database = (Database) obj;
-		System.out.println("Successfully opened");
+		System.out.println("Successfully opened");		
 	}catch(Exception e){
 		System.out.println("No database found, creating a new one");
 		database = new Database(null);
