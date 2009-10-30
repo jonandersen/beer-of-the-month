@@ -62,4 +62,8 @@ public class Database implements Serializable{
 		System.out.println("Successfully saved");
 	}
 	
+	public Beverage getRandomBeverage(){
+		return list.get(BEER).getRandomBeverage();
+	}
+	
 }

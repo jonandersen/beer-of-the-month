@@ -10,6 +10,7 @@ public abstract class SystemBolagetDatabase implements Serializable{
 	
 	public abstract void reScrape() throws MalformedURLException;
 	public abstract void update();
+	public abstract Beverage getRandomBeverage();
 		
 	
 

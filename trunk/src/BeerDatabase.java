@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class BeerDatabase extends SystemBolagetDatabase implements Serializable{	
 	private static final long serialVersionUID = 3022910132078467303L;
 	private Map<Integer, Beer> database;
+	
 	public BeerDatabase() {	
 		database = new HashMap<Integer, Beer>();
 		database = Collections.synchronizedMap(database);
@@ -58,6 +60,15 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 				System.exit(1);
 			}
 		}
+	}	
+	public Beverage getRandomBeverage() {
+		ArrayList<Beer> list = new ArrayList<Beer>();
+		for(Beer beer : database.values()){
+			list.add(beer);			
+		}
+		Random rand = new Random();
+		return list.get(rand.nextInt(list.size()));
+		
 	}
 	
 

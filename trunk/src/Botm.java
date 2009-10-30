@@ -27,6 +27,21 @@ public class Botm {
 		} catch (IOException e1) {			
 			e1.printStackTrace();
 		}
-	}		
+	}
+	Boolean b = true;
+	System.out.println("Månadens öl:");
+	Scanner scan = new Scanner(System.in);
+	System.out.println(database.getRandomBeverage().toString());
+	while(b){		
+		System.out.println("En till? (Ja/Nej)");
+		if(scan.next().equals("Ja")){			
+			System.out.println("Du får ingen annan!");
+		}else{
+			System.out.println("Skit i det då!");
+			b = false;
+		}
+		
+	}
+	
 	}
 }
