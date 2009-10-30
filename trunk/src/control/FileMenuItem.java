@@ -16,7 +16,7 @@ import database.Database;
 
 
 public abstract class FileMenuItem extends JMenuItem implements ActionListener {
-    private static final String EXTENSION = ".data";
+    private static final String EXTENSION = ".sdb";
     protected Gui gui;
     protected int action;
     private String title;    
@@ -45,6 +45,7 @@ public abstract class FileMenuItem extends JMenuItem implements ActionListener {
         if (!file.endsWith(EXTENSION)) {
             file += EXTENSION; 	
         }  
+        System.out.println("Dir " + dir + " File" + file );
         action(dir + file);
         String name = file.substring(0, file.indexOf('.'));
         gui.rename(name);
