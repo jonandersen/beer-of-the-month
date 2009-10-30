@@ -13,11 +13,11 @@ public class Gui extends JFrame{
 	public Gui(){
 		super("Beverage of the month");
 		Database db = new Database();
-//		try {
-//			db.reScrape(db.BEER);
-//		} catch (MalformedURLException e) {			
-//			e.printStackTrace();
-//		}
+		try {
+			db.reScrape(db.BEER);
+		} catch (MalformedURLException e) {			
+			e.printStackTrace();
+		}
 		setJMenuBar(new BotmMenuBar(this, db));
         addWindowListener(new ExitListener());
         pack();
