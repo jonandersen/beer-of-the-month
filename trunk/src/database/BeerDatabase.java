@@ -16,7 +16,6 @@ import parser.BeerParser;
 import parser.URLParser;
 
 public class BeerDatabase extends SystemBolagetDatabase implements Serializable{	
-	private static final long serialVersionUID = 3022910132078467303L;
 	private Map<Integer, Beer> database;
 	
 	public BeerDatabase() {	
@@ -48,26 +47,11 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 					"3a100%3a0%3a%3aTrue%3a%3a%3a&SokOrdinarieSort=True&Sok=Av&SokStrangar=%u" +
 					"00d6L%3aAlla+l%u00e4nder%3aAlla+storlekar%3a%3a%3aBeska%3aFyllighet%3aS%" +
 					"u00f6tma%3a&Asc=1&Butik=0&SortKol=namn&sidNr="+i);
-			Brewenizer b = new Brewenizer(url);
+			Brewenizer b = new Brewenizer(url, database);
 			b.start();
 		}
 	}
 	
-	private class Brewenizer extends Thread{
-		private URL url;
-		public Brewenizer(URL url){
-			this.url = url;
-		}
-		public void run(){
-			BeerParser bp = new BeerParser();
-			try {
-				database.putAll(bp.beerID(URLParser.parseURL(url)));
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.exit(1);
-			}
-		}
-	}	
 	public Beverage getRandomBeverage() {
 		ArrayList<Beer> list = new ArrayList<Beer>();
 		for(Beer beer : database.values()){
@@ -77,6 +61,4 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 		return list.get(rand.nextInt(list.size()));
 		
 	}
-	
-
 }

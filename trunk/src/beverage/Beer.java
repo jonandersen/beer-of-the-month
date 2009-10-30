@@ -11,8 +11,6 @@ import parser.URLParser;
 
 
 public class Beer extends Beverage implements Serializable{
-	
-	private static final long serialVersionUID = -2265435447685608288L;
 	private String id,name,country,alchohol,taste,type,volume,litrePrice,unitPrice;
 	
 	
@@ -24,12 +22,6 @@ public class Beer extends Beverage implements Serializable{
 		this.type = type;
 		makeBeer();	
 		System.out.println(name);
-		//System.out.println(alchohol);
-		//System.out.println(type);
-		//System.out.println(volume);
-		//System.out.println(litrePrice);
-		//System.out.println(unitPrice);
-		
 	}
 	
 	public boolean equals(Object obj) {

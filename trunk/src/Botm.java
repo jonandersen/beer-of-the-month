@@ -17,9 +17,7 @@ public class Botm {
 	System.out.println("Saving please enter a name for the database");
 	Scanner scan = new Scanner(System.in);
 	try{	
-		String s = scan.next() + ".sdb";
-		System.out.println(s);
-		File file = new File(s);
+		File file = new File(scan.next() + ".sdb");
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
 		Object obj = in.readObject();
 		if(obj instanceof Database)
@@ -38,6 +36,11 @@ public class Botm {
 		e.printStackTrace();
 		System.exit(1);
 	}
+	System.out.println("See");
+	scan.next();
+	System.out.println(database);
+	scan.next();
+	
 	System.out.println("Saving please enter a name for the database:");
 	try {
 		File outputFile = new File(scan.next() + ".sdb");

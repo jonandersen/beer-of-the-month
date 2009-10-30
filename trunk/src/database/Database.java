@@ -13,8 +13,6 @@ import beverage.Beverage;
 
 
 public class Database implements Serializable{
-	private static final long serialVersionUID = -3112184169542680377L;
-	
 	private ArrayList<SystemBolagetDatabase> list;
 	
 	public static final int BEER = 0;
@@ -64,4 +62,9 @@ public class Database implements Serializable{
 		return list.get(BEER).getRandomBeverage();
 	}
 	
+	public void printMe(){
+		for(SystemBolagetDatabase db : list){
+			System.out.println(db.toString());
+		}
+	}
 }
