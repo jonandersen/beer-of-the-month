@@ -20,7 +20,8 @@ public class Gui extends JFrame{
 		}
 		setJMenuBar(new BotmMenuBar(this, db));
         addWindowListener(new ExitListener());
-        pack();
+        setSize(1024, 768);
+       // pack();
         setResizable(false);
         setVisible(true);
 	}
