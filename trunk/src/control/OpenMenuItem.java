@@ -18,7 +18,7 @@ public class OpenMenuItem extends FileMenuItem  {
 	public void action(String fullName) {
 		BotmBufferedReader reader = new BotmBufferedReader(fullName, db);
 		reader.open(db);
-		db.toString();
+		System.out.println(db.toString());
 	}
 
 }
