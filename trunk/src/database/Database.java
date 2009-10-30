@@ -22,14 +22,9 @@ public class Database implements Serializable{
 	public static final int BOOZE = 2;	
 	
 	
-	public Database(ArrayList<SystemBolagetDatabase> list){
-		if(list == null){
-			this.list = new ArrayList<SystemBolagetDatabase>();
-			this.list.add(BEER, new BeerDatabase());
-			
-		} else{
-			this.list = list;
-		}		
+	public Database(){
+			list = new ArrayList<SystemBolagetDatabase>();
+			list.add(BEER, new BeerDatabase());
 	}
 	
 	public void reScrapeAll() throws MalformedURLException{
@@ -56,14 +51,14 @@ public class Database implements Serializable{
 		return sb.toString();
 	}
 	
-	public void save() throws IOException{
-		System.out.println("Saving please enter a name for the database");
-		Scanner scan = new Scanner(System.in);		
-		FileOutputStream f_out = new FileOutputStream(scan.next()+".data");		
-		ObjectOutputStream obj_out = new ObjectOutputStream (f_out);		
-		obj_out.writeObject ( this );		
-		System.out.println("Successfully saved");
-	}
+//	public void save() throws IOException{
+//		System.out.println("Saving please enter a name for the database");
+//		Scanner scan = new Scanner(System.in);		
+//		FileOutputStream f_out = new FileOutputStream(scan.next()+".data");		
+//		ObjectOutputStream obj_out = new ObjectOutputStream (f_out);		
+//		obj_out.writeObject ( this );		
+//		System.out.println("Successfully saved");
+//	}
 	
 	public Beverage getRandomBeverage(){
 		return list.get(BEER).getRandomBeverage();
