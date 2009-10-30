@@ -67,4 +67,8 @@ public class Database implements Serializable{
 			System.out.println(db.toString());
 		}
 	}
+	
+	public void replaceDatabase(Database db){
+		this.list = db.list;
+	}
 }
