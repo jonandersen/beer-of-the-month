@@ -14,15 +14,15 @@ import database.Database;
 public class Botm {
 	public static void main(String[] args){
 	Database database = null;
+	Object obj = null;
 	System.out.println("Saving please enter a name for the database");
 	Scanner scan = new Scanner(System.in);
 	try{	
 		File file = new File(scan.next() + ".sdb");
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-		Object obj = in.readObject();
+		obj = in.readObject();
 		if(obj instanceof Database)
-			System.out.println("yes I am!");
-			database = (Database) in.readObject();
+			database = (Database) obj; 
 		System.out.println("Successfully opened");		
 	}catch(FileNotFoundException e){
 		System.out.println("No database found, creating a new one");
@@ -36,11 +36,6 @@ public class Botm {
 		e.printStackTrace();
 		System.exit(1);
 	}
-	System.out.println("See");
-	scan.next();
-	System.out.println(database);
-	scan.next();
-	
 	System.out.println("Saving please enter a name for the database:");
 	try {
 		File outputFile = new File(scan.next() + ".sdb");
