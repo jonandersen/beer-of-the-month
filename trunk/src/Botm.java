@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+import database.Database;
+
 
 public class Botm {
 	public static void main(String[] args) throws MalformedURLException{		

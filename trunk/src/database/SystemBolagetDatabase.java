@@ -1,6 +1,9 @@
+package database;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.HashMap;
+
+import beverage.Beverage;
 
 
 public abstract class SystemBolagetDatabase implements Serializable{

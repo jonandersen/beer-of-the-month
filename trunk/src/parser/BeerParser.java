@@ -1,7 +1,11 @@
+package parser;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import beverage.Beer;
 
 public class BeerParser {
 

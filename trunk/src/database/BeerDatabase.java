@@ -1,3 +1,4 @@
+package database;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
@@ -7,6 +8,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import beverage.Beer;
+import beverage.Beverage;
+
+import parser.BeerParser;
+import parser.URLParser;
 
 public class BeerDatabase extends SystemBolagetDatabase implements Serializable{	
 	private static final long serialVersionUID = 3022910132078467303L;

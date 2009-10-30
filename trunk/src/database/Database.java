@@ -1,3 +1,4 @@
+package database;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,6 +8,8 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import beverage.Beverage;
 
 
 public class Database implements Serializable{
