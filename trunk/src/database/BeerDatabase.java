@@ -32,7 +32,7 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 	}
 
 	public void reScrape() throws MalformedURLException {
-		for (int i = 14; i<=14; ++i){
+		for (int i = 1; i<=14; ++i){
 			URL url = new URL("http://systembolaget.se/Applikationer/Sok/ResultatLis" +
 					"ta.htm?NRMODE=Published&NRNODEGUID=%7bDCD7DFFB-CD43-4B8B-BD46-C" +
 					"35D089B8739%7d&NRORIGINALURL=%2fApplikationer%2fSok%2fResultatList" +
