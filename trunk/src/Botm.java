@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 public class Botm {
-	public static void main(String[] args) throws MalformedURLException, IOException, ClassNotFoundException {		
+	public static void main(String[] args) throws MalformedURLException{		
 	
 	Database database;	
 	try{	
@@ -22,7 +22,11 @@ public class Botm {
 		System.out.println("No database found, creating a new one");
 		database = new Database(null);
 		database.reScrapeAll();
-		database.save();
+		try {
+			database.save();
+		} catch (IOException e1) {			
+			e1.printStackTrace();
+		}
 	}		
 	}
 }

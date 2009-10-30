@@ -3,6 +3,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -28,13 +29,13 @@ public class Database implements Serializable{
 		}		
 	}
 	
-	public void reScrapeAll(){
+	public void reScrapeAll() throws MalformedURLException{
 		for(int i = 0; i < list.size(); i ++){
 			list.get(i).reScrape();
 		}
 	}
 	
-	public void reScrape(int beverageType){
+	public void reScrape(int beverageType) throws MalformedURLException{
 		list.get(beverageType).reScrape();
 	}
 	

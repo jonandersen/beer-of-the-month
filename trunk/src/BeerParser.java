@@ -15,21 +15,36 @@ public class BeerParser {
 
 		Pattern pvolume = Pattern.compile("<td align=\"Right\" width=\"55\">(.+)</td><td align=\"Right\" width=\"62\">", Pattern.MULTILINE);
 		Matcher mvolume = pvolume.matcher(s);
-
+		
 		Pattern plitreprice = Pattern.compile("<td align=\"Right\" width=\"62\">(.+)</td><td align=\"Right\" width=\"57\"><b>", Pattern.MULTILINE);
 		Matcher mlitreprice = plitreprice.matcher(s);
 		
-		Pattern punitprice = Pattern.compile("<td align=\"Right\" width=\"57\"><b>(.+)</b>", Pattern.MULTILINE);
+		Pattern punitprice = Pattern.compile("align=\"Right\" width=\"57\"><b>(.+)</b>", Pattern.MULTILINE);
 		Matcher munitprice = punitprice.matcher(s);
 
 
 		while (mid.find()) {
+			//System.out.println(s);
 			mtype.find();
 			mvolume.find();
 			mlitreprice.find();
 			munitprice.find();
-			Beer beer = new Beer(mid.group(1), mtype.group(1),mvolume.group(1),mlitreprice.group(1),munitprice.group(1));			
-			map.put(new Integer(beer.hashCode()), beer);	
+			try {
+				Beer beer = new Beer(mid.group(1), mtype.group(1),mvolume.group(1),mlitreprice.group(1),munitprice.group(1));			
+				map.put(new Integer(beer.hashCode()), beer);
+			} catch (java.lang.IllegalStateException e) {
+				try {
+					System.out.println(mid.group(1));
+					System.out.println(mtype.group(1));
+					System.out.println(mvolume.group(1));
+					System.out.println(mlitreprice.group(1));
+					System.out.println(munitprice.group(1));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					System.exit(1);					
+				}
+			
+			}	
 		
 			}
 		return map;

@@ -43,7 +43,7 @@ public class Beer extends Beverage implements Serializable{
 
 	
 	public int hashCode() {		
-		return id.hashCode() + type.hashCode();
+		return (id + type + volume).hashCode();
 	}
 	
 	public String toString(){
