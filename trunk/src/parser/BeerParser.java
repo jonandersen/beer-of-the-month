@@ -14,7 +14,8 @@ public class BeerParser {
 		Pattern pid = Pattern.compile("name=\"checkbox\" value=\"(\\w+)\"", Pattern.MULTILINE);
 		Matcher mid = pid.matcher(s);
 		
-		Pattern ptype = Pattern.compile("<td nowrap=\"nowrap\" align=\"Left\" width=\"40\">(.+)<", Pattern.MULTILINE);
+		Pattern ptype = Pattern.compile("<td nowrap=\"nowrap\" align=\"Left\" width=\"40\">(.+)</td><td al" +
+				"ign=\"Right\" width=\"55\">", Pattern.MULTILINE);
 		Matcher mtype = ptype.matcher(s);
 
 		Pattern pvolume = Pattern.compile("<td align=\"Right\" width=\"55\">(.+)</td><td align=\"Right\" width=\"62\">", Pattern.MULTILINE);
@@ -30,6 +31,7 @@ public class BeerParser {
 
 		while (mid.find()) {			
 			mtype.find();
+			System.out.println(mtype.group(1));
 			mvolume.find();
 			mlitreprice.find();
 			munitprice.find();
