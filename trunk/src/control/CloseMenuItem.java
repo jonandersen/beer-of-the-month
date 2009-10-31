@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
-import gui.Gui;
+import view.Gui;
+
 
 public class CloseMenuItem extends JMenuItem implements ActionListener {
 	private Gui gui;

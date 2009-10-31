@@ -1,28 +1,29 @@
-package gui;
+package view;
 
+import java.awt.BorderLayout;
 import java.net.MalformedURLException;
 
 import javax.swing.JFrame;
 
 import control.BotmMenuBar;
 import control.ExitListener;
+import control.ReScrapeBeerButton;
 import database.Database;
 
 public class Gui extends JFrame{
 	
 	public Gui(){
 		super("Beverage of the month");
+		setLayout(new BorderLayout());
 		Database db = new Database();
-		try {
-			db.reScrape(db.BEER);
-		} catch (MalformedURLException e) {			
-			e.printStackTrace();
-		}
 		setJMenuBar(new BotmMenuBar(this, db));
         addWindowListener(new ExitListener());
         setSize(1024, 768);
-       // pack();
-        setResizable(false);
+        add(new BeerList(this, db), BorderLayout.NORTH);
+        InfoArea info = new InfoArea();
+        add(new ReScrapeBeerButton(this, db, info ), BorderLayout.SOUTH);
+        pack();
+        setResizable(true);
         setVisible(true);
 	}
 	

@@ -1,6 +1,5 @@
 package control;
 
-import gui.Gui;
 
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
@@ -11,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.util.Scanner;
 
 import javax.swing.JMenuItem;
+
+import view.Gui;
 
 import database.Database;
 

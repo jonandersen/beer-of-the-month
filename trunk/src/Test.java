@@ -1,4 +1,4 @@
-import gui.Gui;
+import view.Gui;
 
 enum OperatingSystems {
     windows, unix, linux, macintosh

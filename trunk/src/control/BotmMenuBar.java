@@ -1,9 +1,10 @@
 package control;
 
-import gui.Gui;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+
+import view.Gui;
 
 import database.Database;
 

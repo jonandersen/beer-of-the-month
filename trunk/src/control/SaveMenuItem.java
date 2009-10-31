@@ -2,9 +2,10 @@ package control;
 
 import java.awt.FileDialog;
 
+import view.Gui;
+
 import database.Database;
 
-import gui.Gui;
 
 public class SaveMenuItem extends FileMenuItem {
 	
