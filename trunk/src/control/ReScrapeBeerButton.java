@@ -11,15 +11,12 @@ import view.InfoArea;
 
 import database.Database;
 
-public class ReScrapeBeerButton extends JButton implements ActionListener {
-	private Database db;
+public class ReScrapeBeerButton extends BotmButton implements ActionListener {	
 	private InfoArea info;
 	
 	public ReScrapeBeerButton(Gui gui, Database db, InfoArea info){
-		super("Rescrape Beer");
+		super(gui,db,"Rescrape Beer");
 		addActionListener(this);
-		this.db = db;
-		this.info = info;
 	}
 
 	
