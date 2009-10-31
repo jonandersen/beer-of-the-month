@@ -17,6 +17,7 @@ public class ReScrapeBeerButton extends BotmButton implements ActionListener {
 	public ReScrapeBeerButton(Gui gui, Database db, InfoArea info){
 		super(gui,db,"Rescrape Beer");
 		addActionListener(this);
+		this.info = info;
 	}
 
 	
