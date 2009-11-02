@@ -30,13 +30,13 @@ public class BeerParser {
 
 
 		while (mid.find()) {			
-			mtype.find();
-			System.out.println(mtype.group(1));
+			mtype.find();			
 			mvolume.find();
 			mlitreprice.find();
 			munitprice.find();
 			Beer beer = new Beer(mid.group(1), mtype.group(1),mvolume.group(1),mlitreprice.group(1),munitprice.group(1));			
 			map.put(new Integer(beer.hashCode()), beer);
+			System.out.println(beer.toString());
 			}
 		return map;
 	}

@@ -29,7 +29,7 @@ public class Gui extends JFrame{
         JLabel label = new JLabel();
         add(label, BorderLayout.WEST);
         add(new RandomBeerButton(this,db,label), BorderLayout.EAST);
-        //pack();
+        pack();
         setResizable(true);
         setVisible(true);
 	}

@@ -20,8 +20,7 @@ public class Beer extends Beverage implements Serializable{
 		this.unitPrice = unitPrice;
 		this.id = id;
 		this.type = type;
-		makeBeer();	
-		System.out.println(name);
+		makeBeer();			
 	}
 	
 	public boolean equals(Object obj) {
@@ -42,7 +41,7 @@ public class Beer extends Beverage implements Serializable{
 	}
 	
 	public String toString(){
-		return id + " " + name;
+		return id;// + " " + name;
 	}
 	
 	private void makeBeer() throws MalformedURLException, IOException{
