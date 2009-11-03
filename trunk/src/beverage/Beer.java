@@ -41,7 +41,7 @@ public class Beer extends Beverage implements Serializable{
 	}
 	
 	public String toString(){
-		return id;// + " " + name;
+		return name;// + " " + name;
 	}
 	
 	private void makeBeer() throws MalformedURLException, IOException{
