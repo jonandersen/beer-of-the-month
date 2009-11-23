@@ -1,4 +1,5 @@
 package database;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
@@ -17,10 +18,12 @@ import parser.URLParser;
 
 public class BeerDatabase extends SystemBolagetDatabase implements Serializable{	
 	private Map<Integer, Beer> database;
+	private Brewenizer[] statusList;
+	protected PropertyChangeListener pcl;
 	
 	public BeerDatabase() {	
 		database = new HashMap<Integer, Beer>();
-		database = Collections.synchronizedMap(database);
+		database = Collections.synchronizedMap(database);		
 	}
 
 	public void update() {
@@ -32,6 +35,7 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 	}
 
 	public void reScrape() throws MalformedURLException {
+		statusList = new Brewenizer[15];
 		for (int i = 1; i<=14; ++i){
 			URL url = new URL("http://systembolaget.se/Applikationer/Sok/ResultatLis" +
 					"ta.htm?NRMODE=Published&NRNODEGUID=%7bDCD7DFFB-CD43-4B8B-BD46-C" +
@@ -47,8 +51,9 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 					"3a100%3a0%3a%3aTrue%3a%3a%3a&SokOrdinarieSort=True&Sok=Av&SokStrangar=%u" +
 					"00d6L%3aAlla+l%u00e4nder%3aAlla+storlekar%3a%3a%3aBeska%3aFyllighet%3aS%" +
 					"u00f6tma%3a&Asc=1&Butik=0&SortKol=namn&sidNr="+i);
-			Brewenizer b = new Brewenizer(url, database);
-			b.start();
+			Brewenizer b = new Brewenizer(url, database,pcl);
+			statusList[i] = b;
+			b.start();			
 		}
 	}
 	
@@ -60,5 +65,32 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 		Random rand = new Random();
 		return list.get(rand.nextInt(list.size()));
 		
+	}
+
+	
+	public int status() {
+		if(statusList[1] == null){
+			return -1;
+		} else{
+			int totalStatus = 0;
+			for(int i = 1; i < statusList.length ; i++){
+				totalStatus += statusList[i].Status()/statusList.length;				
+			}			
+			return totalStatus;
+		}		
+	}	
+	public void addPropertyChangeListener(PropertyChangeListener pcl) {
+		this.pcl = pcl;		
+	}
+
+	
+	public boolean done() {		
+		for(int i = 1; i < statusList.length ; i++){
+			if(!statusList[i].done()){				
+				return false;
+			}
+		}
+		System.out.println("DONE");
+		return true;
 	}
 }

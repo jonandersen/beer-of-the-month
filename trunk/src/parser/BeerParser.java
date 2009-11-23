@@ -1,5 +1,6 @@
 package parser;
 
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -8,9 +9,14 @@ import java.util.regex.Pattern;
 import beverage.Beer;
 
 public class BeerParser {
+	private Integer status;
+	private boolean done;
 
-	public HashMap<Integer, Beer> beerID(String s) throws IOException {
-		HashMap<Integer, Beer> map = new HashMap<Integer, Beer>();		
+	public HashMap<Integer, Beer> beerID(String s, PropertyChangeListener pcl) throws IOException {
+		HashMap<Integer, Beer> map = new HashMap<Integer, Beer>();
+		status = new Integer(0);
+		done = false;
+		
 		Pattern pid = Pattern.compile("name=\"checkbox\" value=\"(\\w+)\"", Pattern.MULTILINE);
 		Matcher mid = pid.matcher(s);
 		
@@ -36,9 +42,21 @@ public class BeerParser {
 			munitprice.find();
 			Beer beer = new Beer(mid.group(1), mtype.group(1),mvolume.group(1),mlitreprice.group(1),munitprice.group(1));			
 			map.put(new Integer(beer.hashCode()), beer);
-			System.out.println(beer.toString());
+			System.out.println(beer.toString());			
+			status += (100/30);			
+			pcl.propertyChange(null);
 			}
+		done = true;
+		pcl.propertyChange(null);
 		return map;
+	}
+	
+	public int status(){
+		return status;
+	}
+	
+	public boolean done(){
+		return done;
 	}
 	
 	
