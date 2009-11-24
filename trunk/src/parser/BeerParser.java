@@ -9,12 +9,11 @@ import java.util.regex.Pattern;
 import beverage.Beer;
 
 public class BeerParser {
-	private Integer status;
+	private double status = 0;
 	private boolean done;
 
 	public HashMap<Integer, Beer> beerID(String s, PropertyChangeListener pcl) throws IOException {
-		HashMap<Integer, Beer> map = new HashMap<Integer, Beer>();
-		status = new Integer(0);
+		HashMap<Integer, Beer> map = new HashMap<Integer, Beer>();		
 		done = false;
 		
 		Pattern pid = Pattern.compile("name=\"checkbox\" value=\"(\\w+)\"", Pattern.MULTILINE);
@@ -52,7 +51,8 @@ public class BeerParser {
 	}
 	
 	public int status(){
-		return status;
+		int tempStatus = (int) status;
+		return tempStatus;
 	}
 	
 	public boolean done(){

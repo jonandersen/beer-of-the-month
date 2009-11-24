@@ -22,6 +22,8 @@ public class ReScrapeBeerButton extends BotmButton implements ActionListener,
 	private InfoArea info;
 	private JProgressBar progressBar;	
 	private JFrame frame;
+	private long lastTime;
+	private int lastProgress;
 
 	public ReScrapeBeerButton(Gui gui, Database db, InfoArea info) {
 		super(gui, db, "Rescrape Beer");
@@ -30,6 +32,7 @@ public class ReScrapeBeerButton extends BotmButton implements ActionListener,
 		progressBar = new JProgressBar(0, 100);
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
+		lastProgress = 0;
 
 	}
 
@@ -44,8 +47,9 @@ public class ReScrapeBeerButton extends BotmButton implements ActionListener,
 			this.setEnabled(false);
 			db.addPropertyChangeListener(this);
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			db.reScrape(db.BEER);
-			info.setText("Working");			
+			lastTime = System.nanoTime();
+			info.setText("Estimated time: NA");	
+			db.reScrape(db.BEER);					
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -56,6 +60,12 @@ public class ReScrapeBeerButton extends BotmButton implements ActionListener,
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (!db.done()) {			
 			int progress = db.status();
+			if(progress > lastProgress){
+				long currentTime = System.nanoTime();
+				long difference = (currentTime - lastTime)/1000000*60;
+				info.setText("Estimated time: " + Long.toString(difference) + " min");
+				lastTime = System.nanoTime();
+			}
 			progressBar.setValue(progress);			
 		}else{
 			Toolkit.getDefaultToolkit().beep();

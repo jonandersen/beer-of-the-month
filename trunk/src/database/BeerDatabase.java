@@ -72,11 +72,12 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 		if(statusList[1] == null){
 			return -1;
 		} else{
-			int totalStatus = 0;
+			double totalStatus = 0;
 			for(int i = 1; i < statusList.length ; i++){
-				totalStatus += statusList[i].Status()/statusList.length;				
+				int statusListStatus = statusList[i].Status();
+				totalStatus += statusListStatus;				
 			}			
-			return totalStatus;
+			return (int) totalStatus/statusList.length;
 		}		
 	}	
 	public void addPropertyChangeListener(PropertyChangeListener pcl) {
