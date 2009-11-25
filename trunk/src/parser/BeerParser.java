@@ -50,9 +50,8 @@ public class BeerParser {
 		return map;
 	}
 	
-	public int status(){
-		int tempStatus = (int) status;
-		return tempStatus;
+	public double status(){		
+		return status;
 	}
 	
 	public boolean done(){

@@ -62,7 +62,7 @@ public class ReScrapeBeerButton extends BotmButton implements ActionListener,
 			int progress = db.status();
 			if(progress > lastProgress){
 				long currentTime = System.nanoTime();
-				long difference = (currentTime - lastTime)/1000000*60;
+				long difference = ((currentTime - lastTime)/1000000000)*100*60;
 				info.setText("Estimated time: " + Long.toString(difference) + " min");
 				lastTime = System.nanoTime();
 			}

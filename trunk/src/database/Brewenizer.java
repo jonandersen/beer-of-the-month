@@ -20,7 +20,7 @@ public class Brewenizer extends Thread {
 		bp = new BeerParser();
 	}
 	
-	public int Status(){
+	public double Status(){
 		return bp.status();
 	}
 	public boolean done(){

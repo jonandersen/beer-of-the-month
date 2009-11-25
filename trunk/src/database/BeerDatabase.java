@@ -74,7 +74,7 @@ public class BeerDatabase extends SystemBolagetDatabase implements Serializable{
 		} else{
 			double totalStatus = 0;
 			for(int i = 1; i < statusList.length ; i++){
-				int statusListStatus = statusList[i].Status();
+				double statusListStatus = statusList[i].Status();
 				totalStatus += statusListStatus;				
 			}			
 			return (int) totalStatus/statusList.length;
