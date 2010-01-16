@@ -13,6 +13,10 @@ public class FileDownloader {
 		fos = new FileOutputStream(filename);
 		bos = new BufferedOutputStream(fos, 1024);
 
+
+	}
+	
+	public void WriteToFile() throws IOException{
 		byte[] buf = new byte[4 * 1024]; // 4K buffer
 		int bytesRead;
 		while ((bytesRead = bis.read(buf)) != -1) {
