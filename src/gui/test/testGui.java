@@ -1,4 +1,6 @@
-package gui;
+package gui.test;
+
+import gui.MainGuiView;
 
 public class testGui {
 
