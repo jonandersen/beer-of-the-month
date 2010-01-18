@@ -47,7 +47,7 @@ public class FileParser {
 		String line;
 		while (reader.ready()) {
 			line = reader.readLine();
-			if(Character.isDigit(line.charAt(0)))
+			if(!Character.isDigit(line.charAt(0)))
 				continue;
 			db.add(parseLine(line));
 		}
