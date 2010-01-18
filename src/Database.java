@@ -14,32 +14,25 @@ public class Database {
 		map = new HashMap<String,Beverage>();
 	}
 	
-
 	public int size() {
 		return map.size();
 	}
 
 	public void add(Beverage beverage) {
 		map.put(beverage.getId(), beverage);
-		
 	}
 	
-	
-
 	public Beverage get(String id) {
 		return map.get(id);
 	}
 
-	public ArrayList<Beverage> makeList() {
+	public ArrayList<Beverage> getList() {
 		return getList(null);
 	}
 
-
 	public void remove(String id) {
-		map.remove(id);
-		
+		map.remove(id);		
 	}
-
 
 	public ArrayList<Beverage> getBeerList() {
 		return getList("ÖL");
