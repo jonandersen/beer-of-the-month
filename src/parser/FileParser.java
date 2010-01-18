@@ -21,16 +21,12 @@ import beverage.ArticleInfo;
 import beverage.Beverage;
 
 public class FileParser {
-	private BufferedReader breader;
+	private BufferedReader reader;
+	private Database db; 
 
-	public FileParser(Database db, Reader reader) {
-//		FileReader freader = null;
-//		try {
-//			freader = new FileReader(file);
-//			breader = new BufferedReader(freader);
-//		} catch (Exception e) {
-//			System.exit(5);
-//		}
+	public FileParser(Database db, BufferedReader reader) {
+		this.reader = reader;
+		this.db = db;
 	}
 	
 	protected Beverage parseLine(String line) throws ParserException {
@@ -46,5 +42,9 @@ public class FileParser {
 				}
 			}
 		return new Beverage(info);
+	}
+	
+	public void parse(){
+		
 	}
 }
