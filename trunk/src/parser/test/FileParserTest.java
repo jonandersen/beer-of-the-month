@@ -1,4 +1,4 @@
-package test;
+package parser.test;
 
 
 import org.junit.After;
