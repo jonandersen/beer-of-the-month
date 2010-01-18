@@ -12,38 +12,36 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
+import exception.ParserException;
+
 import beverage.ArticleInfo;
 import beverage.Beverage;
 
 public class FileParser {
 	private BufferedReader breader;
 
-	public FileParser(File file) {
-		FileReader freader = null;
-		try {
-			freader = new FileReader(file);
-			breader = new BufferedReader(freader);
-		} catch (Exception e) {
-			System.exit(5);
-		}
+	public FileParser() {
+//		FileReader freader = null;
+//		try {
+//			freader = new FileReader(file);
+//			breader = new BufferedReader(freader);
+//		} catch (Exception e) {
+//			System.exit(5);
+//		}
 	}
 	
-	public Beverage parseLine(String line) {
+	protected Beverage parseLine(String line) throws ParserException {
 		EnumMap<ArticleInfo ,String> info =
 			new EnumMap<ArticleInfo, String>(ArticleInfo.class);
 			String[] infoArray = line.split("\t");
 			for(ArticleInfo ainfo : ArticleInfo.values()){
-				info.put(ainfo, infoArray[ainfo.ordinal()]);
+				try{
+					info.put(ainfo, infoArray[ainfo.ordinal()]);
+				}
+				catch(ArrayIndexOutOfBoundsException e){
+					throw new exception.ParserException("Malformed Input Error");
+				}
 			}
 		return new Beverage(info);
 	}
 }
-
-//String token;
-//tokenizer = new StringTokenizer(breader.readLine(), "\t");
-//if(tokenizer.hasMoreTokens() && !(token = tokenizer.nextToken()).matches("\\d+")){
-//	continue;
-//}
-//do{
-//	info.
-//}while(tokenizer.hasMoreTokens());

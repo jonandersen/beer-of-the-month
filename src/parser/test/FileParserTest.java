@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import beverage.ArticleInfo;
+import beverage.Beverage;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
@@ -21,33 +22,16 @@ import parser.FileParser;
  * @author dt08ja5
  *
  */
-public class FileParserTest {
-
-	private File file;
-	private FileParser parser;
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-		file = new File("/home/johan/testfile");
-		parser = new FileParser(file);
+public class FileParserTest extends FileParser {
+	@Test
+	public void ParseLineTest() throws Exception{
+		Beverage bev = parseLine("101	namn	namn2	pris	volym	saljstart	slutlev	varugrupp	ursprung	land	producent	argang	prov	alkohol");
+		assertEquals(bev.getId(), "101");
+		assertEquals(bev.getName(), "namn");
+		assertEquals(bev.getPrice(), "pris");
+		assertEquals(bev.getAlcohol(), "alkohol");
+		assertEquals(bev.getOrigin(), "ursprung");
+		assertEquals(bev.getAlcohol(), "alkohol");
 	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
-	
-//	@Test
-//	public void ParseLineTest(){
-//		HashMap<ArticleInfo, String> map = parser.parseLine("101	one	two	three		four");
-//		Collection<String> list = map.values();
-//		String[] cList = {"101", "one", "two", "three", "", "four"};
-//		for(int i = 0; i < cList.length; ++i)
-//			assertEquals(map.get(i), cList[i]);
-//	}
 
 }

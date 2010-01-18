@@ -2,6 +2,8 @@
 import java.io.*;
 import java.net.*;
 
+import exception.BotMException;
+
 public class FileDownloader {
 	
 	public static void DownloadFile(String url, File file) throws BotMException {		
