@@ -44,7 +44,11 @@ public class FileParser {
 		return new Beverage(info);
 	}
 	
-	public void parse(){
-		
+	public void parse() throws IOException, ParserException{
+		while(reader.ready()){
+			for(int i = 0; i < 3; ++i)
+				reader.readLine();
+			db.add(parseLine(reader.readLine()));
+		}
 	}
 }
