@@ -22,33 +22,34 @@ import beverage.Beverage;
 
 public class FileParser {
 	private BufferedReader reader;
-	private Database db; 
+	private Database db;
 
 	public FileParser(Database db, BufferedReader reader) {
 		this.reader = reader;
 		this.db = db;
 	}
-	
+
 	protected Beverage parseLine(String line) throws ParserException {
-		EnumMap<ArticleInfo, String> info =
-			new EnumMap<ArticleInfo, String>(ArticleInfo.class);
-			String[] infoArray = line.split("\t");
-			for(ArticleInfo ainfo : ArticleInfo.values()){
-				try{
-					info.put(ainfo, infoArray[ainfo.ordinal()]);
-				}
-				catch(ArrayIndexOutOfBoundsException e){
-					throw new exception.ParserException("Malformed Input Error");
-				}
+		EnumMap<ArticleInfo, String> info = new EnumMap<ArticleInfo, String>(
+				ArticleInfo.class);
+		String[] infoArray = line.split("\t");
+		for (ArticleInfo ainfo : ArticleInfo.values()) {
+			try {
+				info.put(ainfo, infoArray[ainfo.ordinal()]);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				throw new exception.ParserException("Malformed Input Error");
 			}
+		}
 		return new Beverage(info);
 	}
-	
-	public void parse() throws IOException, ParserException{
-		while(reader.ready()){
-			for(int i = 0; i < 3; ++i)
-				reader.readLine();
-			db.add(parseLine(reader.readLine()));
+
+	public void parse() throws IOException, ParserException {
+		String line;
+		while (reader.ready()) {
+			line = reader.readLine();
+			if(Character.isDigit(line.charAt(0)))
+				continue;
+			db.add(parseLine(line));
 		}
 	}
 }
