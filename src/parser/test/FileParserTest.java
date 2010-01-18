@@ -4,6 +4,7 @@ package parser.test;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.Reader;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -16,6 +17,8 @@ import beverage.Beverage;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
+import database.Database;
+
 import parser.FileParser;
 
 /**
@@ -23,6 +26,11 @@ import parser.FileParser;
  *
  */
 public class FileParserTest extends FileParser {
+	public FileParserTest() {
+		super(null, null);
+		// TODO Auto-generated constructor stub
+	}
+
 	public Beverage bev;
 	@Before
 	public void setUp() throws Exception {
