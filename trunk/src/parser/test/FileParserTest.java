@@ -23,15 +23,47 @@ import parser.FileParser;
  *
  */
 public class FileParserTest extends FileParser {
+	public Beverage bev;
+	@Before
+	public void setUp() throws Exception {
+		bev = parseLine("101	namn	namn2	pris	volym	saljstart	slutlev	varugrupp	ursprung	land	producent	argang	prov	alkohol");
+	}
 	@Test
-	public void ParseLineTest() throws Exception{
-		Beverage bev = parseLine("101	namn	namn2	pris	volym	saljstart	slutlev	varugrupp	ursprung	land	producent	argang	prov	alkohol");
+	public void ParseLineTestName(){
+		assertEquals(bev.getName(), "namn namn2");
+	}
+	@Test
+	public void ParseLineTestID(){
 		assertEquals(bev.getId(), "101");
-		assertEquals(bev.getName(), "namn");
+	}
+	
+	@Test
+	public void ParseLineTestPrice(){
 		assertEquals(bev.getPrice(), "pris");
-		assertEquals(bev.getAlcohol(), "alkohol");
-		assertEquals(bev.getOrigin(), "ursprung");
+	}
+	
+	@Test
+	public void ParseLineTestAlcohol(){
 		assertEquals(bev.getAlcohol(), "alkohol");
 	}
 
+	@Test
+	public void ParseLineTestOrigin(){
+		assertEquals(bev.getOrigin(), "ursprung");
+	}
+
+	@Test
+	public void ParseLineTestVintage(){
+		assertEquals(bev.getVintage(), "argang");
+	}
+
+	@Test
+	public void ParseLineTestType(){
+		assertEquals(bev.getType(), "varugrupp");
+	}
+
+	@Test
+	public void ParseLineTestVolume(){
+		assertEquals(bev.getVolume(), "volym");
+	}
 }
