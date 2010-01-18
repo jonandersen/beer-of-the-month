@@ -40,7 +40,7 @@ public class Beverage {
 	      return false;
 	}
 	public String toString(){
-		return getName()+" "+getPrice()+" kr "+getVolume()+" cl "+getAlcohol()+" %";
+		return getName()+" "+getPrice()+" kr "+getVolume()+" ml "+getAlcohol()+" %";
 	}
 	
 }
