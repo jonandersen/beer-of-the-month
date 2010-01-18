@@ -19,8 +19,20 @@ public class BeerFunctionality {
 	
 	public Beverage BeerOfTheMonth(){
 	  List<Beverage> beerList = db.getBeerList();
+	  if(beerList == null){
+		  return null;
+	  }
 	  Random rand = new Random();
 		return beerList.get(rand.nextInt(beerList.size()-1));
+	}
+	
+	public Beverage BeverageOfTheMonth(){
+		List<Beverage> beverageList = db.getList();
+		  if(beverageList == null){
+			  return null;
+		  }
+		Random rand = new Random();
+		return beverageList.get(rand.nextInt(beverageList.size() - 1));
 	}
 	
 	public Beverage bangForTheBuck(){
@@ -39,7 +51,6 @@ public class BeerFunctionality {
 				bestBang = b;
 				currentBang = tempBang;
 			}
-			
 		}
 		return bestBang;
 	}
