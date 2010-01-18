@@ -32,6 +32,7 @@ public class BotM {
 		try {
 			fp = new FileParser(db, new BufferedReader(new FileReader(file)));
 			fp.parse();
+			System.out.println(db.size());
 		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
 		} catch (ParserException e) {			
@@ -40,9 +41,13 @@ public class BotM {
 			e.printStackTrace();
 		}
 		BeerFunctionality bf = new BeerFunctionality(db);
+		
 		Beverage beer = bf.BeerOfTheMonth();
+		System.out.println(beer);
+		System.out.println(bf.bangForTheBuck().toString());
 		try {
 			BeerOfTheMonthSaver bs = new BeerOfTheMonthSaver(beer, "BeerOfTheMonth");
+			bs.save();
 		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
 		}
