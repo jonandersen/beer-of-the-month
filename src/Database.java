@@ -8,15 +8,12 @@ import beverage.Beverage;
 
 
 public class Database {
-	private HashMap<String,Beverage> map = new HashMap<String,Beverage>();
+	private HashMap<String,Beverage> map;
 	
 	public Database(){
-		
+		map = new HashMap<String,Beverage>();
 	}
 	
-	public void refreshDatabase(){
-		
-	}
 
 	public int size() {
 		return map.size();
@@ -26,6 +23,8 @@ public class Database {
 		map.put(beverage.getId(), beverage);
 		
 	}
+	
+	
 
 	public Beverage get(String id) {
 		return map.get(id);
@@ -40,6 +39,18 @@ public class Database {
 			list.add(b);
 		}
 		return list;
+	}
+
+
+	public void remove(String id) {
+		map.remove(id);
+		
+	}
+
+
+	public ArrayList<Beverage> getBeerList() {
+		
+		return null;
 	}
 	
 	
