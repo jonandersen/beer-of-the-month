@@ -44,7 +44,7 @@ public class Database {
 		ArrayList<Beverage> list = new ArrayList<Beverage>();
 		while(itr.hasNext()){
 			b = (Beverage) itr.next();			
-			if(b.getType().equals(type) || type == null){				
+			if(type == null || b.getType().equals(type)){				
 				list.add(b);
 			}			
 		}
