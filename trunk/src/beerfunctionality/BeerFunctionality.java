@@ -1,8 +1,11 @@
+package beerfunctionality;
 
 
 
 import java.util.List;
 import java.util.Random;
+
+import database.Database;
 
 import beverage.Beverage;
 

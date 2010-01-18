@@ -1,3 +1,4 @@
+package database;
 
 import static org.junit.Assert.*;
 
