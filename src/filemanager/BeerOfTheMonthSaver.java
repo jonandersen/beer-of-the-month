@@ -20,6 +20,4 @@ public class BeerOfTheMonthSaver extends PrintStream {
 		flush();
 	    close();
 	}
-
-
 }
