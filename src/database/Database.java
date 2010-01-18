@@ -36,7 +36,7 @@ public class Database {
 	}
 
 	public ArrayList<Beverage> getBeerList() {
-		return getList("ÖL");
+		return getList("�L");
 	}
 	
 	private ArrayList<Beverage> getList(String type){
