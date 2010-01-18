@@ -12,27 +12,26 @@ public class FileDownloaderTest {
 	
 	
 	@Before
-	public void setUp() throws Exception {
-		String filename = "wikipedia";		
-		file = new File(filename);
+	public void setUp() throws Exception {		
+		file = new File("wikipedia");
 		
 	}
 	
 	@Test ( expected = BotMException.class)
 	public void wrongURLShouldThrowException() throws BotMException{
-		FileDownloader.DownloadFile("heho", file.getName());
+		FileDownloader.DownloadFile("heho", file);
 	}
 	
 	@Test ( expected = BotMException.class)
 	public void fileAlreadyExistsShouldThrowExpcetion() throws BotMException{
-		FileDownloader.DownloadFile("http://www.wikipedia.org/", file.getName());
-		FileDownloader.DownloadFile("http://www.wikipedia.org/", file.getName());		
+		FileDownloader.DownloadFile("http://www.wikipedia.org/", file);
+		FileDownloader.DownloadFile("http://www.wikipedia.org/", file);		
 	}
 	
 	@Test
 	public void downloadFile()	{		
 		try {
-			FileDownloader.DownloadFile("http://www.wikipedia.org/", file.getName());			
+			FileDownloader.DownloadFile("http://www.wikipedia.org/", file);			
 		} catch (BotMException e) {				
 		}		
 		junit.framework.Assert.assertEquals(true, file.exists());		
