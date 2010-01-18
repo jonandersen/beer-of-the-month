@@ -41,9 +41,10 @@ public class BeerFunctionality {
 		double price, volume, alcohol, currentBang = 0, tempBang;
 		Beverage bestBang = null;
 		for(Beverage b: beverageList){
-			price = Double.parseDouble(b.getPrice().replace(",", "."));
+			String s = b.getPrice().replace(",", ".");
+			price = Double.parseDouble(s);
 			volume = Double.parseDouble(b.getVolume());
-			alcohol = Double.parseDouble(b.getAlcohol().replace("%", ""));
+			alcohol = Double.parseDouble(b.getAlcohol().replace("%", "").replace(",", "."));
 			tempBang = price / (volume * alcohol);
 			if(currentBang == 0){
 				currentBang = tempBang;
