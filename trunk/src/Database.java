@@ -31,14 +31,7 @@ public class Database {
 	}
 
 	public ArrayList<Beverage> makeList() {
-		Iterator<Beverage> itr = map.values().iterator();		
-		Beverage b;
-		ArrayList<Beverage> list = new ArrayList<Beverage>();
-		while(itr.hasNext()){
-			b = (Beverage) itr.next();
-			list.add(b);
-		}
-		return list;
+		return getList(null);
 	}
 
 
@@ -49,8 +42,20 @@ public class Database {
 
 
 	public ArrayList<Beverage> getBeerList() {
-		
-		return null;
+		return getList("ÖL");
+	}
+	
+	private ArrayList<Beverage> getList(String type){
+		Iterator<Beverage> itr = map.values().iterator();		
+		Beverage b;
+		ArrayList<Beverage> list = new ArrayList<Beverage>();
+		while(itr.hasNext()){
+			b = (Beverage) itr.next();			
+			if(b.getType().equals(type) || type == null){				
+				list.add(b);
+			}			
+		}
+		return list;
 	}
 	
 	
