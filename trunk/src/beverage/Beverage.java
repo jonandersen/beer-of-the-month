@@ -32,7 +32,11 @@ public class Beverage {
 	public String getAlcohol(){
 		return info.get(ArticleInfo.ALCOHOL);
 	}
-	public boolean equals(){
-		return true;
+	public boolean equals(Object o){
+	    if (o instanceof Beverage) {
+	        Beverage b = (Beverage) o;
+	        return this.getId().equals(b.getId());
+	      }
+	      return false;
 	}
 }
