@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -74,4 +75,13 @@ public class FileParserTest extends FileParser {
 	public void ParseLineTestVolume(){
 		assertEquals(bev.getVolume(), "volym");
 	}
+	
+//	public void parseStringTest(){
+//		StringReader strr = new StringReader("Skapad Tid:	2010-01-18 09:42
+//nr	namn	namn2	prisinklmoms	volymiml	saljstart	slutlev	varugrupp	ursprung	ursprunglandnamn	producent	argang	provadargang	alkoholhalt	
+//													
+//101	Renat		199	700	19931001		SPRIT	Sverige	Sverige	V&S			37,5%
+//102	Renat		106	350	19931001		SPRIT	Sverige	Sverige	V&S			37,5%
+//");
+//	}
 }
