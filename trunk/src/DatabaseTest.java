@@ -53,12 +53,12 @@ public class DatabaseTest {
 	
 	@Test
 	public void DatabaseMakeListShouldBeEmpty(){		
-		List dbList = db.makeList();
+		List dbList = db.getList();
 		assertEquals(dbList.isEmpty(),true);
 	}
 	
 	public void DatabaseMakeListShouldNotBeEmpty(){		
-		List dbList = db.makeList();
+		List dbList = db.getList();
 		assertEquals(dbList.isEmpty(),false);
 		
 	}
