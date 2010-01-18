@@ -23,6 +23,7 @@ public class BeerFunctionality {
 		  return null;
 	  }
 	  Random rand = new Random();
+	  
 		return beerList.get(rand.nextInt(beerList.size()-1));
 	}
 	
