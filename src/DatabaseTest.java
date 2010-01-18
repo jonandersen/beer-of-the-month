@@ -62,18 +62,30 @@ public class DatabaseTest {
 		assertEquals(dbList.isEmpty(),false);
 		
 	}
-	
 	@Test
-	public void BeerListOnlyContainsBeer(){
+	public void ListContainsManyBeer(){
+		fillDB();
 		Map<Enum, String> info = new HashMap<Enum,String>();
 		info.put(ArticleInfo.ID, "1365");
 		info.put(ArticleInfo.NAME, "Redulf");
-		info.put(ArticleInfo.TYPE, "Wine");
+		info.put(ArticleInfo.TYPE, "VIN");
+		
+		ArrayList<Beverage> beerlist = db.getBeerList();		
+		assertEquals(2, beerlist.size());
+	}
+	
+	@Test
+	public void BeerListOnlyContainsBeer(){
+		fillDB();
+		Map<Enum, String> info = new HashMap<Enum,String>();
+		info.put(ArticleInfo.ID, "1365");
+		info.put(ArticleInfo.NAME, "Redulf");
+		info.put(ArticleInfo.TYPE, "VIN");
 		
 		ArrayList<Beverage> beerlist = db.getBeerList();
 		Boolean containsnotbeer = false;
 		for(Beverage bevrage: beerlist){
-			if(!bevrage.getType().equals("Beer")){
+			if(!bevrage.getType().equals("ÖL")){
 				containsnotbeer = true;
 				break;
 			}
@@ -81,16 +93,17 @@ public class DatabaseTest {
 		assertEquals(containsnotbeer, false);
 	}
 	
+	
 	private void fillDB(){
 		Map<Enum, String> info = new HashMap<Enum,String>();
 		info.put(ArticleInfo.ID, "1365");
 		info.put(ArticleInfo.NAME, "Carlsberg");
-		info.put(ArticleInfo.TYPE, "Beer");
+		info.put(ArticleInfo.TYPE, "ÖL");
 		
 		Map<Enum, String> info2 = new HashMap<Enum,String>();
 		info2.put(ArticleInfo.ID, "1456");
 		info2.put(ArticleInfo.NAME, "Mariestad");
-		info2.put(ArticleInfo.TYPE, "Beer");
+		info2.put(ArticleInfo.TYPE, "ÖL");
 		
 		db.add(new Beverage(info));	
 		db.add(new Beverage(info2));
