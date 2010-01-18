@@ -4,14 +4,13 @@ import java.net.*;
 
 public class FileDownloader {
 	
-	public static void DownloadFile(String url, String filename) throws BotMException {
-		File file = new File(filename);
+	public static void DownloadFile(String url, File file) throws BotMException {		
 		if(file.exists()){
 			throw new BotMException("The file already exists");
 		}
 		try {
 			BufferedInputStream bis = new BufferedInputStream(new URL(url).openStream());
-			FileOutputStream fos = new FileOutputStream(filename);
+			FileOutputStream fos = new FileOutputStream(file.getName());
 			BufferedOutputStream  bos = new BufferedOutputStream(fos, 1024);
 			byte[] buf = new byte[4 * 1024];
 			int bytesRead;
@@ -27,3 +26,5 @@ public class FileDownloader {
 		}
 	}
 }
+
+
