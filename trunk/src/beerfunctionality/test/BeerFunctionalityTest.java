@@ -1,4 +1,4 @@
-package beerfunctionality;
+package beerfunctionality.test;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import database.Database;
 
+import beerfunctionality.BeerFunctionality;
 import beverage.ArticleInfo;
 import beverage.Beverage;
 

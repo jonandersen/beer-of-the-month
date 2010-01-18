@@ -1,4 +1,4 @@
-package database;
+package database.test;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,8 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import database.Database;
 
 import beverage.ArticleInfo;
 import beverage.Beverage;
