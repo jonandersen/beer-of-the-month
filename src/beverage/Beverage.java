@@ -3,9 +3,9 @@ package beverage;
 import java.util.Map;
 import beverage.ArticleInfo;
 public class Beverage {
-	private Map<Enum, String> info;
+	private Map<ArticleInfo, String> info;
 
-	public Beverage(Map<Enum, String> info) {
+	public Beverage(Map<ArticleInfo, String> info) {
 		this.info = info;
 	}
 	public String getId(){

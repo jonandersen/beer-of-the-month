@@ -8,37 +8,42 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
+import beverage.ArticleInfo;
+import beverage.Beverage;
+
 public class FileParser {
-	private BufferedReader bread;
-	
+	private BufferedReader breader;
+
 	public FileParser(File file) {
-		FileReader fread = null;
+		FileReader freader = null;
 		try {
-			fread = new FileReader(file);
-			bread = new BufferedReader(fread);
-		} catch(Exception e) {
+			freader = new FileReader(file);
+			breader = new BufferedReader(freader);
+		} catch (Exception e) {
 			System.exit(5);
 		}
 	}
-
-	public HashMap<Enum, String> parse(){
-		HashMap<Enum, String> info = new HashMap<Enum, String>();
-		StringTokenizer tokenizer; 
-		try {
-			while(bread.ready()){
-				tokenizer = new StringTokenizer(bread.readLine(), "\t");
-				while(tokenizer.hasMoreTokens()){
-					if(!tokenizer.nextToken().matches(""));
-				}
+	
+	public Beverage parseLine(String line) {
+		EnumMap<ArticleInfo ,String> info =
+			new EnumMap<ArticleInfo, String>(ArticleInfo.class);
+			String[] infoArray = line.split("\t");
+			for(ArticleInfo ainfo : ArticleInfo.values()){
+				info.put(ainfo, infoArray[ainfo.ordinal()]);
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return new Beverage(info);
 	}
-
 }
+
+//String token;
+//tokenizer = new StringTokenizer(breader.readLine(), "\t");
+//if(tokenizer.hasMoreTokens() && !(token = tokenizer.nextToken()).matches("\\d+")){
+//	continue;
+//}
+//do{
+//	info.
+//}while(tokenizer.hasMoreTokens());

@@ -43,7 +43,7 @@ public class DatabaseTest {
 	@Test
 	public void DatabaseGetShouldReturn(){
 		fillDB();
-		Map<Enum, String> info = new HashMap<Enum,String>();
+		Map<ArticleInfo, String> info = new HashMap<ArticleInfo, String>();
 		info.put(ArticleInfo.ID, "7895");
 		info.put(ArticleInfo.NAME, "Mariestad");
 		Beverage b = new Beverage(info);
@@ -95,12 +95,12 @@ public class DatabaseTest {
 	
 	
 	private void fillDB(){
-		Map<Enum, String> info = new HashMap<Enum,String>();
+		Map<ArticleInfo, String> info = new HashMap<ArticleInfo,String>();
 		info.put(ArticleInfo.ID, "1365");
 		info.put(ArticleInfo.NAME, "Carlsberg");
 		info.put(ArticleInfo.TYPE, "ÖL");
 		
-		Map<Enum, String> info2 = new HashMap<Enum,String>();
+		Map<ArticleInfo, String> info2 = new HashMap<ArticleInfo,String>();
 		info2.put(ArticleInfo.ID, "1456");
 		info2.put(ArticleInfo.NAME, "Mariestad");
 		info2.put(ArticleInfo.TYPE, "ÖL");
