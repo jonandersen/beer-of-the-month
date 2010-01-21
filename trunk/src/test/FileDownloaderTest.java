@@ -4,7 +4,7 @@ package test;
 import java.io.File;
 import java.io.IOException;
 
-import main.FileDownloader;
+import model.FileDownloader;
 
 import org.junit.After;
 import org.junit.Before;
