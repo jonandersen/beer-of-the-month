@@ -1,17 +1,18 @@
-package beerfunctionality.test;
+package test;
 
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
 
+import model.ArticleInfo;
+import model.BeerFunctionality;
+import model.Beverage;
+import model.Database;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import database.Database;
 
-import beerfunctionality.BeerFunctionality;
-import beverage.ArticleInfo;
-import beverage.Beverage;
 
 
 public class BeerFunctionalityTest {

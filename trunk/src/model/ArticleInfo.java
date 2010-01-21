@@ -1,4 +1,4 @@
-package beverage;
+package model;
 
 public enum ArticleInfo {
 		ID, NAME, NAME2, PRICE, VOLUME, SALESTART, ENDLEV, TYPE,

@@ -1,7 +1,8 @@
-package beverage;
+package model;
 
 import java.util.Map;
-import beverage.ArticleInfo;
+
+import model.ArticleInfo;
 public class Beverage {
 	private Map<ArticleInfo, String> info;
 

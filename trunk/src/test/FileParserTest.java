@@ -1,4 +1,4 @@
-package parser.test;
+package test;
 
 
 import static org.junit.Assert.*;
@@ -9,18 +9,19 @@ import java.io.StringReader;
 import java.util.Collection;
 import java.util.HashMap;
 
+import model.ArticleInfo;
+import model.Beverage;
+import model.Database;
+import model.FileParser;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import beverage.ArticleInfo;
-import beverage.Beverage;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
-import database.Database;
 
-import parser.FileParser;
 
 /**
  * @author dt08ja5
