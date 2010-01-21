@@ -43,17 +43,19 @@ public class BotM {
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}
-		BeerFunctionality bf = new BeerFunctionality(db);
-		
+		BeerFunctionality bf = new BeerFunctionality(db);		
 		Beverage beer = bf.BeerOfTheMonth();
+		Beverage wine = bf.WineOfTheMonth();
 		System.out.println(beer);
+		System.out.println(wine);
 		System.out.println(bf.bangForTheBuck().toString());
 		try {
 			BeerOfTheMonthSaver bs = new BeerOfTheMonthSaver(beer, "BeerOfTheMonth");
 			bs.save();
 		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
-		}
+		}		
+		
 
 	}
 

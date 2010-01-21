@@ -36,7 +36,14 @@ public class Database {
 	}
 
 	public ArrayList<Beverage> getBeerList() {
-		return getList("�L");
+		return getList("ÖL");
+	}
+	
+	public ArrayList<Beverage> getWineList() {
+		ArrayList<Beverage> rlist = getList("VITA VINER");
+		ArrayList<Beverage> vlist = getList("RÖDA VINER");
+		rlist.addAll(vlist);
+		return rlist;
 	}
 	
 	private ArrayList<Beverage> getList(String type){
