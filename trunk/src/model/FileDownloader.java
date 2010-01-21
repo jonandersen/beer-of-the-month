@@ -8,10 +8,7 @@ import exception.BotMException;
 
 public class FileDownloader {
 	
-	public static void DownloadFile(String url, File file) throws BotMException {		
-		if(file.exists()){
-			throw new BotMException("The file already exists");
-		}
+	public static void DownloadFile(String url, File file) throws BotMException {
 		try {
 			BufferedInputStream bis = new BufferedInputStream(new URL(url).openStream());
 			FileOutputStream fos = new FileOutputStream(file.getName());
