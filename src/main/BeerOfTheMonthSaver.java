@@ -1,9 +1,10 @@
-package filemanager;
+package main;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-import beverage.Beverage;
+import model.Beverage;
+
 
 
 public class BeerOfTheMonthSaver extends PrintStream {

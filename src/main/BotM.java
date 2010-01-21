@@ -6,15 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import model.BeerFunctionality;
+import model.Beverage;
+import model.Database;
+import model.FileParser;
 
-import parser.FileParser;
-import database.Database;
+
 import exception.BotMException;
 import exception.ParserException;
-import filemanager.BeerOfTheMonthSaver;
-import filemanager.FileDownloader;
-import beerfunctionality.BeerFunctionality;
-import beverage.Beverage;
 
 public class BotM {
 

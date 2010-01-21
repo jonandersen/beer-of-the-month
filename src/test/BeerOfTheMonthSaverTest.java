@@ -1,4 +1,4 @@
-package filemanager.test;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -10,14 +10,15 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import main.BeerOfTheMonthSaver;
+import model.ArticleInfo;
+import model.Beverage;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import filemanager.BeerOfTheMonthSaver;
 
-import beverage.ArticleInfo;
-import beverage.Beverage;
 
 
 

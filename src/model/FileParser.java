@@ -1,4 +1,4 @@
-package parser;
+package model;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -13,12 +13,10 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-import database.Database;
+
 
 import exception.ParserException;
 
-import beverage.ArticleInfo;
-import beverage.Beverage;
 
 public class FileParser {
 	private BufferedReader reader;

@@ -1,11 +1,12 @@
-package beverage.test;
+package test;
 
 
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
-import beverage.ArticleInfo;
-import beverage.Beverage;
+
+import model.ArticleInfo;
+import model.Beverage;
 
 import org.junit.Before;
 import org.junit.Test;

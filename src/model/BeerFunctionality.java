@@ -1,13 +1,11 @@
-package beerfunctionality;
+package model;
 
 
 
 import java.util.List;
 import java.util.Random;
 
-import database.Database;
 
-import beverage.Beverage;
 
 public class BeerFunctionality {
 	private Database db;

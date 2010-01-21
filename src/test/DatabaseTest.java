@@ -1,4 +1,4 @@
-package database.test;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -7,14 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import model.ArticleInfo;
+import model.Beverage;
+import model.Database;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import database.Database;
 
-import beverage.ArticleInfo;
-import beverage.Beverage;
 
 
 public class DatabaseTest {
