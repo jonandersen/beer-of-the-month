@@ -16,7 +16,7 @@ public class BeerOfTheMonthSaver extends PrintStream {
 	}
 
 	public void save() {		
-		print(beverage.toString());
+		print("Beer of the Month: " + beverage.toString());
 		flush();
 	    close();
 	}
