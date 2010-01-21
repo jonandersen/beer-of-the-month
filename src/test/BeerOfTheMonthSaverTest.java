@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import main.BeerOfTheMonthSaver;
 import model.ArticleInfo;
+import model.BeerOfTheMonthSaver;
 import model.Beverage;
 
 import org.junit.After;

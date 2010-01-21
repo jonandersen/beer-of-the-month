@@ -7,8 +7,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import model.BeerFunctionality;
+import model.BeerOfTheMonthSaver;
 import model.Beverage;
 import model.Database;
+import model.FileDownloader;
 import model.FileParser;
 
 

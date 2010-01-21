@@ -1,9 +1,8 @@
-package main;
+package model;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-import model.Beverage;
 
 
 
