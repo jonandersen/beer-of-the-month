@@ -22,7 +22,7 @@ import exception.ParserException;
 public class BotM {
 
 	public static void main(String[] args) {
-		File file = new File("systembolagetdb");
+		File file = new File(System.getProperty("java.io.tmpdir") + "/systembolaget.db");
 		try {
 			FileDownloader.DownloadFile("http://www.systembolaget.se/Applikationer/Knap" +
 					"par/Press/Alla+Artiklar?Format=Excel", file);
@@ -35,7 +35,6 @@ public class BotM {
 		try {
 			fp = new FileParser(db, new BufferedReader(new InputStreamReader(new FileInputStream(file), "iso-8859-1")));
 			fp.parse();
-			System.out.println(db.size());
 		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
 		} catch (ParserException e) {			

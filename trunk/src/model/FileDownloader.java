@@ -11,7 +11,7 @@ public class FileDownloader {
 	public static void DownloadFile(String url, File file) throws BotMException {
 		try {
 			BufferedInputStream bis = new BufferedInputStream(new URL(url).openStream());
-			FileOutputStream fos = new FileOutputStream(file.getName());
+			FileOutputStream fos = new FileOutputStream(file.getAbsoluteFile());
 			BufferedOutputStream  bos = new BufferedOutputStream(fos, 1024);
 			byte[] buf = new byte[4 * 1024];
 			int bytesRead;
