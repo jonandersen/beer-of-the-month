@@ -2,9 +2,11 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import model.BeerFunctionality;
 import model.BeerOfTheMonthSaver;
@@ -31,7 +33,7 @@ public class BotM {
 		Database db = new Database();
 		FileParser fp;
 		try {
-			fp = new FileParser(db, new BufferedReader(new FileReader(file)));
+			fp = new FileParser(db, new BufferedReader(new InputStreamReader(new FileInputStream(file), "iso-8859-1")));
 			fp.parse();
 			System.out.println(db.size());
 		} catch (FileNotFoundException e) {			
