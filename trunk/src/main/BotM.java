@@ -46,8 +46,7 @@ public class BotM {
 		System.out.println("Most bang for the buck: "
 				+ bf.bangForTheBuck().toString());
 		try {
-			BeerOfTheMonthSaver bs = new BeerOfTheMonthSaver(beer,
-					"BeerOfTheMonth");
+			BeerOfTheMonthSaver bs = new BeerOfTheMonthSaver(beer, System.getProperty("user.home") + "/BeerOfTheMonth");
 			bs.save();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
