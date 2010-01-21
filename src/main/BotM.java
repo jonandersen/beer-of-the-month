@@ -20,7 +20,7 @@ public class BotM {
 
 	public static void main(String[] args) {
 		File file = new File(System.getProperty("java.io.tmpdir")
-				+ "/systembolaget.db");
+				+ "/systembolaget.xls");
 		try {
 			FileDownloader.DownloadFile(
 					"http://www.systembolaget.se/Applikationer/Knap"
