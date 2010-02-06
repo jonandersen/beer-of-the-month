@@ -61,6 +61,10 @@
             <void method="add"> 
              <object class="com.jformdesigner.model.FormComponent"> 
               <string>javax.swing.JTextPane</string> 
+              <void method="setProperty"> 
+               <string>editable</string> 
+               <boolean>false</boolean> 
+              </void> 
               <void property="name"> 
                <string>textPane1</string> 
               </void> 

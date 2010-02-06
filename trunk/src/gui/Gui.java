@@ -106,6 +106,9 @@ public class Gui extends JFrame {
 
 				//======== scrollPane1 ========
 				{
+
+					//---- textPane1 ----
+					textPane1.setEditable(false);
 					scrollPane1.setViewportView(textPane1);
 				}
 
