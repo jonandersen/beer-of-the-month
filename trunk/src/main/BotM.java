@@ -14,6 +14,7 @@ import model.FileDownloader;
 import model.FileParser;
 
 import exception.BotMException;
+import gui.Gui;
 
 
 public class BotM {
@@ -38,20 +39,8 @@ public class BotM {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		BeerFunctionality bf = new BeerFunctionality(db);
-		Beverage beer = bf.BeerOfTheMonth();
-		Beverage wine = bf.WineOfTheMonth();
-		System.out.println("Beer of the Month: " + beer);
-		System.out.println("Wine of the Month: " + wine);
-		System.out.println("Most bang for the buck: "
-				+ bf.bangForTheBuck().toString());
-		try {
-			BeerOfTheMonthSaver bs = new BeerOfTheMonthSaver(beer, System.getProperty("user.home") + "/BeerOfTheMonth");
-			bs.save();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
+		BeerFunctionality bf = new BeerFunctionality(db);		
+		Gui gui = new Gui(bf);
 	}
 
 }
