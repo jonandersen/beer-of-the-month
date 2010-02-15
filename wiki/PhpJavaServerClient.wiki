@@ -8,7 +8,7 @@ socket_write verkar vara jobbig och inte skicka en i sänder. var tvungen att ko
 
 jag hade host till 127.0.0.1 först men det funkade inte och var tvungen och skriva mitt lokala närtverksaddress: 192.168.1.2
 
-porten 	49289 är en port som jag har öppen (forwarded i router), berätta inte den för någon btw. ^^
+porten 	49289 är en port som jag har öppen (forwarded i router).
 
 
 {{{
