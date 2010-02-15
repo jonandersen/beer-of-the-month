@@ -1,68 +1,12 @@
-Jag har fösökt få en php client att skicka info till en java server (en klass jag skapat)
+Lite saker att göra. Fyll gärna på!
 
-Här är koden som funkade för mig. 
+-Hämta hem information från systembolagetshemsida(i form av Excel dokument).
 
-Vad som händer med denna koden är att du skickar meddelandet i socket_write till java klassen som i sin tur skickar tillbaks.
+-Lagra informationen i en databas.
 
-socket_write verkar vara jobbig och inte skicka en i sänder. var tvungen att kommentera ut den ena och bara skcika "BYE" för att få java programmet att sluta. Annars skickades båda strängarna i en.
+-Lagra informationen om månadens öl i en textfil.
 
-jag hade host till 127.0.0.1 först men det funkade inte och var tvungen och skriva mitt lokala närtverksaddress: 192.168.1.2
+-GUI med funktioner, tex. Most bang for the buck, Rolla ny öl, Visa alla
+sorter mm.
 
-porten 	49289 är en port som jag har öppen (forwarded i router), berätta inte den för någon btw. ^^
-
-
-{{{
-
-<?php
-
-// set some variables
-
-$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-	
-	if($socket === false) exit('blurg');
- 
-	socket_bind($socket, '192.168.1.2');
-	
-	socket_connect($socket, '192.168.1.2', 49289);
-	
-	
-	socket_write($socket, "i am php, you are the server, give me some feedback");
-	
-	socket_write($socket, "BYE");
-	
-	socket_shutdown($socket, 1);
-	
-	echo socket_read($socket, 1000);
-	
-	socket_close($socket);
-
-?>
-
-}}}
-
-
-{{{
-public static void main(String[] args) throws IOException {
-		ServerSocket server = new ServerSocket(49289, 5, InetAddress.getLocalHost() );
-		Socket incoming = server.accept();
-	    BufferedReader in = new BufferedReader
-	      (new InputStreamReader(incoming.getInputStream()));
-	    PrintWriter out = new PrintWriter
-	      (incoming.getOutputStream(), true /* autoFlush */);
-	    boolean done = false;
-	      while (!done)
-	        {
-	          String line = in.readLine();
-	          if (line == null) done = true;
-	          else
-	          {
-	            out.println("Echo: " + line + "asdasd"); 
-
-	            if (line.trim().equals("BYE"))
-	              done = true;
-	          }
-	        }
-	      incoming.close();
-	}
-
-}}}
+-Hämta bilder på öl sorterna.
