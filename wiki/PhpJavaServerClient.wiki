@@ -10,12 +10,13 @@ jag hade host till 127.0.0.1 först men det funkade inte och var tvungen och skr
 
 porten 	49289 är en port som jag har öppen (forwarded i router).
 
+Angående sockets i php så måste de vara "enabled", kolla med <?php phpinfo ?>, sök på sockets ska stå att de är enabled. Om inte så måste php.ini ändras. semikolon vid socket extension tas bort och om inte redan gjorts sätta path på extension_dir till ext mappen.
+
 
 {{{
 
 <?php
 
-// set some variables
 
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 	
