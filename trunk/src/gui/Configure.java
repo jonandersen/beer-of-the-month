@@ -1,194 +1,183 @@
-/*
- * Created by JFormDesigner on Sat Feb 06 16:55:31 CET 2010
- */
-
 package gui;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.WindowConstants;
+import javax.swing.SwingUtilities;
+
 
 /**
- * @author Jon Andersen
- */
-public class Configure extends JFrame {
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
+public class Configure extends javax.swing.JFrame {
+	private JPanel jPanel1;
+	private JButton jCancel;
+	private JButton jOk;
+	private JCheckBox jBeverage;
+	private JCheckBox jWine;
+	private JCheckBox jBeer;
 	private Settings tempSet;
 	private Settings set;
+
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	* Auto-generated main method to display this JFrame
+	*/
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				Settings set = new Settings();
+//				set.setBeer(true);
+//				Configure inst = new Configure(set);
+//				
+//				inst.setVisible(true);
+//			}
+//		});
+//	}
+	
 	public Configure(Settings set) {
-		initComponents();
-		this.setVisible(true);
-		this.set = set;
-		tempSet = new Settings();	
+		super();
+		this.tempSet = new Settings();
 		tempSet.copySet(set);
-		if(tempSet.rollBeer()){			
-			checkBox1.setSelected(true);
+		this.set = set;
+		initGUI();
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		if(set.rollBeer()){			
+			jBeer.setSelected(true);
 		}
-		if(tempSet.rollWine()){
-			checkBox2.setSelected(true);
+		if(set.rollWine()){
+			jWine.setSelected(true);
 		}
-		if(tempSet.rollBeverage()){
-			checkBox3.setSelected(true);
+		if(set.rollBeverage()){
+			jBeverage.setSelected(true);
+		}
+		
+		
+	}
+	
+	private void initGUI() {
+		try {
+			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			{
+				jPanel1 = new JPanel();
+				jPanel1.setLayout(null);
+				getContentPane().add(jPanel1, BorderLayout.CENTER);
+				jPanel1.setPreferredSize(new java.awt.Dimension(216, 266));
+				{
+					jBeer = new JCheckBox();
+					BoxLayout jBeerLayout = new BoxLayout(jBeer, javax.swing.BoxLayout.X_AXIS);
+					jBeer.setLayout(null);
+					jPanel1.add(jBeer, "North");
+					jBeer.setText("Beer");
+					jBeer.setBounds(6, 7, 47, 23);
+					jBeer.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							jBeerMouseClicked(evt);
+						}
+					});
+				}
+				{
+					jWine = new JCheckBox();
+					jPanel1.add(jWine);
+					BoxLayout jWineLayout = new BoxLayout(jWine, javax.swing.BoxLayout.X_AXIS);
+					jWine.setLayout(null);
+					jWine.setText("Wine");
+					jWine.setBounds(6, 33, 49, 23);
+					jWine.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							jWineMouseClicked(evt);
+						}
+					});
+				}
+				{
+					jBeverage = new JCheckBox();
+					jPanel1.add(jBeverage);
+					BoxLayout jBeverageLayout = new BoxLayout(jBeverage, javax.swing.BoxLayout.X_AXIS);
+					jBeverage.setLayout(null);
+					jBeverage.setText("Beverage");
+					jBeverage.setBounds(6, 59, 71, 23);
+					jBeverage.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							jBeverageMouseClicked(evt);
+						}
+					});
+				}
+				{
+					jOk = new JButton();
+					jPanel1.add(jOk, "East");
+					jOk.setText("Ok");
+					jOk.setBounds(10, 89, 51, 23);
+					jOk.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							jOkActionPerformed(evt);
+						}
+					});
+				}
+				{
+					jCancel = new JButton();
+					jPanel1.add(jCancel, "South");
+					jCancel.setText("Cancel");
+					jCancel.setBounds(67, 89, 77, 23);
+					jCancel.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							jCancelActionPerformed(evt);
+						}
+					});
+				}
+			}
+			pack();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
-	private void okButtonActionPerformed(ActionEvent e) {
+	private void jCancelActionPerformed(ActionEvent evt) {
+		this.dispose();
+	}
+	
+	private void jBeerMouseClicked(MouseEvent evt) {
+		jBeer.setSelected(!tempSet.rollBeer());
+		tempSet.setBeer(!tempSet.rollBeer());
+	}
+	
+	private void jWineMouseClicked(MouseEvent evt) {
+		jWine.setSelected(!tempSet.rollWine());
+		tempSet.setWine(!tempSet.rollWine());
+	}
+	
+	private void jBeverageMouseClicked(MouseEvent evt) {
+		jBeverage.setSelected(!tempSet.rollBeverage());
+		tempSet.setBeverage(!tempSet.rollBeverage());
+	}
+	
+	private void jOkActionPerformed(ActionEvent evt) {
 		set.copySet(tempSet);
 		this.dispose();
 	}
 
-	private void cancelButtonActionPerformed(ActionEvent e) {
-		this.dispose();
-	}
-
-	private void beerMouseClicked(MouseEvent e) {
-		tempSet.setBeer(!tempSet.rollBeer());	
-	}
-
-	private void wineMouseClicked(MouseEvent e) {
-		tempSet.setWine(!tempSet.rollWine());
-	}
-
-	private void beverageMouseClicked(MouseEvent e) {
-		tempSet.setBeverage(!tempSet.rollBeverage());
-	}
-
-	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// Generated using JFormDesigner Evaluation license - Jon Andersen
-		dialogPane = new JPanel();
-		contentPanel = new JPanel();
-		checkBox1 = new JCheckBox();
-		checkBox2 = new JCheckBox();
-		checkBox3 = new JCheckBox();
-		buttonBar = new JPanel();
-		okButton = new JButton();
-		cancelButton = new JButton();
-
-		//======== this ========
-		Container contentPane = getContentPane();
-		contentPane.setLayout(new BorderLayout());
-
-		//======== dialogPane ========
-		{
-			dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-
-			// JFormDesigner evaluation mark
-			dialogPane.setBorder(new javax.swing.border.CompoundBorder(
-				new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-					"JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-					javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-					java.awt.Color.red), dialogPane.getBorder())); dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
-
-			dialogPane.setLayout(new BorderLayout());
-
-			//======== contentPanel ========
-			{
-
-				//---- checkBox1 ----
-				checkBox1.setText("Beer");
-				checkBox1.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						beerMouseClicked(e);
-					}
-				});
-
-				//---- checkBox2 ----
-				checkBox2.setText("Wine");
-				checkBox2.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						wineMouseClicked(e);
-					}
-				});
-
-				//---- checkBox3 ----
-				checkBox3.setText("Beverage");
-				checkBox3.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						beverageMouseClicked(e);
-					}
-				});
-
-				GroupLayout contentPanelLayout = new GroupLayout(contentPanel);
-				contentPanel.setLayout(contentPanelLayout);
-				contentPanelLayout.setHorizontalGroup(
-					contentPanelLayout.createParallelGroup()
-						.addGroup(contentPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(contentPanelLayout.createParallelGroup()
-								.addGroup(contentPanelLayout.createSequentialGroup()
-									.addComponent(checkBox1, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap(262, Short.MAX_VALUE))
-								.addGroup(contentPanelLayout.createSequentialGroup()
-									.addComponent(checkBox2, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-									.addGap(262, 262, 262))
-								.addGroup(contentPanelLayout.createSequentialGroup()
-									.addComponent(checkBox3, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-									.addGap(262, 262, 262))))
-				);
-				contentPanelLayout.setVerticalGroup(
-					contentPanelLayout.createParallelGroup()
-						.addGroup(contentPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(checkBox1)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(checkBox2)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(checkBox3)
-							.addContainerGap(135, Short.MAX_VALUE))
-				);
-			}
-			dialogPane.add(contentPanel, BorderLayout.CENTER);
-
-			//======== buttonBar ========
-			{
-				buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
-				buttonBar.setLayout(new GridBagLayout());
-				((GridBagLayout)buttonBar.getLayout()).columnWidths = new int[] {0, 85, 80};
-				((GridBagLayout)buttonBar.getLayout()).columnWeights = new double[] {1.0, 0.0, 0.0};
-
-				//---- okButton ----
-				okButton.setText("OK");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						okButtonActionPerformed(e);
-					}
-				});
-				buttonBar.add(okButton, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 5), 0, 0));
-
-				//---- cancelButton ----
-				cancelButton.setText("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						cancelButtonActionPerformed(e);
-					}
-				});
-				buttonBar.add(cancelButton, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 0), 0, 0));
-			}
-			dialogPane.add(buttonBar, BorderLayout.SOUTH);
-		}
-		contentPane.add(dialogPane, BorderLayout.CENTER);
-		pack();
-		setLocationRelativeTo(getOwner());
-		// JFormDesigner - End of component initialization  //GEN-END:initComponents
-	}
-
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	// Generated using JFormDesigner Evaluation license - Jon Andersen
-	private JPanel dialogPane;
-	private JPanel contentPanel;
-	private JCheckBox checkBox1;
-	private JCheckBox checkBox2;
-	private JCheckBox checkBox3;
-	private JPanel buttonBar;
-	private JButton okButton;
-	private JButton cancelButton;
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

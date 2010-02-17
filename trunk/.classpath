@@ -13,5 +13,6 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jon/workspace/Beer%20of%20the%20month%202.0/lib/swing-layout-javadoc.zip!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/looks-2.1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
