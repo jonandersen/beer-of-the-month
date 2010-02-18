@@ -64,9 +64,9 @@ public static void main(String[] args) throws IOException {
 
 				System.out.print(line + "\n");
                                 String end = in.readLine();
-				System.out.print(in + "\n");
+				System.out.print(end + "\n");
                                 
-				if (in.trim().equals("BYE"))
+				if (end.trim().equals("BYE"))
 					done = true;
 			}
 
