@@ -4,8 +4,6 @@ Här är koden som funkade för mig.
 
 Vad som händer med denna koden är att du skickar meddelandet i socket_write till java klassen som i sin tur skickar tillbaks.
 
-"BYE" kommer ligga
-
 jag hade host till 127.0.0.1 först men det funkade inte och var tvungen och skriva mitt lokala närtverksaddress: 192.168.1.2
 
 note 49289 är random port jag har öppen.
