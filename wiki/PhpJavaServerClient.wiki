@@ -4,13 +4,14 @@ Här är koden som funkade för mig.
 
 Vad som händer med denna koden är att du skickar meddelandet i socket_write till java klassen som i sin tur skickar tillbaks.
 
-socket_write verkar vara jobbig och inte skicka en i sänder. var tvungen att kommentera ut den ena och bara skcika "BYE" för att få java programmet att sluta. Annars skickades båda strängarna i en.
+"BYE" kommer ligga
 
 jag hade host till 127.0.0.1 först men det funkade inte och var tvungen och skriva mitt lokala närtverksaddress: 192.168.1.2
 
-porten 	49289 är en port som jag har öppen (forwarded i router).
+note 49289 är random port jag har öppen.
 
 Angående sockets i php så måste de vara "enabled", kolla med <?php phpinfo(); ?>, sök på sockets ska stå att de är enabled. Om inte så måste php.ini ändras. semikolon vid socket extension tas bort och om inte redan gjorts sätta path på extension_dir till ext mappen.
+
 
 
 {{{
@@ -26,16 +27,17 @@ $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 	
 	socket_connect($socket, '192.168.1.2', 49289);
 	
+	socket_write($socket, "i am php, you are the server, give me some feedback\n");
 	
-	socket_write($socket, "i am php, you are the server, give me some feedback");
-	
-	socket_write($socket, "BYE");
-	
+	socket_write($socket,"BYE");
+
 	socket_shutdown($socket, 1);
+        
+        echo socket_read($socket, 1000);
 	
-	echo socket_read($socket, 1000);
-	
-	socket_close($socket);
+	socket_shutdown($socket, 0);
+        
+        socket_close($socket);
 
 ?>
 
@@ -44,23 +46,30 @@ $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
 {{{
 public static void main(String[] args) throws IOException {
+
 		ServerSocket server = new ServerSocket(49289, 5, InetAddress
 				.getLocalHost());
-		Socket incoming = server.accept();
-		BufferedReader in = new BufferedReader(new InputStreamReader(incoming
-				.getInputStream()));
-		PrintWriter out = new PrintWriter(incoming.getOutputStream(), true /* autoFlush */);
 		boolean done = false;
+		Socket incoming = null;
 		while (!done) {
-			String line = in.readLine();
-			if (line == null)
-				done = true;
-			else {
-				out.println("Echo: " + line + "asdasd");
+			incoming = server.accept();
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					incoming.getInputStream()));
+			PrintWriter out = new PrintWriter(incoming.getOutputStream(), true /* autoFlush */);
 
-				if (line.trim().equals("BYE"))
+			String line=in.readLine();
+			if (line != null) {
+
+				out.println("hej");
+
+				System.out.print(line + "\n");
+                                String end = in.readLine();
+				System.out.print(in + "\n");
+                                
+				if (in.trim().equals("BYE"))
 					done = true;
 			}
+
 		}
 		incoming.close();
 	}
