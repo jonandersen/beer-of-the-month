@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class HtmlParser {
-	 public String getHtmlSource(URL url) throws IOException {
+	 public String getHtmlSource(URL url, String id) throws IOException {
 
          String s = null;
 
@@ -57,7 +57,12 @@ public class HtmlParser {
                  }
 
          } // end of 'finally' clause
-
+         int index = s.indexOf("(nr");
+         for(int i = 0; i < s.length() ; i ++){
+        	 
+         }
+      
+         //System.out.println(ss);
          return s;
 
  }
