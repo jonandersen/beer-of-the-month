@@ -1,6 +1,8 @@
 package gui;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -49,11 +51,23 @@ public class Gui extends JFrame {
 		this.bf = bf;	
 	}
 
-	private void okButtonActionPerformed(ActionEvent e) {	
+	private void okButtonActionPerformed(ActionEvent e)  {	
 		textPane1.setText("");
 		if(set.rollBeer()){
-			Beverage beer = bf.BeerOfTheMonth();			
-			textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+			System.out.println(set.checkStock());
+			if(set.checkStock()){
+				Beverage beer = null;
+				try {
+					 beer = bf.BeerOfTheMonthInStock();
+				} catch (IOException e1) {					
+					e1.printStackTrace();
+					System.exit(0);
+				}
+				textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+			}else{
+				Beverage beer = bf.BeerOfTheMonth();			
+				textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+			}
 		}
 		if(set.rollWine()){
 			Beverage wine = bf.WineOfTheMonth();			
@@ -108,6 +122,11 @@ public class Gui extends JFrame {
 				menu1.add(menuItem1);
 			}
 			menuBar1.add(menu1);
+			{
+				jHistory = new JMenu();
+				menuBar1.add(jHistory);
+				jHistory.setText("History");
+			}
 		}
 		setJMenuBar(menuBar1);
 
@@ -179,7 +198,7 @@ public class Gui extends JFrame {
 			dialogPane.add(buttonBar, BorderLayout.SOUTH);
 		}
 		contentPane.add(dialogPane, BorderLayout.NORTH);
-		dialogPane.setPreferredSize(new java.awt.Dimension(680, 289));
+		dialogPane.setPreferredSize(new java.awt.Dimension(664, 289));
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -189,6 +208,7 @@ public class Gui extends JFrame {
 	// Generated using JFormDesigner Evaluation license - Jon Andersen
 	private JMenuBar menuBar1;
 	private JMenu menu1;
+	private JMenu jHistory;
 	private JMenuItem menuItem1;
 	private JPanel dialogPane;
 	private JPanel contentPanel;

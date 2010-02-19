@@ -60,8 +60,7 @@ public class BeerFunctionality {
 
 	}
 
-	private Beverage RandomBeverageInHouse(List<Beverage> list)
-			throws IOException {
+	private Beverage RandomBeverageInHouse(List<Beverage> list) throws IOException	{
 		
 		if (list == null) {
 			return null;
@@ -74,6 +73,7 @@ public class BeerFunctionality {
 			bev = list.get(rand.nextInt(list.size()));
 			ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik=226&SokStrangar=");
 					
+			System.out.println(ur + " " + bev);
 		} while (!parse.isInHouse(parse.getHtmlSource(ur)));
 
 		return bev;

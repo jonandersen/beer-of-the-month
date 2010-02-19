@@ -62,7 +62,7 @@ public class HtmlParser {
 
  }
 
-	 public boolean isInHouse(String s){
+	 public boolean isInHouse(String s){		
 		 return s.contains("Lagersaldo:");
 	 }
 	 

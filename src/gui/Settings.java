@@ -4,11 +4,13 @@ public class Settings {
 	private Boolean beer;
 	private Boolean wine;
 	private Boolean beverage;
+	private Boolean checkStock;
 	
 	public Settings(){
 		beer = false;
 		wine = false;
 		beverage = false;
+		checkStock = false;
 	}
 	
 	
@@ -36,6 +38,14 @@ public class Settings {
 		this.beverage = beverage;
 	}
 	
+	public void checkStock(Boolean checkStock){
+		this.checkStock = checkStock;
+	}
+	
+	public boolean checkStock(){
+		return checkStock;
+	}
+	
 	public void copySet(Settings set){
 		if(set.beer){
 			beer = true;
@@ -51,6 +61,11 @@ public class Settings {
 			beverage = true;
 		}else{
 			beverage = false;
+		}
+		if(set.checkStock){
+			checkStock = true;
+		} else{
+			checkStock = false;
 		}
 	}
 }
