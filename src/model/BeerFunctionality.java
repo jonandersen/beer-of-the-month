@@ -72,9 +72,8 @@ public class BeerFunctionality {
 		Beverage bev = null;
 		do {
 			bev = list.get(rand.nextInt(list.size()));
-			ur = new URL(
-					"http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="
-							+ bev.getId() + "&Butik=226");
+			ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik=226&SokStrangar=");
+					
 		} while (!parse.isInHouse(parse.getHtmlSource(ur)));
 
 		return bev;
