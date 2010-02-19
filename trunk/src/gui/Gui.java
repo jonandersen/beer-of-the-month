@@ -60,7 +60,7 @@ public class Gui extends JFrame {
 			textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
 		}
 		if(set.rollBeverage()){
-			Beverage beverage = bf.BeverageOfTheMonth();			
+			Beverage beverage = bf.BeverageOfTheMonth();
 			textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
 		}
 	}

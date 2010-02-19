@@ -1,63 +1,80 @@
 package model;
 
-
-
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Random;
 
-
-
 public class BeerFunctionality {
 	private Database db;
-	
-	
-	public BeerFunctionality(Database db){
+
+	public BeerFunctionality(Database db) {
 		this.db = db;
 	}
-	
-	public Beverage BeerOfTheMonth(){
+
+	public Beverage BeerOfTheMonth() {
 		return RandomBeverage(db.getBeerList());
 	}
-	
-	public Beverage WineOfTheMonth() {		
+
+	public Beverage WineOfTheMonth() {
 		return RandomBeverage(db.getWineList());
 	}
-	
-	public Beverage BeverageOfTheMonth(){
+
+	public Beverage BeverageOfTheMonth() {
 		return RandomBeverage(db.getList());
 	}
-	
-	public Beverage bangForTheBuck(){
+
+	public Beverage bangForTheBuck() {
 		List<Beverage> beverageList = db.getList();
 		double price, volume, alcohol, currentBang = 0, tempBang;
 		Beverage bestBang = null;
-		for(Beverage b: beverageList){
+		for (Beverage b : beverageList) {
 			String s = b.getPrice().replace(",", ".");
 			price = Double.parseDouble(s);
 			volume = Double.parseDouble(b.getVolume());
-			alcohol = Double.parseDouble(b.getAlcohol().replace("%", "").replace(",", "."));
+			alcohol = Double.parseDouble(b.getAlcohol().replace("%", "")
+					.replace(",", "."));
 			tempBang = price / (volume * alcohol);
-			if(currentBang == 0){
+			if (currentBang == 0) {
 				currentBang = tempBang;
 			}
-			if(tempBang < currentBang){
+			if (tempBang < currentBang) {
 				bestBang = b;
 				currentBang = tempBang;
 			}
 		}
 		return bestBang;
 	}
-	
-	private Beverage RandomBeverage(List<Beverage> list){
-		if(list == null){
-			  return null;
-		  }
+
+	private Beverage RandomBeverage(List<Beverage> list) {
+		if (list == null) {
+			return null;
+		}
 		Random rand = new Random();
 		return list.get(rand.nextInt(list.size()));
-		
+
 	}
 
+	public Beverage RandomBeerInHouse(List<Beverage> list)
+			throws IOException {
+		
+		if (list == null) {
+			return null;
+		}
+		Random rand = new Random();
+		HtmlParser parse = new HtmlParser();
+		URL ur = null;
+		Beverage bev = null;
+		do {
+			bev = list.get(rand.nextInt(list.size()));
+			ur = new URL(
+					"http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="
+							+ bev.getId() + "&Butik=226");
+		} while (!parse.isInHouse(parse.getHtmlSource(ur)));
+
+		return bev;
+
+	}
 
 }
-
-
