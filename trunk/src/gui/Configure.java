@@ -94,7 +94,7 @@ public class Configure extends javax.swing.JFrame {
 					jBeer.setLayout(null);
 					jPanel1.add(jBeer, "North");
 					jBeer.setText("Beer");
-					jBeer.setBounds(6, 7, 47, 23);
+					jBeer.setBounds(6, 7, 190, 23);
 					jBeer.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jBeerMouseClicked(evt);
@@ -107,7 +107,7 @@ public class Configure extends javax.swing.JFrame {
 					BoxLayout jWineLayout = new BoxLayout(jWine, javax.swing.BoxLayout.X_AXIS);
 					jWine.setLayout(null);
 					jWine.setText("Wine");
-					jWine.setBounds(6, 33, 49, 23);
+					jWine.setBounds(6, 28, 190, 23);
 					jWine.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jWineMouseClicked(evt);
@@ -120,7 +120,7 @@ public class Configure extends javax.swing.JFrame {
 					BoxLayout jBeverageLayout = new BoxLayout(jBeverage, javax.swing.BoxLayout.X_AXIS);
 					jBeverage.setLayout(null);
 					jBeverage.setText("Beverage");
-					jBeverage.setBounds(6, 59, 71, 23);
+					jBeverage.setBounds(6, 51, 190, 20);
 					jBeverage.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jBeverageMouseClicked(evt);
