@@ -27,6 +27,7 @@ import javax.swing.SwingUtilities;
 */
 public class Configure extends javax.swing.JFrame {
 	private JPanel jPanel1;
+	private JCheckBox jLager;
 	private JButton jCancel;
 	private JButton jOk;
 	private JCheckBox jBeverage;
@@ -75,6 +76,9 @@ public class Configure extends javax.swing.JFrame {
 		}
 		if(set.rollBeverage()){
 			jBeverage.setSelected(true);
+		}
+		if(set.checkStock()){
+			jLager.setSelected(true);
 		}
 		
 		
@@ -131,7 +135,7 @@ public class Configure extends javax.swing.JFrame {
 					jOk = new JButton();
 					jPanel1.add(jOk, "East");
 					jOk.setText("Ok");
-					jOk.setBounds(10, 89, 51, 23);
+					jOk.setBounds(12, 112, 51, 23);
 					jOk.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jOkActionPerformed(evt);
@@ -142,10 +146,21 @@ public class Configure extends javax.swing.JFrame {
 					jCancel = new JButton();
 					jPanel1.add(jCancel, "South");
 					jCancel.setText("Cancel");
-					jCancel.setBounds(67, 89, 77, 23);
+					jCancel.setBounds(69, 112, 77, 23);
 					jCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jCancelActionPerformed(evt);
+						}
+					});
+				}
+				{
+					jLager = new JCheckBox();
+					jPanel1.add(jLager);
+					jLager.setText("Check if in stock");
+					jLager.setBounds(6, 71, 125, 20);
+					jLager.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							jLagerMouseClicked(evt);
 						}
 					});
 				}
@@ -178,6 +193,11 @@ public class Configure extends javax.swing.JFrame {
 	private void jOkActionPerformed(ActionEvent evt) {
 		set.copySet(tempSet);
 		this.dispose();
+	}
+	
+	private void jLagerMouseClicked(MouseEvent evt) {
+		jLager.setSelected(!tempSet.checkStock());
+		tempSet.checkStock(!tempSet.checkStock());
 	}
 
 }
