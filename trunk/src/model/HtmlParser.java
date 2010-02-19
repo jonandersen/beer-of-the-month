@@ -63,14 +63,7 @@ public class HtmlParser {
  }
 
 	 public boolean isInHouse(String s){
-		boolean isInHouse=false;
-		 if(s.contains("Lagersaldo:")){
-			 isInHouse=true;
-			}else{
-			isInHouse=false;
-			}
-		
-		 return isInHouse;
+		 return s.contains("Lagersaldo:");
 	 }
 	 
 	 
