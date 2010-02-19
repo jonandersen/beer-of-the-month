@@ -58,12 +58,25 @@ public class HtmlParser {
 
          } // end of 'finally' clause
          int index = s.indexOf("(nr");
-         for(int i = 0; i < s.length() ; i ++){
-        	 
+         int lastIndex = index;
+         for(int i = index; i < s.length() ; i ++){
+        	if(s.charAt(i) == ')'){
+        		lastIndex = i;
+        		break;
+        	}
+        	
+         } 
+         index += 3;                 
+         String newId = s.substring(index, lastIndex);
+         newId = newId.replaceAll("\\t","");
+         newId = newId.replaceAll("\\n","");
+         if(newId.equals(id)){
+        	 return s;
+         } else{
+        	 URL newURL = new URL(url.toString().replaceAll(id, newId));        	 
+        	 return getHtmlSource(newURL, newId);        	 
          }
-      
-         //System.out.println(ss);
-         return s;
+         
 
  }
 
