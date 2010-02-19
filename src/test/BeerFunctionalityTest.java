@@ -56,9 +56,8 @@ public class BeerFunctionalityTest {
 	@Test
 	public void TestHtmlParserIsInHouseBreznakShouldBeInHouse() throws IOException{
 		HtmlParser parse = new HtmlParser();
-		URL ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=1611&Butik=226");
-		parse.isInHouse(parse.getHtmlSource(ur));
-		assertEquals(parse.isInHouse(parse.getHtmlSource(ur)),true);
+		URL ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=1611&Butik=226");		
+		assertEquals(parse.isInHouse(parse.getHtmlSource(ur, "1611")),true);
 	}
 	
 	
