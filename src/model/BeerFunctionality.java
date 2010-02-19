@@ -72,7 +72,6 @@ public class BeerFunctionality {
 		do {
 			bev = list.get(rand.nextInt(list.size()));
 			ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik=226&SokStrangar=");
-			System.out.println(ur + " " + bev + "\n");
 		} while (!parse.isInHouse(parse.getHtmlSource(ur, bev.getId())));
 
 		return bev;

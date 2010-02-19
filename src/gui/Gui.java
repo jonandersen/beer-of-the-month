@@ -53,8 +53,7 @@ public class Gui extends JFrame {
 
 	private void okButtonActionPerformed(ActionEvent e)  {	
 		textPane1.setText("");
-		if(set.rollBeer()){
-			System.out.println(set.checkStock());
+		if(set.rollBeer()){			
 			if(set.checkStock()){
 				Beverage beer = null;
 				try {

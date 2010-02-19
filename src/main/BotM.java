@@ -39,7 +39,8 @@ public class BotM {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		BeerFunctionality bf = new BeerFunctionality(db);		
+		BeerFunctionality bf = new BeerFunctionality(db);
+		file.delete();
 		Gui gui = new Gui(bf);
 	}
 

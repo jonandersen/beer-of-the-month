@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javax.swing.WindowConstants;
@@ -27,6 +28,7 @@ import javax.swing.SwingUtilities;
 */
 public class Configure extends javax.swing.JFrame {
 	private JPanel jPanel1;
+	private JLabel jLabel1;
 	private JCheckBox jLager;
 	private JButton jCancel;
 	private JButton jOk;
@@ -98,7 +100,7 @@ public class Configure extends javax.swing.JFrame {
 					jBeer.setLayout(null);
 					jPanel1.add(jBeer, "North");
 					jBeer.setText("Beer");
-					jBeer.setBounds(6, 7, 190, 23);
+					jBeer.setBounds(6, 43, 127, 23);
 					jBeer.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jBeerMouseClicked(evt);
@@ -111,7 +113,7 @@ public class Configure extends javax.swing.JFrame {
 					BoxLayout jWineLayout = new BoxLayout(jWine, javax.swing.BoxLayout.X_AXIS);
 					jWine.setLayout(null);
 					jWine.setText("Wine");
-					jWine.setBounds(6, 28, 190, 23);
+					jWine.setBounds(6, 74, 127, 23);
 					jWine.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jWineMouseClicked(evt);
@@ -124,7 +126,7 @@ public class Configure extends javax.swing.JFrame {
 					BoxLayout jBeverageLayout = new BoxLayout(jBeverage, javax.swing.BoxLayout.X_AXIS);
 					jBeverage.setLayout(null);
 					jBeverage.setText("Beverage");
-					jBeverage.setBounds(6, 51, 190, 20);
+					jBeverage.setBounds(6, 103, 127, 20);
 					jBeverage.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jBeverageMouseClicked(evt);
@@ -135,7 +137,7 @@ public class Configure extends javax.swing.JFrame {
 					jOk = new JButton();
 					jPanel1.add(jOk, "East");
 					jOk.setText("Ok");
-					jOk.setBounds(12, 112, 51, 23);
+					jOk.setBounds(12, 135, 51, 23);
 					jOk.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jOkActionPerformed(evt);
@@ -146,7 +148,7 @@ public class Configure extends javax.swing.JFrame {
 					jCancel = new JButton();
 					jPanel1.add(jCancel, "South");
 					jCancel.setText("Cancel");
-					jCancel.setBounds(69, 112, 77, 23);
+					jCancel.setBounds(69, 135, 77, 23);
 					jCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jCancelActionPerformed(evt);
@@ -157,15 +159,23 @@ public class Configure extends javax.swing.JFrame {
 					jLager = new JCheckBox();
 					jPanel1.add(jLager);
 					jLager.setText("Check if in stock");
-					jLager.setBounds(6, 71, 125, 20);
+					jLager.setBounds(139, 44, 171, 20);
 					jLager.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jLagerMouseClicked(evt);
 						}
 					});
 				}
+				{
+					jLabel1 = new JLabel();
+					jPanel1.add(jLabel1);
+					jLabel1.setText("Type:");
+					jLabel1.setBounds(6, 22, 94, 15);
+					jLabel1.setFont(new java.awt.Font("AlArabiya",0,16));
+				}
 			}
 			pack();
+			this.setSize(300, 200);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
