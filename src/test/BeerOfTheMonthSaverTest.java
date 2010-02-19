@@ -43,7 +43,7 @@ public class BeerOfTheMonthSaverTest {
 			botm.save();
 		} catch (FileNotFoundException e) {			
 		}		
-		assertEquals(beverage.toString(), reader(filename));		
+		assertEquals("Beer of the Month: " + beverage.toString(), reader(filename));		
 	}
 	
 	@After

@@ -53,7 +53,7 @@ public class BeerFunctionality {
 			  return null;
 		  }
 		Random rand = new Random();
-		return list.get(rand.nextInt(list.size() - 1));
+		return list.get(rand.nextInt(list.size()));
 		
 	}
 

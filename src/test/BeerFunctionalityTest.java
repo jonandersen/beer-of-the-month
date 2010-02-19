@@ -30,7 +30,7 @@ public class BeerFunctionalityTest {
 		m1.put(ArticleInfo.ALCOHOL, "10");
 		m1.put(ArticleInfo.VOLUME, "1000");
 		m1.put(ArticleInfo.PRICE, "90");
-		m1.put(ArticleInfo.TYPE, "ÖL");
+		m1.put(ArticleInfo.TYPE, "WINE");
 		m2.put(ArticleInfo.ID, "2");
 		m2.put(ArticleInfo.ALCOHOL, "100");
 		m2.put(ArticleInfo.VOLUME, "1000");
@@ -40,7 +40,7 @@ public class BeerFunctionalityTest {
 		m3.put(ArticleInfo.ALCOHOL, "1");
 		m3.put(ArticleInfo.VOLUME, "1000");
 		m3.put(ArticleInfo.PRICE, "120");
-		m3.put(ArticleInfo.TYPE, "ÖL");
+		m3.put(ArticleInfo.TYPE, "SPRIT");
 		db.add(new Beverage(m1));
 		bev = new Beverage(m2);
 		db.add(bev);
@@ -50,12 +50,12 @@ public class BeerFunctionalityTest {
 	
 	@Test
 	public void BeerOfTheMonthFunctionallityTest(){
-		assertEquals("Det blev fel", bf.BeerOfTheMonth(), bev);
+		assertEquals(bf.BeerOfTheMonth(), bev);
 	}
 	
 	@Test
 	public void BangForTheBuckFunctionallityTest(){
-		assertEquals("Det blev fel", bf.bangForTheBuck(), bev);
+		assertEquals(bf.bangForTheBuck(), bev);
 	}
 
 }
