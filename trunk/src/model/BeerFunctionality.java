@@ -16,6 +16,10 @@ public class BeerFunctionality {
 	public Beverage BeerOfTheMonth() {
 		return RandomBeverage(db.getBeerList());
 	}
+	
+	public Beverage BeerOfTheMonthInStock() throws IOException {
+		return RandomBeverageInHouse(db.getBeerList());
+	}
 
 	public Beverage WineOfTheMonth() {
 		return RandomBeverage(db.getWineList());
@@ -56,7 +60,7 @@ public class BeerFunctionality {
 
 	}
 
-	public Beverage RandomBeerInHouse(List<Beverage> list)
+	private Beverage RandomBeverageInHouse(List<Beverage> list)
 			throws IOException {
 		
 		if (list == null) {
