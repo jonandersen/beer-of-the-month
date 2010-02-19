@@ -2,12 +2,17 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.HashMap;
 
 import model.ArticleInfo;
 import model.BeerFunctionality;
 import model.Beverage;
 import model.Database;
+import model.HtmlParser;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +52,15 @@ public class BeerFunctionalityTest {
 		db.add(new Beverage(m3));
 		bf = new BeerFunctionality(db);
 	}
+	
+	@Test
+	public void TestHtmlParserIsInHouseBreznakShouldBeInHouse() throws IOException{
+		HtmlParser parse = new HtmlParser();
+		URL ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr=1611&Butik=226");
+		parse.isInHouse(parse.getHtmlSource(ur));
+		assertEquals(parse.isInHouse(parse.getHtmlSource(ur)),true);
+	}
+	
 	
 	@Test
 	public void BeerOfTheMonthFunctionallityTest(){
