@@ -27,8 +27,7 @@ public class BotM {
 					"http://www.systembolaget.se/Applikationer/Knap"
 							+ "par/Press/Alla+Artiklar?Format=Excel", file);
 		} catch (BotMException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			System.out.println(e);		
 		}
 		Database db = new Database();
 		FileParser fp;
@@ -39,9 +38,9 @@ public class BotM {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		BeerFunctionality bf = new BeerFunctionality(db);
-		file.delete();
+		BeerFunctionality bf = new BeerFunctionality(db);		
 		Gui gui = new Gui(bf);
+		
 	}
 
 }

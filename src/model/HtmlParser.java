@@ -70,10 +70,10 @@ public class HtmlParser {
          String newId = s.substring(index, lastIndex);
          newId = newId.replaceAll("\\t","");
          newId = newId.replaceAll("\\n","");
-         if(newId.equals(id)){
-        	 return s;
+         if(newId.equals(id)){        	 
+        	 return s;        	 
          } else{
-        	 URL newURL = new URL(url.toString().replaceAll(id, newId));        	 
+        	 URL newURL = new URL(url.toString().replaceAll(id, newId));         	
         	 return getHtmlSource(newURL, newId);        	 
          }
          
