@@ -100,7 +100,7 @@ public class Configure extends javax.swing.JFrame {
 					jBeer.setLayout(null);
 					jPanel1.add(jBeer, "North");
 					jBeer.setText("Beer");
-					jBeer.setBounds(6, 43, 127, 23);
+					jBeer.setBounds(6, 33, 127, 23);
 					jBeer.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jBeerMouseClicked(evt);
@@ -113,7 +113,7 @@ public class Configure extends javax.swing.JFrame {
 					BoxLayout jWineLayout = new BoxLayout(jWine, javax.swing.BoxLayout.X_AXIS);
 					jWine.setLayout(null);
 					jWine.setText("Wine");
-					jWine.setBounds(6, 74, 127, 23);
+					jWine.setBounds(6, 59, 127, 23);
 					jWine.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jWineMouseClicked(evt);
@@ -126,7 +126,7 @@ public class Configure extends javax.swing.JFrame {
 					BoxLayout jBeverageLayout = new BoxLayout(jBeverage, javax.swing.BoxLayout.X_AXIS);
 					jBeverage.setLayout(null);
 					jBeverage.setText("Beverage");
-					jBeverage.setBounds(6, 103, 127, 20);
+					jBeverage.setBounds(6, 85, 127, 20);
 					jBeverage.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jBeverageMouseClicked(evt);
@@ -159,7 +159,7 @@ public class Configure extends javax.swing.JFrame {
 					jLager = new JCheckBox();
 					jPanel1.add(jLager);
 					jLager.setText("Check if in stock");
-					jLager.setBounds(139, 44, 171, 20);
+					jLager.setBounds(135, 34, 143, 20);
 					jLager.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							jLagerMouseClicked(evt);
@@ -170,7 +170,7 @@ public class Configure extends javax.swing.JFrame {
 					jLabel1 = new JLabel();
 					jPanel1.add(jLabel1);
 					jLabel1.setText("Type:");
-					jLabel1.setBounds(6, 22, 94, 15);
+					jLabel1.setBounds(10, 11, 94, 15);
 					jLabel1.setFont(new java.awt.Font("AlArabiya",0,16));
 				}
 			}

@@ -125,6 +125,16 @@ public class Gui extends JFrame {
 				jHistory = new JMenu();
 				menuBar1.add(jHistory);
 				jHistory.setText("History");
+				{
+					jItemHistory = new JMenuItem();
+					jHistory.add(jItemHistory);
+					jItemHistory.setText("See History");
+					jItemHistory.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							jItemHistoryActionPerformed(evt);
+						}
+					});
+				}
 			}
 		}
 		setJMenuBar(menuBar1);
@@ -202,12 +212,18 @@ public class Gui extends JFrame {
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
+	
+	private void jItemHistoryActionPerformed(ActionEvent evt) {
+		String[] hist = {"Breznak", "Oktoberöl"};
+		new History(hist);
+	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 	// Generated using JFormDesigner Evaluation license - Jon Andersen
 	private JMenuBar menuBar1;
 	private JMenu menu1;
 	private JMenu jHistory;
+	private JMenuItem jItemHistory;
 	private JMenuItem menuItem1;
 	private JPanel dialogPane;
 	private JPanel contentPanel;

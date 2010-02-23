@@ -38,8 +38,6 @@ public class History extends javax.swing.JFrame {
 			public void run() {
 				String[] history =new String[] { "Breznak", "Carlsberg" };
 				History inst = new History(history);
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
 			}
 		});
 	}
@@ -47,6 +45,8 @@ public class History extends javax.swing.JFrame {
 	public History(String[] historyBeer) {
 		super("History");
 		initGUI(historyBeer);
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	private void initGUI(String[] historyBeer) {
