@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
+import server.Server;
+
 import model.BeerFunctionality;
 import model.BeerOfTheMonthSaver;
 import model.Beverage;
@@ -20,8 +22,11 @@ import gui.Gui;
 public class BotM {
 
 	public static void main(String[] args) {
-		File file = new File(System.getProperty("java.io.tmpdir")
-				+ "/systembolaget.xls");
+		
+		
+		   File file = new File(System.getProperty("java.io.tmpdir")
+                   + "/systembolaget.xls");
+
 		try {
 			FileDownloader.DownloadFile(
 					"http://www.systembolaget.se/Applikationer/Knap"
@@ -39,7 +44,8 @@ public class BotM {
 			e.printStackTrace();
 		}
 		BeerFunctionality bf = new BeerFunctionality(db);		
-		Gui gui = new Gui(bf);
+		Gui gui = new Gui(bf, db);
+		
 		
 	}
 
