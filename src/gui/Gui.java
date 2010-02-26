@@ -2,12 +2,14 @@ package gui;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-
+import java.net.*;
+import java.net.UnknownHostException;
 import javax.swing.*;
 import javax.swing.border.*;
-
+import server.Server;
 import model.BeerFunctionality;
 import model.Beverage;
+import model.Database;
 /*
  * Created by JFormDesigner on Sat Feb 06 15:54:42 CET 2010
  */
@@ -31,7 +33,11 @@ import model.Beverage;
  * @author Jon Andersen
  */
 public class Gui extends JFrame {
-
+	
+	private Database db;
+	private Server server;
+	private Thread thread;
+	private ServerSocket adr;
 	{
 		//Set Look & Feel
 		try {
@@ -44,11 +50,12 @@ public class Gui extends JFrame {
 	private BeerFunctionality bf;
 	private Settings set;
 
-	public Gui(BeerFunctionality bf) {
+	public Gui(BeerFunctionality bf, Database db) {
 		initComponents();
 		this.setVisible(true);
 		set = new Settings();
-		this.bf = bf;	
+		this.bf = bf;
+		
 	}
 
 	private void okButtonActionPerformed(ActionEvent e)  {	
@@ -82,7 +89,13 @@ public class Gui extends JFrame {
 		Configure config = new Configure(set);		
 	}
 
-	private void cancelButtonActionPerformed(ActionEvent e) {
+	 void cancelButtonActionPerformed(ActionEvent e) {
+		 try {
+				adr.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		System.exit(1);
 	}
 
@@ -91,7 +104,10 @@ public class Gui extends JFrame {
 		// Generated using JFormDesigner Evaluation license - Jon Andersen
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
+		menu2 = new JMenu();
 		menuItem1 = new JMenuItem();
+		menuItem2 = new JMenuItem();
+		menuItem2b = new JMenuItem();
 		dialogPane = new JPanel();
 		contentPanel = new JPanel();
 		scrollPane1 = new JScrollPane();
@@ -121,6 +137,54 @@ public class Gui extends JFrame {
 				menu1.add(menuItem1);
 			}
 			menuBar1.add(menu1);
+			//======== menu2 ========
+			{
+				menu2.setText("Server");
+
+				//---- menuItem2a ----
+				menuItem2.setText("Start server");
+				menuItem2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						try {
+							//TODO: hårdkodad port
+							adr = new ServerSocket(49289, 5, InetAddress
+							         .getLocalHost());
+							server = new Server(db,adr);
+							
+						} catch (UnknownHostException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						thread = server; 
+						thread.start(); 
+					}
+				});
+				menu2.add(menuItem2);
+				
+				//---- menuItem2b ----
+				menuItem2b.setText("Stop server");
+				menuItem2b.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						try {
+							adr.close();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+					
+					}
+				});
+				menu2.add(menuItem2b);
+			}
+			menuBar1.add(menu2);
+			
 			{
 				jHistory = new JMenu();
 				menuBar1.add(jHistory);
@@ -222,9 +286,12 @@ public class Gui extends JFrame {
 	// Generated using JFormDesigner Evaluation license - Jon Andersen
 	private JMenuBar menuBar1;
 	private JMenu menu1;
+	private JMenu menu2;
 	private JMenu jHistory;
 	private JMenuItem jItemHistory;
 	private JMenuItem menuItem1;
+	private JMenuItem menuItem2;
+	private JMenuItem menuItem2b;
 	private JPanel dialogPane;
 	private JPanel contentPanel;
 	private JScrollPane scrollPane1;
