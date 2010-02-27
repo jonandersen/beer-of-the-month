@@ -51,6 +51,7 @@ public class Gui extends JFrame {
 	private Settings set;
 
 	public Gui(BeerFunctionality bf, Database db) {
+		this.db=db;
 		initComponents();
 		this.setVisible(true);
 		set = new Settings();

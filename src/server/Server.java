@@ -1,11 +1,9 @@
 package server;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -72,7 +70,8 @@ public class Server extends Thread {
                 		
                 		if(line.trim().equals("BYE")){
                 			// out.println("i am sever, you killed me, god(Simon) has to revive me");
-                		}else if(line.trim().equals("")){
+                		}else if(line.trim().equals("")){//om man inte skciakr något 
+                										//så hänger sig något =/, dock funkade inte detta
                 			out.println("5");
                 		}else if(line.trim().equals("roll")){
                 			Beverage beer = bf.BeerOfTheMonth();
