@@ -68,6 +68,8 @@ public class HtmlParser {
          } 
          index += 3;                 
          String newId = s.substring(index, lastIndex);
+         
+         
          newId = newId.replaceAll("\\t","");
          newId = newId.replaceAll("\\n","");
          if(newId.equals(id)){        	 

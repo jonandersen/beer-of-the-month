@@ -77,13 +77,35 @@ public class Gui extends JFrame {
 			}
 		}
 		if(set.rollWine()){
+			if(set.checkStock()){
+				Beverage wine = null;
+				try {
+					 wine = bf.WineOfTheMonthInStock();
+				} catch (IOException e1) {					
+					e1.printStackTrace();
+					System.exit(0);
+				}
+				textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
+			}else{
 			Beverage wine = bf.WineOfTheMonth();			
 			textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
-		}
+				}
+			}
 		if(set.rollBeverage()){
+			if(set.checkStock()){
+				Beverage beverage = null;
+				try {
+					beverage = bf.BeverageOfTheMonthInStock();
+				} catch (IOException e1) {					
+					e1.printStackTrace();
+					System.exit(0);
+				}
+				textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
+			}else{
 			Beverage beverage = bf.BeverageOfTheMonth();
 			textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
-		}
+			}
+			}
 	}
 
 	private void configureActionPerformed(ActionEvent e) {
@@ -92,10 +114,11 @@ public class Gui extends JFrame {
 
 	 void cancelButtonActionPerformed(ActionEvent e) {
 		 try {
-				adr.close();
-			} catch (IOException e1) {
+			 adr.close();
+			
+		 } catch (Exception e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//e1.printStackTrace();
 			}
 		System.exit(1);
 	}
