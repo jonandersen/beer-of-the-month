@@ -14,19 +14,27 @@ public class BeerFunctionality {
 	}
 
 	public Beverage BeerOfTheMonth() {
-		return RandomBeverage(db.getBeerList());
+		return randomBeverage(db.getBeerList());
 	}
 	
 	public Beverage BeerOfTheMonthInStock() throws IOException {
-		return RandomBeverageInHouse(db.getBeerList());
+		return randomBeverageInStock(db.getBeerList());
 	}
 
 	public Beverage WineOfTheMonth() {
-		return RandomBeverage(db.getWineList());
+		return randomBeverage(db.getWineList());
+	}
+	
+	public Beverage WineOfTheMonthInStock() throws IOException {
+		return randomBeverageInStock(db.getBeerList());
 	}
 
 	public Beverage BeverageOfTheMonth() {
-		return RandomBeverage(db.getList());
+		return randomBeverage(db.getList());
+	}
+	
+	public Beverage BeverageOfTheMonthInStock() throws IOException {
+		return randomBeverageInStock(db.getList());
 	}
 
 	public Beverage bangForTheBuck() {
@@ -51,7 +59,7 @@ public class BeerFunctionality {
 		return bestBang;
 	}
 
-	private Beverage RandomBeverage(List<Beverage> list) {
+	private Beverage randomBeverage(List<Beverage> list) {
 		if (list == null) {
 			return null;
 		}
@@ -60,7 +68,7 @@ public class BeerFunctionality {
 
 	}
 
-	private Beverage RandomBeverageInHouse(List<Beverage> list) throws IOException	{
+	private Beverage randomBeverageInStock(List<Beverage> list) throws IOException	{
 		
 		if (list == null) {
 			return null;
