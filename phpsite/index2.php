@@ -4,9 +4,9 @@
 </h1>
 <form action="index2.php" method="post">
 
-Send to server: <input type="text" name="textfieldsend" /><br>
+<?php //Send to server: <input type="text" name="textfieldsend" />?><br>
 <p></p>
-<input type="submit" name="sendbutton" value="send"/><br>
+<input type="submit" name="sendbutton" value="roll"/><br>
 
 <?php //<input type="submit" name="closebutton" value="killserver"/><br> ?>
 
@@ -31,7 +31,7 @@ if(isset($_POST["sendbutton"])){
         
         socket_connect($socket, '192.168.1.2', 49289);
        
-        $line=$_POST["textfieldsend"];
+        $line="roll"
         socket_write($socket,$line);
 	
 	//socket_write($socket,"BYE");
