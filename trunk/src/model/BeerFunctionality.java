@@ -26,7 +26,7 @@ public class BeerFunctionality {
 	}
 	
 	public Beverage WineOfTheMonthInStock() throws IOException {
-		return randomBeverageInStock(db.getBeerList());
+		return randomBeverageInStock(db.getWineList());
 	}
 
 	public Beverage BeverageOfTheMonth() {
