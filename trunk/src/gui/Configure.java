@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 */
 public class Configure extends javax.swing.JFrame {
 	private JPanel jPanel1;
+	private JCheckBox jMBFB;
 	private JLabel jLabel1;
 	private JCheckBox jLager;
 	private JButton jCancel;
@@ -137,7 +138,7 @@ public class Configure extends javax.swing.JFrame {
 					jOk = new JButton();
 					jPanel1.add(jOk, "East");
 					jOk.setText("Ok");
-					jOk.setBounds(12, 135, 51, 23);
+					jOk.setBounds(10, 167, 51, 23);
 					jOk.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jOkActionPerformed(evt);
@@ -148,7 +149,7 @@ public class Configure extends javax.swing.JFrame {
 					jCancel = new JButton();
 					jPanel1.add(jCancel, "South");
 					jCancel.setText("Cancel");
-					jCancel.setBounds(69, 135, 77, 23);
+					jCancel.setBounds(67, 167, 77, 23);
 					jCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jCancelActionPerformed(evt);
@@ -173,9 +174,19 @@ public class Configure extends javax.swing.JFrame {
 					jLabel1.setBounds(10, 11, 94, 15);
 					jLabel1.setFont(new java.awt.Font("AlArabiya",0,16));
 				}
+				{
+					jMBFB = new JCheckBox();
+					jPanel1.add(jMBFB);
+					jMBFB.setText("Most Bang for the Buck");
+					jMBFB.setBounds(6, 108, 137, 23);
+					jMBFB.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							jMBFBMouseClicked(evt);
+						}
+					});
+				}
 			}
 			pack();
-			this.setSize(300, 200);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -208,6 +219,11 @@ public class Configure extends javax.swing.JFrame {
 	private void jLagerMouseClicked(MouseEvent evt) {
 		jLager.setSelected(!tempSet.checkStock());
 		tempSet.checkStock(!tempSet.checkStock());
+	}
+	
+	private void jMBFBMouseClicked(MouseEvent evt) {
+		jMBFB.setSelected(!tempSet.bFB());
+		tempSet.setBFB(!tempSet.bFB());
 	}
 
 }

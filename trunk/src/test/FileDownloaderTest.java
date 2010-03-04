@@ -25,7 +25,8 @@ public class FileDownloaderTest {
 	
 	@Test ( expected = BotMException.class)
 	public void wrongURLShouldThrowException() throws BotMException{
-		FileDownloader.DownloadFile("heho", file);
+		FileDownloader fd = new FileDownloader("heho", file);
+		fd.DownloadFile();
 	}
 	
 //	@Test ( expected = BotMException.class)
@@ -35,9 +36,11 @@ public class FileDownloaderTest {
 //	}
 	
 	@Test
-	public void downloadFile()	{		
+	public void downloadFile()	{
+		FileDownloader fd = new FileDownloader("http://www.wikipedia.org/", file);
+		
 		try {
-			FileDownloader.DownloadFile("http://www.wikipedia.org/", file);			
+			fd.DownloadFile();			
 		} catch (BotMException e) {				
 		}		
 		junit.framework.Assert.assertEquals(true, file.exists());		

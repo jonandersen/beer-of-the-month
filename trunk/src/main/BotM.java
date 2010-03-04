@@ -17,6 +17,7 @@ import model.FileParser;
 
 import exception.BotMException;
 import gui.Gui;
+import gui.LoadingScreen;
 
 
 public class BotM {
@@ -24,16 +25,17 @@ public class BotM {
 	public static void main(String[] args) {
 		
 		
-		   File file = new File(System.getProperty("java.io.tmpdir")
+		File file = new File(System.getProperty("java.io.tmpdir")
                    + "/systembolaget.xls");
-
-		try {
-			FileDownloader.DownloadFile(
-					"http://www.systembolaget.se/Applikationer/Knap"
-							+ "par/Press/Alla+Artiklar?Format=Excel", file);
-		} catch (BotMException e) {
-			System.out.println(e);		
+		LoadingScreen ls = new LoadingScreen();
+		FileDownloader fd = new FileDownloader("http://www.systembolaget.se/Applikationer/Knap"
+				+ "par/Press/Alla+Artiklar?Format=Excel", file);
+		Thread t = new Thread(fd);
+		t.start();
+		while(!fd.done()){
+			ls.setValue(fd.progress());			
 		}
+		ls.setValue(100);
 		Database db = new Database();
 		FileParser fp;
 		try {
@@ -43,7 +45,8 @@ public class BotM {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		BeerFunctionality bf = new BeerFunctionality(db);		
+		BeerFunctionality bf = new BeerFunctionality(db);	
+		ls.dispose();
 		Gui gui = new Gui(bf, db);
 		
 		

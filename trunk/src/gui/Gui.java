@@ -87,8 +87,8 @@ public class Gui extends JFrame {
 				}
 				textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
 			}else{
-			Beverage wine = bf.WineOfTheMonth();			
-			textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
+					Beverage wine = bf.WineOfTheMonth();			
+					textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
 				}
 			}
 		if(set.rollBeverage()){
@@ -102,10 +102,14 @@ public class Gui extends JFrame {
 				}
 				textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
 			}else{
-			Beverage beverage = bf.BeverageOfTheMonth();
-			textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
+				Beverage beverage = bf.BeverageOfTheMonth();
+				textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
 			}
-			}
+		}
+		if(set.bFB()){
+			Beverage beverage = bf.bangForTheBuck();
+			textPane1.setText(textPane1.getText() + "Most Bang for the Buck: " + beverage.toString() + "\n");
+		}
 	}
 
 	private void configureActionPerformed(ActionEvent e) {
