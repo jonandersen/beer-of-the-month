@@ -83,6 +83,9 @@ public class Configure extends javax.swing.JFrame {
 		if(set.checkStock()){
 			jLager.setSelected(true);
 		}
+		if(set.bFB()){
+			jMBFB.setSelected(true);
+		}
 		
 		
 	}
@@ -90,7 +93,7 @@ public class Configure extends javax.swing.JFrame {
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			this.setPreferredSize(new java.awt.Dimension(248, 318));
+			this.setPreferredSize(new java.awt.Dimension(292, 244));
 			{
 				jPanel1 = new JPanel();
 				jPanel1.setLayout(null);
