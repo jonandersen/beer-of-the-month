@@ -59,7 +59,8 @@ public class Gui extends JFrame {
 		
 	}
 
-	private void okButtonActionPerformed(ActionEvent e)  {	
+	private void okButtonActionPerformed(ActionEvent e)  {
+		LoadingScreenLagerStatus ls = new LoadingScreenLagerStatus();		
 		textPane1.setText("");
 		if(set.rollBeer()){			
 			if(set.checkStock()){
@@ -110,7 +111,8 @@ public class Gui extends JFrame {
 			Beverage beverage = bf.bangForTheBuck();
 			textPane1.setText(textPane1.getText() + "Most Bang for the Buck: " + beverage.toString() + "\n");
 		}
-	}
+		ls.dispose();
+	}	
 
 	private void configureActionPerformed(ActionEvent e) {
 		Configure config = new Configure(set);		
