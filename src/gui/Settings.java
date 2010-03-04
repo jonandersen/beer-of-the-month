@@ -5,12 +5,14 @@ public class Settings {
 	private Boolean wine;
 	private Boolean beverage;
 	private Boolean checkStock;
+	private Boolean bfb;
 	
 	public Settings(){
 		beer = false;
 		wine = false;
 		beverage = false;
 		checkStock = false;
+		bfb = false;
 	}
 	
 	
@@ -67,5 +69,21 @@ public class Settings {
 		} else{
 			checkStock = false;
 		}
+		if(set.bFB()){
+			bfb = true;
+		}else{
+			bfb = false;
+		}
+	}
+
+
+	public boolean bFB() {		
+		return bfb;
+	}
+
+
+	public void setBFB(boolean b) {
+		bfb = b;
+		
 	}
 }
