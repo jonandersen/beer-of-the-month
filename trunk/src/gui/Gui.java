@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.net.*;
-import java.net.UnknownHostException;
 import javax.swing.*;
 import javax.swing.border.*;
 import server.Server;
@@ -58,10 +57,11 @@ public class Gui extends JFrame {
 		this.bf = bf;
 		
 	}
+	
 
-	private void okButtonActionPerformed(ActionEvent e)  {
-		LoadingScreenLagerStatus ls = new LoadingScreenLagerStatus();		
-		textPane1.setText("");
+
+	private void okButtonActionPerformed(ActionEvent e)  {			
+		textPane1.setText("");			
 		if(set.rollBeer()){			
 			if(set.checkStock()){
 				Beverage beer = null;
@@ -91,7 +91,7 @@ public class Gui extends JFrame {
 					Beverage wine = bf.WineOfTheMonth();			
 					textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
 				}
-			}
+		}
 		if(set.rollBeverage()){
 			if(set.checkStock()){
 				Beverage beverage = null;
@@ -110,12 +110,11 @@ public class Gui extends JFrame {
 		if(set.bFB()){
 			Beverage beverage = bf.bangForTheBuck();
 			textPane1.setText(textPane1.getText() + "Most Bang for the Buck: " + beverage.toString() + "\n");
-		}
-		ls.dispose();
+		}		
 	}	
 
 	private void configureActionPerformed(ActionEvent e) {
-		Configure config = new Configure(set);		
+		Configure config = new Configure(set);			
 	}
 
 	 void cancelButtonActionPerformed(ActionEvent e) {
