@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
@@ -28,6 +29,9 @@ import javax.swing.SwingUtilities;
 */
 public class Configure extends javax.swing.JFrame {
 	private JPanel jPanel1;
+	private JLabel jLabel2;
+	private JLabel jLabel3;
+	private JTextField priceTextField;
 	private JCheckBox jMBFB;
 	private JLabel jLabel1;
 	private JCheckBox jLager;
@@ -93,12 +97,12 @@ public class Configure extends javax.swing.JFrame {
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			this.setPreferredSize(new java.awt.Dimension(292, 244));
+			this.setPreferredSize(new java.awt.Dimension(300, 270));
 			{
 				jPanel1 = new JPanel();
 				jPanel1.setLayout(null);
 				getContentPane().add(jPanel1, BorderLayout.CENTER);
-				jPanel1.setPreferredSize(new java.awt.Dimension(216, 266));
+				jPanel1.setPreferredSize(new java.awt.Dimension(293, 241));
 				{
 					jBeer = new JCheckBox();
 					BoxLayout jBeerLayout = new BoxLayout(jBeer, javax.swing.BoxLayout.X_AXIS);
@@ -142,7 +146,7 @@ public class Configure extends javax.swing.JFrame {
 					jOk = new JButton();
 					jPanel1.add(jOk, "East");
 					jOk.setText("Ok");
-					jOk.setBounds(10, 167, 51, 23);
+					jOk.setBounds(10, 202, 51, 23);
 					jOk.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jOkActionPerformed(evt);
@@ -153,7 +157,7 @@ public class Configure extends javax.swing.JFrame {
 					jCancel = new JButton();
 					jPanel1.add(jCancel, "South");
 					jCancel.setText("Cancel");
-					jCancel.setBounds(67, 167, 77, 23);
+					jCancel.setBounds(67, 202, 77, 23);
 					jCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jCancelActionPerformed(evt);
@@ -189,6 +193,24 @@ public class Configure extends javax.swing.JFrame {
 						}
 					});
 				}
+				{
+					priceTextField = new JTextField();
+					jPanel1.add(getPriceTextField());
+					priceTextField.setText(set.getPriceLessOrEqualsThen()+"");
+					priceTextField.setBounds(10, 157, 73, 20);
+				}
+				{
+					jLabel2 = new JLabel();
+					jPanel1.add(jLabel2);
+					jLabel2.setText("Set a price filter for less or equal ");
+					jLabel2.setBounds(97, 151, 196, 21);
+				}
+				{
+					jLabel3 = new JLabel();
+					jPanel1.add(jLabel3);
+					jLabel3.setText("to this price, set zero to disable filter");
+					jLabel3.setBounds(97, 166, 196, 14);
+				}
 			}
 			pack();
 		} catch (Exception e) {
@@ -217,7 +239,19 @@ public class Configure extends javax.swing.JFrame {
 	
 	private void jOkActionPerformed(ActionEvent evt) {
 		set.copySet(tempSet);
-		this.dispose();
+		boolean exception = true;
+		int price = 0;
+		try{
+			price = Integer.parseInt(priceTextField.getText().trim());
+		}catch(NumberFormatException e){
+			exception = false;
+		}
+		
+		if(exception){
+			set.setPriceLessOrEqualsThen(price);
+			this.dispose();
+		}
+	
 	}
 	
 	private void jLagerMouseClicked(MouseEvent evt) {
@@ -228,6 +262,10 @@ public class Configure extends javax.swing.JFrame {
 	private void jMBFBMouseClicked(MouseEvent evt) {
 		jMBFB.setSelected(!tempSet.bFB());
 		tempSet.setBFB(!tempSet.bFB());
+	}
+	
+	public JTextField getPriceTextField() {
+		return priceTextField;
 	}
 
 }

@@ -73,7 +73,14 @@ public class Gui extends JFrame {
 				}
 				textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
 			}else{
-				Beverage beer = bf.BeerOfTheMonth();			
+				Beverage beer;
+				if(set.getPriceLessOrEqualsThen() == 0){
+					 beer = bf.BeerOfTheMonth();
+				}else{
+					 beer = bf.BeerOfTheMonth(set.getPriceLessOrEqualsThen());
+				}
+				
+				if(beer!=null)		
 				textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
 			}
 		}
