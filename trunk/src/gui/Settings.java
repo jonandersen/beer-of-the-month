@@ -6,6 +6,7 @@ public class Settings {
 	private Boolean beverage;
 	private Boolean checkStock;
 	private Boolean bfb;
+	private int price;
 	
 	public Settings(){
 		beer = false;
@@ -46,6 +47,15 @@ public class Settings {
 	
 	public boolean checkStock(){
 		return checkStock;
+	}
+	
+	public void setPriceLessOrEqualsThen(int price){
+		
+		this.price=price;
+	}
+	
+	public int getPriceLessOrEqualsThen(){
+		return price;
 	}
 	
 	public void copySet(Settings set){

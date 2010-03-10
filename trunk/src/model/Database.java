@@ -38,6 +38,9 @@ public class Database {
 	public ArrayList<Beverage> getBeerList() {
 		return getList("ÖL");
 	}
+	public ArrayList<Beverage> getBeerList(int price) {
+		return getList("ÖL", price);
+	}
 	
 	public ArrayList<Beverage> getWineList() {
 		ArrayList<Beverage> rlist = getList("VITA VINER");
@@ -55,6 +58,29 @@ public class Database {
 			if(type == null || b.getType().equals(type)){				
 				list.add(b);
 			}			
+		}
+		return list;
+	}
+	
+	private ArrayList<Beverage> getList(String type, int price){
+		Iterator<Beverage> itr = map.values().iterator();		
+		Beverage b;
+		ArrayList<Beverage> list = new ArrayList<Beverage>();
+		double beerPrice=0;
+		while(itr.hasNext()){
+			b = (Beverage) itr.next();	
+			
+			try{
+				beerPrice = Double.parseDouble(b.getPrice().trim().replace(',','.'));
+			}catch(NumberFormatException e){
+				list.add(b);
+			}
+			
+			if(type == null || (b.getType().equals(type) &&  beerPrice <= (double)price)){				
+				list.add(b);
+				
+			}
+			
 		}
 		return list;
 	}

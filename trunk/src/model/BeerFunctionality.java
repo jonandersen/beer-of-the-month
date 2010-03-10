@@ -17,6 +17,10 @@ public class BeerFunctionality {
 		return randomBeverage(db.getBeerList());
 	}
 	
+	public Beverage BeerOfTheMonth(int price) {
+		return randomBeverage(db.getBeerList(price));
+	}
+	
 	public Beverage BeerOfTheMonthInStock() throws IOException {
 		return randomBeverageInStock(db.getBeerList());
 	}
@@ -60,7 +64,7 @@ public class BeerFunctionality {
 	}
 
 	private Beverage randomBeverage(List<Beverage> list) {
-		if (list == null) {
+		if (list == null || list.isEmpty()) {
 			return null;
 		}
 		Random rand = new Random();
