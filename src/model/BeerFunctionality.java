@@ -33,8 +33,16 @@ public class BeerFunctionality {
 		return randomBeverage(db.getWineList());
 	}
 	
+	public Beverage WineOfTheMonth(int price) {
+		return randomBeverage(db.getWineList(price));
+	}
+	
 	public Beverage WineOfTheMonthInStock() throws IOException {
 		return randomBeverageInStock(db.getWineList());
+	}
+	
+	public Beverage WineOfTheMonthInStock(int price) throws IOException {
+		return randomBeverageInStock(db.getWineList(price));
 	}
 
 	public Beverage BeverageOfTheMonth() {

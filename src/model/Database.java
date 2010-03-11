@@ -49,6 +49,13 @@ public class Database {
 		return rlist;
 	}
 	
+	public ArrayList<Beverage> getWineList(int price) {
+		ArrayList<Beverage> rlist = getList("VITA VINER", price);
+		ArrayList<Beverage> vlist = getList("RÖDA VINER", price);
+		rlist.addAll(vlist);
+		return rlist;
+	}
+	
 	private ArrayList<Beverage> getList(String type){
 		Iterator<Beverage> itr = map.values().iterator();		
 		Beverage b;
