@@ -24,6 +24,10 @@ public class BeerFunctionality {
 	public Beverage BeerOfTheMonthInStock() throws IOException {
 		return randomBeverageInStock(db.getBeerList());
 	}
+	
+	public Beverage BeerOfTheMonthInStock(int price) throws IOException {
+		return randomBeverageInStock(db.getBeerList(price));
+	}
 
 	public Beverage WineOfTheMonth() {
 		return randomBeverage(db.getWineList());
@@ -81,12 +85,16 @@ public class BeerFunctionality {
 		HtmlParser parse = new HtmlParser();
 		URL ur = null;
 		Beverage bev = null;
+		int randomInt;
 		do {
-			bev = list.get(rand.nextInt(list.size()));
+			if(list.isEmpty())
+				return null;
+			randomInt = rand.nextInt(list.size());
+			bev = list.get(randomInt);
+			list.remove(randomInt);
 			ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik=226&SokStrangar=");
-			
 		} while (!parse.isInHouse(parse.getHtmlSource(ur, bev.getId())));
-
+			
 		return bev;
 
 	}

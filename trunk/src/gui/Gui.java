@@ -66,22 +66,34 @@ public class Gui extends JFrame {
 			if(set.checkStock()){
 				Beverage beer = null;
 				try {
-					 beer = bf.BeerOfTheMonthInStock();
+					if(set.getPriceLessOrEqualsThen() <= 0){
+						beer = bf.BeerOfTheMonthInStock();
+					}else{
+						beer = bf.BeerOfTheMonthInStock(set.getPriceLessOrEqualsThen());
+					}
 				} catch (IOException e1) {					
 					e1.printStackTrace();
 					System.exit(0);
 				}
-				textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+				if(beer==null){
+					textPane1.setText(textPane1.getText() + "Beer of the Month: "+ "Couldn't find one =(" + "\n");
+				}else{
+					textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+				}
 			}else{
 				Beverage beer;
-				if(set.getPriceLessOrEqualsThen() == 0){
+				if(set.getPriceLessOrEqualsThen() <= 0){
 					 beer = bf.BeerOfTheMonth();
 				}else{
 					 beer = bf.BeerOfTheMonth(set.getPriceLessOrEqualsThen());
 				}
 				
-				if(beer!=null)		
-				textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+				if(beer==null){
+					textPane1.setText(textPane1.getText() + "Beer of the Month: "+ "Couldn't find one =(" + "\n");
+				}else{
+					textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+				}
+				
 			}
 		}
 		if(set.rollWine()){
