@@ -100,15 +100,34 @@ public class Gui extends JFrame {
 			if(set.checkStock()){
 				Beverage wine = null;
 				try {
-					 wine = bf.WineOfTheMonthInStock();
+					if(set.getPriceLessOrEqualsThen() <= 0){
+						wine = bf.WineOfTheMonthInStock();
+					}else{
+						wine = bf.WineOfTheMonthInStock(set.getPriceLessOrEqualsThen());
+					}
+					 
 				} catch (IOException e1) {					
 					e1.printStackTrace();
 					System.exit(0);
 				}
-				textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
-			}else{
-					Beverage wine = bf.WineOfTheMonth();			
+				if(wine==null){
+					textPane1.setText(textPane1.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");
+				}else{
 					textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
+				}
+			}else{
+				Beverage wine = null;
+				if(set.getPriceLessOrEqualsThen() <= 0){
+					wine = bf.WineOfTheMonth();
+				}else{
+					wine = bf.WineOfTheMonth(set.getPriceLessOrEqualsThen());
+				}
+				if(wine==null){
+					textPane1.setText(textPane1.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");
+				}else{
+					textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
+				}
+					
 				}
 		}
 		if(set.rollBeverage()){
