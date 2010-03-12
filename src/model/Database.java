@@ -91,7 +91,6 @@ public class Database {
 				e.printStackTrace();
 			}
 
-			boolean addIt = false;
 			// if (type == null) {
 			// list.add(b);
 			// continue;
@@ -99,31 +98,28 @@ public class Database {
 			if (b.getType().equals(type)) {
 
 				if (price > 0) {
-					if (beerPrice <= (double) price)
-						addIt = true;
+					if (beerPrice <= (double) price);
 					else
 						continue;
 				}
 
 				if (volume[0] > 0 || volume[1] > 0) {
 					if ((bevVolume >= volume[0] && bevVolume <= volume[1])
-							|| (bevVolume >= volume[0] && volume[1] == 0))
-						addIt = true;
+							|| (bevVolume >= volume[0] && volume[1] == 0));
 					else
 						continue;
 				}
 
 				if (alco[0] > 0 || alco[1] > 0) {
 					if ((bevAlco >= (double) alco[0] && bevAlco <= (double) alco[1])
-							|| (bevAlco >= alco[0] && alco[1] == 0))
-						addIt = true;
+							|| (bevAlco >= alco[0] && alco[1] == 0));
 					else
 						continue;
 				}
 
-				if (addIt) {
+				
 					list.add(b);
-				}
+				
 
 			}
 		}
