@@ -31,6 +31,14 @@ public class Configure extends javax.swing.JFrame {
 	private JPanel jPanel1;
 	private JLabel jLabel2;
 	private JLabel jLabel3;
+	private JLabel jLabel4;
+	private JLabel jLabel5;
+	private JLabel jLabel7;
+	private JLabel jLabel6;
+	private JTextField alcoTextField2;
+	private JTextField volumeTextField2;
+	private JTextField volumeTextField1;
+	private JTextField alcoTextField1;
 	private JTextField priceTextField;
 	private JCheckBox jMBFB;
 	private JLabel jLabel1;
@@ -97,12 +105,12 @@ public class Configure extends javax.swing.JFrame {
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			this.setPreferredSize(new java.awt.Dimension(300, 270));
+			this.setPreferredSize(new java.awt.Dimension(320, 350));
 			{
 				jPanel1 = new JPanel();
 				jPanel1.setLayout(null);
 				getContentPane().add(jPanel1, BorderLayout.CENTER);
-				jPanel1.setPreferredSize(new java.awt.Dimension(293, 241));
+				jPanel1.setPreferredSize(new java.awt.Dimension(340, 300));
 				{
 					jBeer = new JCheckBox();
 					BoxLayout jBeerLayout = new BoxLayout(jBeer, javax.swing.BoxLayout.X_AXIS);
@@ -146,7 +154,7 @@ public class Configure extends javax.swing.JFrame {
 					jOk = new JButton();
 					jPanel1.add(jOk, "East");
 					jOk.setText("Ok");
-					jOk.setBounds(10, 202, 51, 23);
+					jOk.setBounds(10, 270, 51, 23);
 					jOk.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jOkActionPerformed(evt);
@@ -157,7 +165,7 @@ public class Configure extends javax.swing.JFrame {
 					jCancel = new JButton();
 					jPanel1.add(jCancel, "South");
 					jCancel.setText("Cancel");
-					jCancel.setBounds(67, 202, 77, 23);
+					jCancel.setBounds(67, 270, 77, 23);
 					jCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jCancelActionPerformed(evt);
@@ -211,6 +219,54 @@ public class Configure extends javax.swing.JFrame {
 					jLabel3.setText("to this price, set zero to disable filter");
 					jLabel3.setBounds(97, 166, 196, 14);
 				}
+				{
+					alcoTextField1 = new JTextField();
+					jPanel1.add(getAlcoTextField1());
+					alcoTextField1.setText(set.getAlco()[0]+"");
+					alcoTextField1.setBounds(10, 219, 29, 20);
+				}
+				{
+					volumeTextField1 = new JTextField();
+					jPanel1.add(volumeTextField1);
+					volumeTextField1.setText(set.getVolume()[0]+"");
+					volumeTextField1.setBounds(10, 188, 29, 20);
+				}
+				{
+					jLabel4 = new JLabel();
+					jPanel1.add(jLabel4);
+					jLabel4.setText("Set a volume filter");
+					jLabel4.setBounds(128, 190, 179, 17);
+				}
+				{
+					jLabel5 = new JLabel();
+					jPanel1.add(jLabel5);
+					jLabel5.setText("Set a alco filter");
+					jLabel5.setBounds(128, 221, 166, 17);
+				}
+				{
+					volumeTextField2 = new JTextField();
+					jPanel1.add(volumeTextField2);
+					volumeTextField2.setText(set.getVolume()[1]+"");
+					volumeTextField2.setBounds(77, 188, 34, 20);
+				}
+				{
+					alcoTextField2 = new JTextField();
+					jPanel1.add(alcoTextField2);
+					alcoTextField2.setText(set.getAlco()[1]+"");
+					alcoTextField2.setBounds(77, 219, 34, 20);
+				}
+				{
+					jLabel6 = new JLabel();
+					jPanel1.add(jLabel6);
+					jLabel6.setText("<=x<=");
+					jLabel6.setBounds(38, 191, 43, 14);
+				}
+				{
+					jLabel7 = new JLabel();
+					jPanel1.add(jLabel7);
+					jLabel7.setText("<=x<=");
+					jLabel7.setBounds(39, 222, 43, 14);
+				}
 			}
 			pack();
 		} catch (Exception e) {
@@ -241,14 +297,22 @@ public class Configure extends javax.swing.JFrame {
 		set.copySet(tempSet);
 		boolean exception = true;
 		int price = 0;
+		int[] volume = new int[2];
+		int[] alco = new int[2];
 		try{
 			price = Integer.parseInt(priceTextField.getText().trim());
+			volume[0] = Integer.parseInt(volumeTextField1.getText().trim());
+			volume[1] = Integer.parseInt(volumeTextField2.getText().trim());
+			alco[0] = Integer.parseInt(alcoTextField1.getText().trim());
+			alco[1] = Integer.parseInt(alcoTextField2.getText().trim());
 		}catch(NumberFormatException e){
 			exception = false;
 		}
 		
 		if(exception){
 			set.setPriceLessOrEqualsThen(price);
+			set.setVolume(volume);
+			set.setAlco(alco);
 			this.dispose();
 		}
 	
@@ -266,6 +330,10 @@ public class Configure extends javax.swing.JFrame {
 	
 	public JTextField getPriceTextField() {
 		return priceTextField;
+	}
+	
+	public JTextField getAlcoTextField1() {
+		return alcoTextField1;
 	}
 
 }
