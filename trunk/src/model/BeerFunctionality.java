@@ -17,32 +17,32 @@ public class BeerFunctionality {
 		return randomBeverage(db.getBeerList());
 	}
 	
-	public Beverage BeerOfTheMonth(int price) {
-		return randomBeverage(db.getBeerList(price));
+	public Beverage BeerOfTheMonth(int price,int[] volume,int[] alco) {
+		return randomBeverage(db.getBeerList(price,volume,alco));
 	}
 	
 	public Beverage BeerOfTheMonthInStock() throws IOException {
 		return randomBeverageInStock(db.getBeerList());
 	}
 	
-	public Beverage BeerOfTheMonthInStock(int price) throws IOException {
-		return randomBeverageInStock(db.getBeerList(price));
+	public Beverage BeerOfTheMonthInStock(int price,int[] volume,int[] alco) throws IOException {
+		return randomBeverageInStock(db.getBeerList(price,volume,alco));
 	}
 
 	public Beverage WineOfTheMonth() {
 		return randomBeverage(db.getWineList());
 	}
 	
-	public Beverage WineOfTheMonth(int price) {
-		return randomBeverage(db.getWineList(price));
+	public Beverage WineOfTheMonth(int price,int[] volume,int[] alco) {
+		return randomBeverage(db.getWineList(price,volume,alco));
 	}
 	
 	public Beverage WineOfTheMonthInStock() throws IOException {
 		return randomBeverageInStock(db.getWineList());
 	}
 	
-	public Beverage WineOfTheMonthInStock(int price) throws IOException {
-		return randomBeverageInStock(db.getWineList(price));
+	public Beverage WineOfTheMonthInStock(int price,int[] volume,int[] alco) throws IOException {
+		return randomBeverageInStock(db.getWineList(price,volume,alco));
 	}
 
 	public Beverage BeverageOfTheMonth() {

@@ -66,10 +66,10 @@ public class Gui extends JFrame {
 			if(set.checkStock()){
 				Beverage beer = null;
 				try {
-					if(set.getPriceLessOrEqualsThen() <= 0){
+					if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
 						beer = bf.BeerOfTheMonthInStock();
 					}else{
-						beer = bf.BeerOfTheMonthInStock(set.getPriceLessOrEqualsThen());
+						beer = bf.BeerOfTheMonthInStock(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
 					}
 				} catch (IOException e1) {					
 					e1.printStackTrace();
@@ -82,10 +82,10 @@ public class Gui extends JFrame {
 				}
 			}else{
 				Beverage beer;
-				if(set.getPriceLessOrEqualsThen() <= 0){
+				if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
 					 beer = bf.BeerOfTheMonth();
 				}else{
-					 beer = bf.BeerOfTheMonth(set.getPriceLessOrEqualsThen());
+					 beer = bf.BeerOfTheMonth(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
 				}
 				
 				if(beer==null){
@@ -100,10 +100,10 @@ public class Gui extends JFrame {
 			if(set.checkStock()){
 				Beverage wine = null;
 				try {
-					if(set.getPriceLessOrEqualsThen() <= 0){
+					if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
 						wine = bf.WineOfTheMonthInStock();
 					}else{
-						wine = bf.WineOfTheMonthInStock(set.getPriceLessOrEqualsThen());
+						wine = bf.WineOfTheMonthInStock(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
 					}
 					 
 				} catch (IOException e1) {					
@@ -117,10 +117,10 @@ public class Gui extends JFrame {
 				}
 			}else{
 				Beverage wine = null;
-				if(set.getPriceLessOrEqualsThen() <= 0){
+				if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
 					wine = bf.WineOfTheMonth();
 				}else{
-					wine = bf.WineOfTheMonth(set.getPriceLessOrEqualsThen());
+					wine = bf.WineOfTheMonth(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
 				}
 				if(wine==null){
 					textPane1.setText(textPane1.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");

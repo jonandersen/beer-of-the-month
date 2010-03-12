@@ -7,13 +7,16 @@ public class Settings {
 	private Boolean checkStock;
 	private Boolean bfb;
 	private int price;
-	
+	private int[] volume;
+	private int[] alco;
 	public Settings(){
 		beer = false;
 		wine = false;
 		beverage = false;
 		checkStock = false;
 		bfb = false;
+		alco = new int[2];
+		volume = new int[2];
 	}
 	
 	
@@ -56,6 +59,20 @@ public class Settings {
 	
 	public int getPriceLessOrEqualsThen(){
 		return price;
+	}
+	
+	
+	public void setVolume(int[] volume){
+		this.volume=volume;
+	}
+	public int[] getVolume(){
+		return volume;
+	}
+	public void setAlco(int[] alco){
+		this.alco=alco;
+	}
+	public int[] getAlco(){
+		return alco;
 	}
 	
 	public void copySet(Settings set){
