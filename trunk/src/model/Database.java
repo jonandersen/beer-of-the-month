@@ -104,14 +104,14 @@ public class Database {
 				}
 
 				if (volume[0] > 0 || volume[1] > 0) {
-					if ((bevVolume >= volume[0] && bevVolume <= volume[1]) || bevVolume >= volume[0])
+					if ((bevVolume >= volume[0] && bevVolume <= volume[1]) || (bevVolume >= volume[0] && volume[1]==0))
 						addIt = true;
 					else
 						continue;
 				}
 				
 				if (alco[0] > 0 || alco[1] > 0 ) {
-					if ((bevAlco >= (double) alco[0] && bevAlco <= (double) alco[1]) || bevAlco >= alco[0])
+					if ((bevAlco >= (double) alco[0] && bevAlco <= (double) alco[1]) || (bevAlco >= alco[0] && alco[1]==0))
 						addIt = true;
 					else
 						continue;
