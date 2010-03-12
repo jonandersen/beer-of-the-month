@@ -78,7 +78,7 @@ public class Gui extends JFrame {
 				if(beer==null){
 					textPane1.setText(textPane1.getText() + "Beer of the Month: "+ "Couldn't find one =(" + "\n");
 				}else{
-					textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+					textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n");
 				}
 			}else{
 				Beverage beer;
@@ -113,7 +113,7 @@ public class Gui extends JFrame {
 				if(wine==null){
 					textPane1.setText(textPane1.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");
 				}else{
-					textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
+					textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n");
 				}
 			}else{
 				Beverage wine = null;
@@ -167,7 +167,7 @@ public class Gui extends JFrame {
 	}
 
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// JFormDesigner - Component initialization - MODIFY AT WILL!  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner Evaluation license - Jon Andersen
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();

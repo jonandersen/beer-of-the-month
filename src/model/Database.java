@@ -38,7 +38,7 @@ public class Database {
 	}
 
 	public ArrayList<Beverage> getBeerList(int price, int[] volume, int[] alco) {
-		return getList("ÖL", price,volume,alco);
+		return getList("ÖL", price, volume, alco);
 	}
 
 	public ArrayList<Beverage> getWineList() {
@@ -49,8 +49,8 @@ public class Database {
 	}
 
 	public ArrayList<Beverage> getWineList(int price, int[] volume, int[] alco) {
-		ArrayList<Beverage> rlist = getList("VITA VINER", price,volume,alco);
-		ArrayList<Beverage> vlist = getList("RÖDA VINER", price,volume,alco);
+		ArrayList<Beverage> rlist = getList("VITA VINER", price, volume, alco);
+		ArrayList<Beverage> vlist = getList("RÖDA VINER", price, volume, alco);
 		rlist.addAll(vlist);
 		return rlist;
 	}
@@ -68,7 +68,8 @@ public class Database {
 		return list;
 	}
 
-	private ArrayList<Beverage> getList(String type, int price, int[] volume, int[] alco) {
+	private ArrayList<Beverage> getList(String type, int price, int[] volume,
+			int[] alco) {
 		Iterator<Beverage> itr = map.values().iterator();
 		Beverage b;
 		ArrayList<Beverage> list = new ArrayList<Beverage>();
@@ -81,21 +82,22 @@ public class Database {
 			try {
 				beerPrice = Double.parseDouble(b.getPrice().trim().replace(',',
 						'.'));
-				bevVolume = Double.parseDouble(b.getVolume().trim().replace(',',
-				'.'));
-				bevAlco = Double.parseDouble(b.getAlcohol().replace(',',
-				'.').replace('%', ' ').trim());
+				bevVolume = Double.parseDouble(b.getVolume().trim().replace(
+						',', '.'));
+				bevAlco = Double.parseDouble(b.getAlcohol().replace(',', '.')
+						.replace('%', ' ').trim());
 			} catch (NumberFormatException e) {
-				//list.add(b);
+				// list.add(b);
+				e.printStackTrace();
 			}
-			
+
 			boolean addIt = false;
-			
+			// if (type == null) {
+			// list.add(b);
+			// continue;
+			// }
 			if (b.getType().equals(type)) {
-				//if (type == null) {
-				//	list.add(b);
-				//	continue;
-				//}
+
 				if (price > 0) {
 					if (beerPrice <= (double) price)
 						addIt = true;
@@ -104,14 +106,16 @@ public class Database {
 				}
 
 				if (volume[0] > 0 || volume[1] > 0) {
-					if ((bevVolume >= volume[0] && bevVolume <= volume[1]) || (bevVolume >= volume[0] && volume[1]==0))
+					if ((bevVolume >= volume[0] && bevVolume <= volume[1])
+							|| (bevVolume >= volume[0] && volume[1] == 0))
 						addIt = true;
 					else
 						continue;
 				}
-				
-				if (alco[0] > 0 || alco[1] > 0 ) {
-					if ((bevAlco >= (double) alco[0] && bevAlco <= (double) alco[1]) || (bevAlco >= alco[0] && alco[1]==0))
+
+				if (alco[0] > 0 || alco[1] > 0) {
+					if ((bevAlco >= (double) alco[0] && bevAlco <= (double) alco[1])
+							|| (bevAlco >= alco[0] && alco[1] == 0))
 						addIt = true;
 					else
 						continue;

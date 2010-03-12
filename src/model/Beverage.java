@@ -4,6 +4,7 @@ import java.util.Map;
 
 import model.ArticleInfo;
 public class Beverage {
+	int stockCount=0; //sorry
 	private Map<ArticleInfo, String> info;
 
 	public Beverage(Map<ArticleInfo, String> info) {
@@ -33,6 +34,13 @@ public class Beverage {
 	public String getAlcohol(){
 		return info.get(ArticleInfo.ALCOHOL);
 	}
+	public void setStockCount(int stockCount){
+		this.stockCount=stockCount;
+	}
+	public int getStockCount(){
+		return stockCount;
+	}
+	
 	public boolean equals(Object o){
 	    if (o instanceof Beverage) {
 	        Beverage b = (Beverage) o;

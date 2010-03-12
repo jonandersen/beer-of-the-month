@@ -86,5 +86,18 @@ public class HtmlParser {
 		 return s.contains("Lagersaldo:");
 	 }
 	 
+	 public int getStockCount(String s){		
+		 int index = s.indexOf("Lagersaldo:");
+		 String digits ="";
+		for(int i=0; i< 40;i++){
+			 if(Character.isDigit(s.charAt(index+i))){
+				 digits+=s.charAt(index+i);
+				 if(!Character.isDigit(s.charAt(index+i+1)))
+					 return Integer.parseInt(digits);
+			 }
+		 }
+		return -1;
+	 }
+	 
 	 
 }

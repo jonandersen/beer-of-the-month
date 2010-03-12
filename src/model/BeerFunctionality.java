@@ -94,6 +94,7 @@ public class BeerFunctionality {
 		URL ur = null;
 		Beverage bev = null;
 		int randomInt;
+		String s="";
 		do {
 			if(list.isEmpty())
 				return null;
@@ -101,8 +102,9 @@ public class BeerFunctionality {
 			bev = list.get(randomInt);
 			list.remove(randomInt);
 			ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik=226&SokStrangar=");
-		} while (!parse.isInHouse(parse.getHtmlSource(ur, bev.getId())));
-			
+			s = parse.getHtmlSource(ur, bev.getId());
+		} while (!parse.isInHouse(s));
+		bev.setStockCount(parse.getStockCount(s));
 		return bev;
 
 	}
