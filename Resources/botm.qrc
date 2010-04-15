@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>advancedsettings.png</file>
+    <file>media-playlist-shuffle.png</file>
+  </qresource>
+</RCC>
