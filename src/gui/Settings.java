@@ -19,6 +19,9 @@ public class Settings {
 		volume = new int[2];
 	}
 	
+	public Boolean all(){
+		return beer || wine || beverage || bfb;
+	}
 	
 	public Boolean rollBeer(){
 		return beer;

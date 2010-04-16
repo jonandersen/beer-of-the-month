@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
-public class LoadingScreenLagerStatus extends JFrame {
+public class LoadingScreenLagerStatus extends JFrame{
 	
 
 
@@ -14,18 +14,13 @@ public class LoadingScreenLagerStatus extends JFrame {
 	
 	public LoadingScreenLagerStatus() {
 		super("Evaluating");
-		initGUI();
+		BorderLayout thisLayout = new BorderLayout();
+		setLayout(thisLayout);			
+		jInfo = new JLabel();
+		jInfo.setText("Evaluating important beer decisions");			
+		add(jInfo, BorderLayout.CENTER);			
+		setLocationRelativeTo(null);			
+		pack();
+		setVisible(true);
 	}
-	
-	private void initGUI() {
-			BorderLayout thisLayout = new BorderLayout();
-			setLayout(thisLayout);			
-			jInfo = new JLabel();
-			jInfo.setText("Evaluating important beer decisions");			
-			add(jInfo, BorderLayout.CENTER);			
-			setLocationRelativeTo(null);
-			setVisible(true);
-			pack();
-		
-	}	
 }
