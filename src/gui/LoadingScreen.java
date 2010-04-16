@@ -1,5 +1,7 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
@@ -40,13 +42,16 @@ public class LoadingScreen extends javax.swing.JFrame {
 	public LoadingScreen() {
 		super("Initializing Beer of the Month");
 		initGUI();
+		this.setPreferredSize(new Dimension(750, 100));
+		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
-				jProgressBar = new JProgressBar(0,100);
+				jProgressBar = new JProgressBar(0,100);				
 				getContentPane().add(jProgressBar, BorderLayout.CENTER);
 			}
 			{
@@ -54,10 +59,7 @@ public class LoadingScreen extends javax.swing.JFrame {
 				getContentPane().add(jLabel1, BorderLayout.NORTH);
 				jLabel1.setText("Please wait while the program is downloading information");
 			}						
-			setVisible(true);			
-			setLocationRelativeTo(null);
-			this.setPreferredSize(new java.awt.Dimension(500, 100));
-			pack();
+			setVisible(true);					
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -67,6 +67,8 @@ public class Gui extends JFrame {
 		if(set.all()){
 			InfoArea.setText("Evaluating important beer decisions");
 			okButton.setEnabled(false);
+			settings.setEnabled(false);
+			cancelButton.setText("Abort");			
 			loadData();
 		}				
 	}	
@@ -75,7 +77,7 @@ public class Gui extends JFrame {
 		Configure config = new Configure(set);			
 	}
 
-	 void cancelButtonActionPerformed(ActionEvent e) {
+	 void cancelButtonActionPerformed(ActionEvent e) {		 
 		 try {
 			 adr.close();
 			
@@ -180,6 +182,8 @@ public class Gui extends JFrame {
 					
 					InfoArea.setText("Done evaluating, check above for beverage");
 					okButton.setEnabled(true);
+					settings.setEnabled(true);
+					cancelButton.setText("Exit");
 										
 		        }});
 		    	// Keep gui responsive to user input.
@@ -362,6 +366,11 @@ public class Gui extends JFrame {
 					ImageIcon icon = new ImageIcon("Images/settings.png");
 					settings = new JButton("Settings", icon);
 					buttonBar.add(settings, new CellConstraints("4, 1, 1, 1, default, default"));					
+					settings.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							settingsActionPerformed(evt);
+						}
+					});
 				}
 			}
 			
@@ -404,6 +413,10 @@ public class Gui extends JFrame {
 	private void jItemHistoryActionPerformed(ActionEvent evt) {
 		String[] hist = {"Breznak", "Oktoberöl"};
 		new History(hist);
+	}
+	
+	private void settingsActionPerformed(ActionEvent evt) {
+		Configure config = new Configure(set);
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
