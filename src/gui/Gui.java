@@ -35,7 +35,7 @@ import net.miginfocom.swing.MigLayout;
  * @author Jon Andersen
  */
 public class Gui extends JFrame {
-	
+	private Config config;
 	private Database db;
 	private Server server;
 	private Thread thread;
@@ -54,9 +54,9 @@ public class Gui extends JFrame {
 
 	public Gui(BeerFunctionality bf, Database db) {
 		this.db=db;
-		initComponents();
-		this.setVisible(true);
 		set = new Settings();
+		initComponents();		
+		this.setVisible(true);		
 		this.bf = bf;
 		
 	}
@@ -67,10 +67,11 @@ public class Gui extends JFrame {
 		if(set.all()){
 			InfoArea.setText("Evaluating important beer decisions");
 			okButton.setEnabled(false);
-			settings.setEnabled(false);
-			cancelButton.setText("Abort");			
+			settings.setEnabled(false);						
 			loadData();
-		}				
+		}else{
+			InfoArea.setText("Nothing configured please check settings");
+		}
 	}	
 
 	private void configureActionPerformed(ActionEvent e) {
@@ -182,9 +183,7 @@ public class Gui extends JFrame {
 					
 					InfoArea.setText("Done evaluating, check above for beverage");
 					okButton.setEnabled(true);
-					settings.setEnabled(true);
-					cancelButton.setText("Exit");
-										
+					settings.setEnabled(true);	
 		        }});
 		    	// Keep gui responsive to user input.
 		    thread.setPriority(Thread.NORM_PRIORITY);  // 5, EDT = 6
@@ -207,8 +206,19 @@ public class Gui extends JFrame {
 		BorderLayout dialogPaneLayout = new BorderLayout();
 		dialogPane.setLayout(dialogPaneLayout);
 		contentPanel = new JPanel();
-		scrollPane1 = new JScrollPane();
-		textPane1 = new JTextPane();
+		GroupLayout contentPanelLayout = new GroupLayout((JComponent)contentPanel);
+		contentPanel.setLayout(contentPanelLayout);
+		{
+			textPane1 = new JTextPane();
+			textPane1.setEditable(false);
+		}
+				contentPanelLayout.setVerticalGroup(contentPanelLayout.createSequentialGroup()
+					.addComponent(textPane1, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
+				contentPanelLayout.setHorizontalGroup(contentPanelLayout.createSequentialGroup()
+					.addGap(6)
+					.addComponent(textPane1, 0, 325, Short.MAX_VALUE)
+					.addContainerGap(22, 22));
 
 		//======== this ========
 		Container contentPane = getContentPane();
@@ -300,6 +310,11 @@ public class Gui extends JFrame {
 		//======== dialogPane ========
 		{
 			dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
+			{
+				configure = new JPanel();
+				dialogPane.add(configure, BorderLayout.EAST);
+				configure.setPreferredSize(new java.awt.Dimension(287, 282));
+			}
 			
 
 
@@ -310,29 +325,11 @@ public class Gui extends JFrame {
 				{
 
 					//---- textPane1 ----
-					textPane1.setEditable(false);
-					scrollPane1.setViewportView(textPane1);
-					textPane1.setPreferredSize(new java.awt.Dimension(417, 157));
 				}
 
-				GroupLayout contentPanelLayout = new GroupLayout(contentPanel);
-				contentPanel.setLayout(contentPanelLayout);
-				contentPanelLayout.setHorizontalGroup(
-					contentPanelLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
-							.addContainerGap())
-				);
-				contentPanelLayout.setVerticalGroup(
-					contentPanelLayout.createParallelGroup()
-						.addGroup(contentPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-							.addContainerGap())
-				);
 			}
 			dialogPane.add(contentPanel, BorderLayout.CENTER);
+			contentPanel.setPreferredSize(new java.awt.Dimension(425, 344));
 			{
 				buttonBar = new JPanel();
 				dialogPane.add(buttonBar, BorderLayout.NORTH);
@@ -373,7 +370,7 @@ public class Gui extends JFrame {
 					});
 				}
 			}
-			
+
 			//======== buttonBar ========
 			{
 
@@ -381,30 +378,35 @@ public class Gui extends JFrame {
 
 				//---- cancelButton ----
 			}
-			{
-				progress = new JPanel();				
-				GroupLayout progressLayout = new GroupLayout((JComponent)progress);
-				progress.setLayout(progressLayout);
-				dialogPane.add(progress, BorderLayout.SOUTH);
-				progress.setPreferredSize(new java.awt.Dimension(640, 51));
-				{
-					InfoArea = new JTextField();
-					InfoArea.setFont(new java.awt.Font("Tahoma",0,28));
-					InfoArea.setEditable(false);
-					InfoArea.setSize(620, 51);
-				}
-
-					progressLayout.setHorizontalGroup(progressLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(InfoArea, 0, 620, Short.MAX_VALUE)
-					.addContainerGap());
-					progressLayout.setVerticalGroup(progressLayout.createSequentialGroup()
-					.addComponent(InfoArea, 0, 45, Short.MAX_VALUE)
-					.addGap(6));
-			}
 		}
 		contentPane.add(dialogPane, BorderLayout.NORTH);
-		dialogPane.setPreferredSize(new java.awt.Dimension(664, 356));
+		dialogPane.setPreferredSize(new java.awt.Dimension(664, 428));
+		{
+			progress = new JPanel();				
+			contentPane.add(progress);
+			GroupLayout progressLayout = new GroupLayout((JComponent)progress);
+			progress.setLayout(progressLayout);
+			progress.setPreferredSize(new java.awt.Dimension(664, 71));
+			{
+				InfoArea = new JTextField();
+				InfoArea.setFont(new java.awt.Font("Tahoma",0,28));
+				InfoArea.setSize(620, 51);
+				InfoArea.setEditable(false);
+				InfoArea.setBorder(new LineBorder(new java.awt.Color(171,173,179), 0, false));
+			}
+
+			progressLayout.setHorizontalGroup(progressLayout.createSequentialGroup()
+				.addContainerGap(18, 18)
+				.addComponent(InfoArea, 0, 589, Short.MAX_VALUE)
+				.addContainerGap(57, 57));
+			progressLayout.setVerticalGroup(progressLayout.createSequentialGroup()
+				.addComponent(InfoArea, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+				.addContainerGap(20, Short.MAX_VALUE));
+		}
+		config = new Config(set, configure);
+		configure.add(config);
+		config.setPreferredSize(new java.awt.Dimension(280, 293));
+		configure.setVisible(false);
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -415,8 +417,10 @@ public class Gui extends JFrame {
 		new History(hist);
 	}
 	
-	private void settingsActionPerformed(ActionEvent evt) {
-		Configure config = new Configure(set);
+	private void settingsActionPerformed(ActionEvent evt) {		
+		configure.setVisible(true);
+		pack();
+		repaint();
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -425,6 +429,7 @@ public class Gui extends JFrame {
 	private JMenu menu1;
 	private JMenu menu2;
 	private JMenu jHistory;
+	private JPanel configure;
 	private JButton settings;
 	private JTextField InfoArea;
 	private JPanel progress;
@@ -434,7 +439,6 @@ public class Gui extends JFrame {
 	private JMenuItem menuItem2b;
 	private JPanel dialogPane;
 	private JPanel contentPanel;
-	private JScrollPane scrollPane1;
 	private JTextPane textPane1;
 	private JPanel buttonBar;
 	private JButton okButton;
