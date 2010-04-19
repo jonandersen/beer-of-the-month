@@ -73,11 +73,6 @@ public class Gui extends JFrame {
 			InfoArea.setText("Nothing configured please check settings");
 		}
 	}	
-
-	private void configureActionPerformed(ActionEvent e) {
-		Configure config = new Configure(set);			
-	}
-
 	 void cancelButtonActionPerformed(ActionEvent e) {		 
 		 try {
 			 adr.close();
@@ -196,12 +191,6 @@ public class Gui extends JFrame {
 	private void initComponents() {
 		// JFormDesigner - Component initialization - MODIFY AT WILL!  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner Evaluation license - Jon Andersen
-		menuBar1 = new JMenuBar();
-		menu1 = new JMenu();
-		menu2 = new JMenu();
-		menuItem1 = new JMenuItem();
-		menuItem2 = new JMenuItem();
-		menuItem2b = new JMenuItem();
 		dialogPane = new JPanel();
 		BorderLayout dialogPaneLayout = new BorderLayout();
 		dialogPane.setLayout(dialogPaneLayout);
@@ -216,9 +205,9 @@ public class Gui extends JFrame {
 					.addComponent(textPane1, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
 				contentPanelLayout.setHorizontalGroup(contentPanelLayout.createSequentialGroup()
-					.addGap(6)
-					.addComponent(textPane1, 0, 325, Short.MAX_VALUE)
-					.addContainerGap(22, 22));
+					.addContainerGap()
+					.addComponent(textPane1, 0, 321, Short.MAX_VALUE)
+					.addContainerGap());
 
 		//======== this ========
 		Container contentPane = getContentPane();
@@ -229,83 +218,18 @@ public class Gui extends JFrame {
 
 			//======== menu1 ========
 			{
-				menu1.setText("Settings");
 
 				//---- menuItem1 ----
-				menuItem1.setText("Configure");
-				menuItem1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						configureActionPerformed(e);
-					}
-				});
-				menu1.add(menuItem1);
 			}
-			menuBar1.add(menu1);
 			//======== menu2 ========
 			{
-				menu2.setText("Server");
 
 				//---- menuItem2a ----
-				menuItem2.setText("Start server");
-				menuItem2.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						try {
-							//TODO: hårdkodad port
-							adr = new ServerSocket(49289, 5, InetAddress
-							         .getLocalHost());
-							server = new Server(db,adr);
-							
-						} catch (UnknownHostException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
-						thread = server; 
-						thread.start(); 
-					}
-				});
-				menu2.add(menuItem2);
-				
+
 				//---- menuItem2b ----
-				menuItem2b.setText("Stop server");
-				menuItem2b.addActionListener(new ActionListener() {
-					
-					public void actionPerformed(ActionEvent e) {
-						try {
-							adr.close();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
-					
-					}
-				});
-				menu2.add(menuItem2b);
 			}
-			menuBar1.add(menu2);
-			
-			{
-				jHistory = new JMenu();
-				menuBar1.add(jHistory);
-				jHistory.setText("History");
-				{
-					jItemHistory = new JMenuItem();
-					jHistory.add(jItemHistory);
-					jItemHistory.setText("See History");
-					jItemHistory.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
-							jItemHistoryActionPerformed(evt);
-						}
-					});
-				}
-			}
+
 		}
-		setJMenuBar(menuBar1);
 
 		//======== dialogPane ========
 		{
@@ -396,12 +320,12 @@ public class Gui extends JFrame {
 			}
 
 			progressLayout.setHorizontalGroup(progressLayout.createSequentialGroup()
-				.addContainerGap(18, 18)
-				.addComponent(InfoArea, 0, 589, Short.MAX_VALUE)
-				.addContainerGap(57, 57));
+				.addContainerGap(16, 16)
+				.addComponent(InfoArea, 0, 628, Short.MAX_VALUE)
+				.addContainerGap());
 			progressLayout.setVerticalGroup(progressLayout.createSequentialGroup()
 				.addComponent(InfoArea, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-				.addContainerGap(20, Short.MAX_VALUE));
+				.addContainerGap(17, Short.MAX_VALUE));
 		}
 		config = new Config(set, configure);
 		configure.add(config);
@@ -417,26 +341,18 @@ public class Gui extends JFrame {
 		new History(hist);
 	}
 	
-	private void settingsActionPerformed(ActionEvent evt) {		
-		configure.setVisible(true);
+	private void settingsActionPerformed(ActionEvent evt) {			
+		configure.setVisible(!configure.isVisible());
 		pack();
 		repaint();
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 	// Generated using JFormDesigner Evaluation license - Jon Andersen
-	private JMenuBar menuBar1;
-	private JMenu menu1;
-	private JMenu menu2;
-	private JMenu jHistory;
 	private JPanel configure;
 	private JButton settings;
 	private JTextField InfoArea;
 	private JPanel progress;
-	private JMenuItem jItemHistory;
-	private JMenuItem menuItem1;
-	private JMenuItem menuItem2;
-	private JMenuItem menuItem2b;
 	private JPanel dialogPane;
 	private JPanel contentPanel;
 	private JTextPane textPane1;
