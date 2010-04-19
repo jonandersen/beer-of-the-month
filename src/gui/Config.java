@@ -57,27 +57,12 @@ public class Config extends JPanel{
 	
 	public Config(Settings set, JPanel configure) {
 		super();
-		this.tempSet = new Settings();
-		tempSet.copySet(set);
+		this.tempSet = new Settings();		
 		this.set = set;
 		this.configure = configure;
 		initGUI();
 		this.setVisible(true);		
-		if(set.rollBeer()){			
-			jBeer.setSelected(true);
-		}
-		if(set.rollWine()){
-			jWine.setSelected(true);
-		}
-		if(set.rollBeverage()){
-			jBeverage.setSelected(true);
-		}
-		if(set.checkStock()){
-			jLager.setSelected(true);
-		}
-		if(set.bFB()){
-			jMBFB.setSelected(true);
-		}
+		setUp();
 		
 		
 	}
@@ -251,7 +236,18 @@ public class Config extends JPanel{
 		}
 	}
 	
+	private void setUp(){	
+		tempSet.copySet(set);
+		jBeer.setSelected(set.rollBeer());
+		jWine.setSelected(set.rollWine());		
+		jBeverage.setSelected(set.rollBeverage());
+		jLager.setSelected(set.checkStock());
+		jMBFB.setSelected(set.bFB());			
+}
+	
 	private void jCancelActionPerformed(ActionEvent evt) {
+		setUp();
+		repaint();
 		configure.setVisible(false);
 	}
 	
