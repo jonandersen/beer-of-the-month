@@ -122,7 +122,7 @@ public class Gui extends JFrame {
 		}
 		{
 			jLabelInfoArea = new JLabel();
-			jLabelInfoArea.setText("Infoarea");
+			jLabelInfoArea.setText("History");
 			jLabelInfoArea.setFont(new java.awt.Font("Tahoma",1,14));
 			jLabelInfoArea.setSize(281, 23);
 		}
@@ -132,27 +132,26 @@ public class Gui extends JFrame {
 			summary.setEditable(false);
 		}
 				contentPanelLayout.setVerticalGroup(contentPanelLayout.createSequentialGroup()
-					.addComponent(jLabelSummary, 0, 15, Short.MAX_VALUE)
-					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-					.addComponent(summary, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-					.addComponent(jLabelInfoArea, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jLabelSummary, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE));
+					.addComponent(summary, 0, 110, Short.MAX_VALUE)
+					.addComponent(jLabelInfoArea, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE));
 				contentPanelLayout.setHorizontalGroup(contentPanelLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(contentPanelLayout.createParallelGroup()
-					    .addGroup(contentPanelLayout.createSequentialGroup()
-					        .addComponent(summary, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
-					        .addGap(0, 0, Short.MAX_VALUE))
-					    .addGroup(contentPanelLayout.createSequentialGroup()
-					        .addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
-					        .addGap(0, 0, Short.MAX_VALUE))
 					    .addGroup(GroupLayout.Alignment.LEADING, contentPanelLayout.createSequentialGroup()
 					        .addComponent(jLabelSummary, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
 					        .addGap(0, 386, Short.MAX_VALUE))
+					    .addGroup(contentPanelLayout.createSequentialGroup()
+					        .addComponent(summary, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 0, Short.MAX_VALUE))
 					    .addGroup(GroupLayout.Alignment.LEADING, contentPanelLayout.createSequentialGroup()
 					        .addComponent(jLabelInfoArea, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
-					        .addGap(0, 338, Short.MAX_VALUE)))
+					        .addGap(0, 338, Short.MAX_VALUE))
+					    .addGroup(contentPanelLayout.createSequentialGroup()
+					        .addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 0, Short.MAX_VALUE)))
 					.addContainerGap());
 
 		//======== this ========

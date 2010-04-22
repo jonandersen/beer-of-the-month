@@ -144,7 +144,7 @@ public class Config extends JPanel{
 				jLabel1 = new JLabel();
 				jPanel1.add(jLabel1);
 				jLabel1.setText("Type:");
-				jLabel1.setBounds(10, 11, 94, 15);
+				jLabel1.setBounds(10, 6, 94, 20);
 				jLabel1.setFont(new java.awt.Font("AlArabiya",0,16));
 			}
 			{
