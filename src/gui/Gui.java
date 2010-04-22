@@ -163,8 +163,18 @@ public class Gui extends JFrame {
 							textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
 						}
 					}
-					if(set.bFB()){
-						Beverage beverage = bf.bangForTheBuck();
+					if(set.bFB()){						
+						Beverage beverage = null;
+						if(set.checkStock()){
+							try {
+								beverage = bf.bangForTheBuckInStock();
+							} catch (IOException e1) {					
+								e1.printStackTrace();
+								System.exit(0);
+							}	
+						}else{							
+							beverage = bf.bangForTheBuck();							
+						}				
 						textPane1.setText(textPane1.getText() + "Most Bang for the Buck: " + beverage.toString() + "\n");
 					}
 					
