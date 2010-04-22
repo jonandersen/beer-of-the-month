@@ -254,7 +254,11 @@ public class Config extends JPanel{
 }
 	
 	private void jCancelActionPerformed(ActionEvent evt) {
-		setUp();
+		priceTextField.setText(set.getPriceLessOrEqualsThen()+"");
+		volumeTextField1.setText(set.getVolume()[0]+"");
+		volumeTextField2.setText(set.getVolume()[1]+"");
+		alcoTextField1.setText(set.getAlco()[0]+"");
+		alcoTextField2.setText(set.getAlco()[1]+"");
 		repaint();
 		configure.setVisible(false);
 	}
@@ -276,7 +280,7 @@ public class Config extends JPanel{
 	
 	private void jOkActionPerformed(ActionEvent evt) {
 		set.copySet(tempSet);
-		boolean exception = true;
+		boolean exception = false;
 		int price = 0;
 		int[] volume = new int[2];
 		int[] alco = new int[2];
@@ -287,16 +291,15 @@ public class Config extends JPanel{
 			alco[0] = Integer.parseInt(alcoTextField1.getText().trim());
 			alco[1] = Integer.parseInt(alcoTextField2.getText().trim());
 		}catch(NumberFormatException e){
-			exception = false;
+			exception = true;
 		}
 		
-		if(exception){
+		if(!exception){
 			set.setPriceLessOrEqualsThen(price);
 			set.setVolume(volume);
-			set.setAlco(alco);			
+			set.setAlco(alco);
+			configure.setVisible(false);		
 		}
-		configure.setVisible(false);
-	
 	}
 	
 	private void jLagerMouseClicked(MouseEvent evt) {

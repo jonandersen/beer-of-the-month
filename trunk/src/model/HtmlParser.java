@@ -42,7 +42,7 @@ public class HtmlParser {
 
                  System.out.println("Oops- an IOException happened.");
                  ioe.printStackTrace();
-                 System.exit(1);
+                 //System.exit(1);
 
          } finally {
 

@@ -49,8 +49,7 @@ public class BotM {
 		BeerFunctionality bf = new BeerFunctionality(db);	
 		ls.dispose();
 		Gui gui = new Gui(bf, db);
-		
-		
+
 	}
 
 }
