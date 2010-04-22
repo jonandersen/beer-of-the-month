@@ -104,6 +104,9 @@ public class Gui extends JFrame {
 	private void initComponents() {
 		// JFormDesigner - Component initialization - MODIFY AT WILL!  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner Evaluation license - Jon Andersen
+		
+		
+		
 		dialogPane = new JPanel();
 		BorderLayout dialogPaneLayout = new BorderLayout();
 		dialogPane.setLayout(dialogPaneLayout);
