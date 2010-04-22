@@ -39,7 +39,7 @@ public class RollControl {
 		        public void run() {
 		        	Queue<String> q = new LinkedList<String>();
 		        	statusArea.setText("");			
-					if(set.rollBeer()){			
+					if(set.rollBeer() && !set.bFB()){			
 						if(set.checkStock()){
 							Beverage beer = null;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -69,7 +69,7 @@ public class RollControl {
 							q.add("Beer of the month: " + beer + beer.getStockCount());
 						}				
 					}
-					if(set.rollWine()){
+					if(set.rollWine() && !set.bFB()){
 						if(set.checkStock()){
 							Beverage wine = null;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -111,14 +111,21 @@ public class RollControl {
 					}
 					if(set.bFB()){						
 						Beverage beverage = null;
-						if(set.checkStock()){							
-							ArrayList<Beverage> list = (ArrayList<Beverage>) bf.beverageList();
-							beverage = checkStock(list);
+						ArrayList<Beverage> list;
+						if(set.rollWine() && !set.rollBeer()){
+							list = (ArrayList<Beverage>) bf.getDb().getWineList();
+						}else if(set.rollBeer() && !set.rollWine()){
+							list = (ArrayList<Beverage>) bf.getDb().getBeerList();
+						}else{
+							list = (ArrayList<Beverage>) bf.beverageList();
+						}
+						if(set.checkStock()){		
+								beverage = checkStock(list);
 						}else{							
-							beverage = bf.bangForTheBuck();							
+							beverage = bf.bang(list);							
 						}
 						statusArea.setText("Bang for the Buck in stock is " +
-								beverage.toString() + " In stock:" + beverage.getStockCount()+  "\n" +statusArea.getText());
+								beverage.toString() + " In stock: " + beverage.getStockCount()+  "\n" +statusArea.getText());
 						q.add("Most bang for the Buck: " + beverage + beverage.getStockCount());
 					}
 					while(!q.isEmpty()){
