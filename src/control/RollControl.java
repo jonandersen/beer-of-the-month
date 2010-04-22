@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import model.Beverage;
@@ -22,6 +23,7 @@ public class RollControl {
 	private JButton okButton;
 	private JButton cancelButton;
 	private JButton settings;
+	private JTextArea summary;
 	
 	public RollControl(Gui gui, BeerFunctionality bf){
 		statusArea = gui.getStatusArea();
@@ -31,12 +33,14 @@ public class RollControl {
 		okButton = gui.getOkButton();
 		cancelButton = gui.getCancelButton();
 		settings = gui.getSettings();
+		summary = gui.getSummary();
 	}
 	
 	
 	 public void loadData(){
 		 Thread thread = new Thread(new Runnable() {
 		        public void run() {
+		        	summary.setText("");
 		        	Queue<String> q = new LinkedList<String>();
 		        	statusArea.setText("");			
 					if(set.rollBeer() && !set.bFB()){			
@@ -129,9 +133,9 @@ public class RollControl {
 						q.add("Most bang for the Buck: " + beverage + beverage.getStockCount());
 					}
 					while(!q.isEmpty()){
-						statusArea.setText(q.poll() + "\n" + statusArea.getText());
+						summary.setText(q.poll() + "\n" + statusArea.getText());
 					}
-					statusArea.setText("Summary: \n" + statusArea.getText());
+					summary.setText("Summary: \n" + statusArea.getText());
 					infoArea.setText("Done evaluating, check above for beverage");
 					okButton.setEnabled(true);
 					settings.setEnabled(true);	

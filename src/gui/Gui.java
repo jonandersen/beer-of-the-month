@@ -114,12 +114,20 @@ public class Gui extends JFrame {
 			statusArea = new JTextPane();
 			statusArea.setEditable(false);
 		}
+		{
+			summary = new JTextArea();
+		}
 				contentPanelLayout.setVerticalGroup(contentPanelLayout.createSequentialGroup()
-					.addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
+					.addComponent(summary, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addComponent(statusArea, 0, 246, Short.MAX_VALUE));
 				contentPanelLayout.setHorizontalGroup(contentPanelLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(statusArea, 0, 321, Short.MAX_VALUE)
+					.addGroup(contentPanelLayout.createParallelGroup()
+					    .addGroup(contentPanelLayout.createSequentialGroup()
+					        .addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 0, Short.MAX_VALUE))
+					    .addComponent(summary, GroupLayout.Alignment.LEADING, 0, 620, Short.MAX_VALUE))
 					.addContainerGap());
 
 		//======== this ========
@@ -183,7 +191,7 @@ public class Gui extends JFrame {
 			contentPane.add(progress);
 			GroupLayout progressLayout = new GroupLayout((JComponent)progress);
 			progress.setLayout(progressLayout);
-			progress.setPreferredSize(new java.awt.Dimension(664, 71));
+			progress.setPreferredSize(new java.awt.Dimension(664, 58));
 			{
 				InfoArea = new JTextField();
 				InfoArea.setFont(new java.awt.Font("Tahoma",0,28));
@@ -239,8 +247,13 @@ public class Gui extends JFrame {
 	public JButton getSettings() {
 		return settings;
 	}
+	
+	public JTextArea getSummary(){
+		return summary;
+	}
 
 	private JPanel progress;
+	private JTextArea summary;
 	private JPanel dialogPane;
 	private JPanel contentPanel;
 	private JTextPane statusArea;
