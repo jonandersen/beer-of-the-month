@@ -128,7 +128,7 @@ public class Gui extends JFrame {
 		}
 		{
 			summary = new JTextArea();
-			summary.setFont(new java.awt.Font("Monospaced",1,13));
+			summary.setFont(new java.awt.Font("Malgun Gothic",1,13));
 		}
 				contentPanelLayout.setVerticalGroup(contentPanelLayout.createSequentialGroup()
 					.addComponent(jLabelSummary, 0, 15, Short.MAX_VALUE)
