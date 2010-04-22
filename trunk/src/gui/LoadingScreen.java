@@ -1,6 +1,8 @@
 package gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -45,6 +47,7 @@ public class LoadingScreen extends javax.swing.JFrame {
 		this.setPreferredSize(new Dimension(750, 100));
 		pack();
 		setLocationRelativeTo(null);
+		
 	}
 	
 	private void initGUI() {

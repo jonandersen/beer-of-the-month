@@ -57,8 +57,9 @@ public class RollControl {
 								statusArea.setText("Beer of the Month: "+ "Couldn't find one =("  + "\n"+ statusArea.getText());
 							}else{
 								statusArea.setText("Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n" + statusArea.getText());
+								q.add("Beer of the Month: " + beer.toString() +  " In stock: "  + beer.getStockCount());
 							}
-							q.add("Beer of the Month: " + beer.toString() +  " In stock: "  + beer.getStockCount());
+							
 						}else{
 							Beverage beer;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -71,8 +72,9 @@ public class RollControl {
 								statusArea.setText("Beer of the Month: "+ "Couldn't find one =(" + "\n" + statusArea.getText());
 							}else{
 								statusArea.setText("Beer of the Month: "+ beer.toString() +  "\n" + statusArea.getText());
+								q.add("Beer of the month: " + beer);
 							}
-							q.add("Beer of the month: " + beer);
+							
 						}				
 					}
 					if(set.rollWine() && !set.bFB()){
@@ -87,8 +89,9 @@ public class RollControl {
 								statusArea.setText("Wine of the Month: " + "Couldn't find one =("  +  "\n" + statusArea.getText());
 							}else{
 								statusArea.setText("Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n" + statusArea.getText());
+								q.add("Wine of the Month: " + wine  + " In stock: " + wine.getStockCount());
 							}
-							q.add("Wine of the Month: " + wine  + " In stock: " + wine.getStockCount());
+							
 						}else{
 							Beverage wine = null;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -100,8 +103,9 @@ public class RollControl {
 								statusArea.setText("Wine of the Month: " + "Couldn't find one =(" +  "\n" + statusArea.getText());
 							}else{
 								statusArea.setText("Wine of the Month: " + wine.toString() +"\n" +  statusArea.getText());
+								q.add("Wine of the Month: " + wine);
 							}
-							q.add("Wine of the Month: " + wine);
+							
 					}
 				}
 				if (set.rollBeverage() && !set.bFB()) {
