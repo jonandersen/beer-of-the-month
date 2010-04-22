@@ -125,45 +125,13 @@ public class Gui extends JFrame {
 		//======== this ========
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
-
-		//======== menuBar1 ========
-		{
-
-			//======== menu1 ========
-			{
-
-				//---- menuItem1 ----
-			}
-			//======== menu2 ========
-			{
-
-				//---- menuItem2a ----
-
-				//---- menuItem2b ----
-			}
-
-		}
-
-		//======== dialogPane ========
+	
 		{
 			dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
 			{
 				configure = new JPanel();
 				dialogPane.add(configure, BorderLayout.EAST);
 				configure.setPreferredSize(new java.awt.Dimension(225, 245));
-			}
-			
-
-
-			//======== contentPanel ========
-			{
-
-				//======== scrollPane1 ========
-				{
-
-					//---- textPane1 ----
-				}
-
 			}
 			dialogPane.add(contentPanel, BorderLayout.CENTER);
 			contentPanel.setPreferredSize(new java.awt.Dimension(425, 344));
@@ -206,14 +174,6 @@ public class Gui extends JFrame {
 						}
 					});
 				}
-			}
-
-			//======== buttonBar ========
-			{
-
-				//---- okButton ----
-
-				//---- cancelButton ----
 			}
 		}
 		contentPane.add(dialogPane, BorderLayout.NORTH);

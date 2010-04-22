@@ -120,31 +120,14 @@ public class RollControl {
 					}
 					if(set.bFB()){						
 						Beverage beverage = null;
-						if(set.checkStock()){
-							boolean found = false;
+						if(set.checkStock()){							
 							ArrayList<Beverage> list = (ArrayList<Beverage>) bf.beverageList();
-							while (!found){
-									beverage = bf.bang(list);
-									try {
-										if(!bf.checkInStock(beverage)){
-												list.remove(beverage);		
-												statusArea.setText(statusArea.getText() + beverage.toString() + " wasn't in stock, the search continues..." + "\n");
-												
-										}else{
-											found = true;
-										}
-									} catch (IOException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}				
-						
-							}
+							beverage = checkStock(list);
 						}else{							
 							beverage = bf.bangForTheBuck();							
-						}				
+						}
 						statusArea.setText(statusArea.getText() + "Bang for the Buck in stock is " + beverage.toString() + " In stock:" + beverage.getStockCount()+"\n");
 					}
-					
 					infoArea.setText("Done evaluating, check above for beverage");
 					okButton.setEnabled(true);
 					settings.setEnabled(true);	
@@ -154,6 +137,27 @@ public class RollControl {
 		    thread.start();    
 	 }	 
 	
+	 
+	 private Beverage checkStock(ArrayList<Beverage> list){
+		 Beverage beverage = null;
+		 boolean found = false;
+		 while (!found){
+				beverage = bf.bang(list);
+				try {
+					if(!bf.checkInStock(beverage)){
+							list.remove(beverage);		
+							statusArea.setText(statusArea.getText() + beverage.toString() + " wasn't in stock, the search continues..." + "\n");
+							
+					}else{
+						found = true;
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+		}
+		return beverage;
+	 }
 	
 	
 }
