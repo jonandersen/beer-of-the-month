@@ -36,10 +36,9 @@ import net.miginfocom.swing.MigLayout;
  */
 public class Gui extends JFrame {
 	private Config config;
-	private Database db;
-	private Server server;
+	private Database db;	
 	private Thread thread;
-	private ServerSocket adr;
+	
 	{
 		//Set Look & Feel
 		try {
@@ -73,14 +72,7 @@ public class Gui extends JFrame {
 			InfoArea.setText("Nothing configured please check settings");
 		}
 	}	
-	 void cancelButtonActionPerformed(ActionEvent e) {		 
-		 try {
-			 adr.close();
-			
-		 } catch (Exception e1) {
-				// TODO Auto-generated catch block
-				//e1.printStackTrace();
-			}
+	 void cancelButtonActionPerformed(ActionEvent e) {		
 		System.exit(1);
 	}
 	 
