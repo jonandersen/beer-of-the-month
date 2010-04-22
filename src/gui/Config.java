@@ -183,7 +183,7 @@ public class Config extends JPanel{
 				jLabel4 = new JLabel();
 				ImageIcon icon = new ImageIcon("Images/help.png");
 				jLabel4.setIcon(icon);
-				jLabel4.setToolTipText("Set a volume filter");
+				jLabel4.setToolTipText("Set a volume filter in ml");
 				jPanel1.add(jLabel4);					
 				jLabel4.setBounds(112, 158, 85, 18);
 			}
@@ -191,7 +191,7 @@ public class Config extends JPanel{
 				jLabel5 = new JLabel();
 				ImageIcon icon = new ImageIcon("Images/help.png");
 				jLabel5.setIcon(icon);				
-				jLabel5.setToolTipText("Set a alco filter");
+				jLabel5.setToolTipText("Set a alco filter in %");
 				jPanel1.add(jLabel5);					
 				jLabel5.setBounds(112, 179, 91, 18);
 			}
