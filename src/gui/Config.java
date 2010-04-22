@@ -151,7 +151,7 @@ public class Config extends JPanel{
 				jMBFB = new JCheckBox();
 				jPanel1.add(jMBFB);
 				jMBFB.setText("Most Bang for the Buck");
-				jMBFB.setBounds(6, 108, 137, 23);
+				jMBFB.setBounds(6, 108, 191, 23);
 				jMBFB.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						jMBFBMouseClicked(evt);
