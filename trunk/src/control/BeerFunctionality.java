@@ -108,7 +108,7 @@ public class BeerFunctionality {
 			randomInt = rand.nextInt(list.size());
 			bev = list.get(randomInt);
 			list.remove(randomInt);
-			ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik=226&SokStrangar=");
+			ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik="+ bolag.get(key) +"&SokStrangar=");
 			s = parse.getHtmlSource(ur, bev.getId());
 		} while (!parse.isInHouse(s));
 		bev.setStockCount(parse.getStockCount(s));
@@ -159,9 +159,7 @@ public class BeerFunctionality {
 	public List<Beverage> beverageList(){
 		return db.getList();
 	}
-	
-	
-	
+		
 	public void setKey(String key){
 		this.key = key;
 	}
