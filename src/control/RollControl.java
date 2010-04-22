@@ -104,7 +104,7 @@ public class RollControl {
 							q.add("Wine of the Month: " + wine);
 					}
 				}
-				if (set.rollBeverage()) {
+				if (set.rollBeverage() && !set.bFB()) {
 					Beverage beverage = null;
 					if (set.checkStock()) {
 						beverage = checkStockRandom(bf.getDb().getList());
