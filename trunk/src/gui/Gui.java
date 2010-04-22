@@ -115,20 +115,43 @@ public class Gui extends JFrame {
 			statusArea.setEditable(false);
 		}
 		{
+			jLabelSummary = new JLabel();
+			jLabelSummary.setText("Summary");
+			jLabelSummary.setFont(new java.awt.Font("Tahoma",1,14));
+			jLabelSummary.setSize(234, 22);
+		}
+		{
+			jLabelInfoArea = new JLabel();
+			jLabelInfoArea.setText("Infoarea");
+			jLabelInfoArea.setFont(new java.awt.Font("Tahoma",1,14));
+			jLabelInfoArea.setSize(281, 23);
+		}
+		{
 			summary = new JTextArea();
 			summary.setFont(new java.awt.Font("Monospaced",1,13));
 		}
 				contentPanelLayout.setVerticalGroup(contentPanelLayout.createSequentialGroup()
-					.addComponent(summary, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jLabelSummary, 0, 15, Short.MAX_VALUE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+					.addComponent(summary, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addComponent(jLabelInfoArea, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addComponent(statusArea, 0, 246, Short.MAX_VALUE));
+					.addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE));
 				contentPanelLayout.setHorizontalGroup(contentPanelLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(contentPanelLayout.createParallelGroup()
 					    .addGroup(contentPanelLayout.createSequentialGroup()
+					        .addComponent(summary, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 0, Short.MAX_VALUE))
+					    .addGroup(contentPanelLayout.createSequentialGroup()
 					        .addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
 					        .addGap(0, 0, Short.MAX_VALUE))
-					    .addComponent(summary, GroupLayout.Alignment.LEADING, 0, 620, Short.MAX_VALUE))
+					    .addGroup(GroupLayout.Alignment.LEADING, contentPanelLayout.createSequentialGroup()
+					        .addComponent(jLabelSummary, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 386, Short.MAX_VALUE))
+					    .addGroup(GroupLayout.Alignment.LEADING, contentPanelLayout.createSequentialGroup()
+					        .addComponent(jLabelInfoArea, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 338, Short.MAX_VALUE)))
 					.addContainerGap());
 
 		//======== this ========
@@ -254,6 +277,8 @@ public class Gui extends JFrame {
 	}
 
 	private JPanel progress;
+	private JLabel jLabelInfoArea;
+	private JLabel jLabelSummary;
 	private JTextArea summary;
 	private JPanel dialogPane;
 	private JPanel contentPanel;
