@@ -216,6 +216,7 @@ public class Gui extends JFrame {
 	}
 	
 	private void settingsActionPerformed(ActionEvent evt) {			
+		
 		configure.setVisible(!configure.isVisible());
 		pack();
 		repaint();
