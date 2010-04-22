@@ -116,6 +116,7 @@ public class Gui extends JFrame {
 		}
 		{
 			summary = new JTextArea();
+			summary.setFont(new java.awt.Font("Monospaced",1,13));
 		}
 				contentPanelLayout.setVerticalGroup(contentPanelLayout.createSequentialGroup()
 					.addComponent(summary, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
