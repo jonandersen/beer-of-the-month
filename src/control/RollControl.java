@@ -66,7 +66,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Beer of the Month: "+ beer.toString() +  "\n" + statusArea.getText());
 							}
-							q.add("Beer of the month: " + beer);
+							q.add("Beer of the month: " + beer + beer.getStockCount());
 						}				
 					}
 					if(set.rollWine()){
@@ -95,7 +95,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Wine of the Month: " + wine.toString() +"\n" +  statusArea.getText());
 							}
-							q.add("Wine of the month: " + wine);
+							q.add("Wine of the month: " + wine + wine.getStockCount());
 						}
 					}
 					if(set.rollBeverage()){
@@ -107,7 +107,7 @@ public class RollControl {
 							beverage = bf.BeverageOfTheMonth();
 							statusArea.setText("Beverage of the Month: " + beverage.toString()  + "\n"+ statusArea.getText());
 						}
-						q.add("Beverage of the month: " + beverage);
+						q.add("Beverage of the month: " + beverage + beverage.getStockCount());
 					}
 					if(set.bFB()){						
 						Beverage beverage = null;
@@ -119,7 +119,7 @@ public class RollControl {
 						}
 						statusArea.setText("Bang for the Buck in stock is " +
 								beverage.toString() + " In stock:" + beverage.getStockCount()+  "\n" +statusArea.getText());
-						q.add("Most bang for the buck: " + beverage);
+						q.add("Most bang for the buck: " + beverage + beverage.getStockCount());
 					}					
 					while(!q.isEmpty()){
 						statusArea.setText(q.poll() + "\n" + statusArea.getText() );
