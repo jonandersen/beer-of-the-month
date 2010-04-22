@@ -179,7 +179,7 @@ public class RollControl {
 							+ beverage.toString() + " In stock: "
 							+ beverage.getStockCount() + "\n"
 							+ statusArea.getText());
-					q.add("Most bang for the Buck: " + beverage
+					q.add("Most bang for the Buck: " + beverage + " in stock : "
 							+ beverage.getStockCount());
 				}
 				while (!q.isEmpty()) {
