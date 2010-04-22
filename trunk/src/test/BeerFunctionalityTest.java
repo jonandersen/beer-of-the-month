@@ -9,13 +9,14 @@ import java.net.URL;
 import java.util.HashMap;
 
 import model.ArticleInfo;
-import model.BeerFunctionality;
 import model.Beverage;
 import model.Database;
 import model.HtmlParser;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import control.BeerFunctionality;
 
 
 

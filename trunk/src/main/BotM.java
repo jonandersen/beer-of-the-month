@@ -6,9 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
+import control.BeerFunctionality;
+
 import server.Server;
 
-import model.BeerFunctionality;
 import model.BeerOfTheMonthSaver;
 import model.Beverage;
 import model.Database;

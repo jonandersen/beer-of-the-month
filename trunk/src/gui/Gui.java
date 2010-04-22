@@ -1,6 +1,10 @@
 package gui;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+
+import control.BeerFunctionality;
+import control.RollControl;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -10,7 +14,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 import server.Server;
-import model.BeerFunctionality;
 import model.Beverage;
 import model.Database;
 import net.miginfocom.swing.MigLayout;
@@ -40,6 +43,11 @@ public class Gui extends JFrame {
 	private Config config;
 	private Database db;	
 	private Thread thread;
+	private RollControl rollControl;
+	private BeerFunctionality bf;
+	private Settings set;
+
+	
 	
 	{
 		//Set Look & Feel
@@ -50,8 +58,18 @@ public class Gui extends JFrame {
 		}
 	}
 
-	private BeerFunctionality bf;
-	private Settings set;
+	public Settings getSet() {
+		return set;
+	}
+
+	public JTextPane getStatusArea() {
+		return statusArea;
+	}
+	
+	public JTextField getInfoArea(){
+		return InfoArea;
+		
+	}
 
 	public Gui(BeerFunctionality bf, Database db) {
 		this.db=db;
@@ -59,7 +77,7 @@ public class Gui extends JFrame {
 		initComponents();		
 		this.setVisible(true);		
 		this.bf = bf;
-		
+		rollControl = new RollControl(this,bf);		
 	}
 	
 
@@ -69,7 +87,7 @@ public class Gui extends JFrame {
 			InfoArea.setText("Evaluating important beer decisions");
 			okButton.setEnabled(false);
 			settings.setEnabled(false);						
-			loadData();
+			rollControl.loadData();
 		}else{
 			InfoArea.setText("Nothing configured please check settings");
 		}
@@ -78,128 +96,7 @@ public class Gui extends JFrame {
 		System.exit(1);
 	}
 	 
-	 private void loadData(){
-		 Thread thread = new Thread(new Runnable() {
-		        public void run() {    
-		        	textPane1.setText("");			
-					if(set.rollBeer()){			
-						if(set.checkStock()){
-							Beverage beer = null;
-							try {
-								if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
-									beer = bf.BeerOfTheMonthInStock();
-								}else{
-									beer = bf.BeerOfTheMonthInStock(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
-								}
-							} catch (IOException e1) {					
-								e1.printStackTrace();
-								System.exit(0);
-							}
-							if(beer==null){
-								textPane1.setText(textPane1.getText() + "Beer of the Month: "+ "Couldn't find one =(" + "\n");
-							}else{
-								textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n");
-							}
-						}else{
-							Beverage beer;
-							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
-								 beer = bf.BeerOfTheMonth();
-							}else{
-								 beer = bf.BeerOfTheMonth(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
-							}
-							
-							if(beer==null){
-								textPane1.setText(textPane1.getText() + "Beer of the Month: "+ "Couldn't find one =(" + "\n");
-							}else{
-								textPane1.setText(textPane1.getText() + "Beer of the Month: "+ beer.toString() + "\n");
-							}
-							
-						}				
-					}
-					if(set.rollWine()){
-						if(set.checkStock()){
-							Beverage wine = null;
-							try {
-								if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
-									wine = bf.WineOfTheMonthInStock();
-								}else{
-									wine = bf.WineOfTheMonthInStock(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
-								}
-								 
-							} catch (IOException e1) {					
-								e1.printStackTrace();
-								System.exit(0);
-							}
-							if(wine==null){
-								textPane1.setText(textPane1.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");
-							}else{
-								textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n");
-							}
-						}else{
-							Beverage wine = null;
-							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
-								wine = bf.WineOfTheMonth();
-							}else{
-								wine = bf.WineOfTheMonth(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
-							}
-							if(wine==null){
-								textPane1.setText(textPane1.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");
-							}else{
-								textPane1.setText(textPane1.getText() + "Wine of the Month: " + wine.toString() + "\n");
-							}
-								
-							}
-					}
-					if(set.rollBeverage()){
-						if(set.checkStock()){
-							Beverage beverage = null;
-							try {
-								beverage = bf.BeverageOfTheMonthInStock();
-							} catch (IOException e1) {					
-								e1.printStackTrace();
-								System.exit(0);
-							}
-							textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
-						}else{
-							Beverage beverage = bf.BeverageOfTheMonth();
-							textPane1.setText(textPane1.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
-						}
-					}
-					if(set.bFB()){						
-						Beverage beverage = null;
-						if(set.checkStock()){
-							boolean found = false;
-							ArrayList<Beverage> list = (ArrayList<Beverage>) bf.beverageList();
-							while (!found){
-									beverage = bf.bang(list);
-									try {
-										if(!bf.checkInStock(beverage)){
-												list.remove(beverage);		
-												textPane1.setText(textPane1.getText() + beverage.toString() + " wasn't in stock, the search continues..." + "\n");
-												
-										}else{
-											found = true;
-										}
-									} catch (IOException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}				
-						
-							}
-						}else{							
-							beverage = bf.bangForTheBuck();							
-						}				
-						textPane1.setText(textPane1.getText() + "Bang for the Buck in stock is " + beverage.toString() + " In stock:" + beverage.getStockCount()+"\n");
-					}
-					
-					InfoArea.setText("Done evaluating, check above for beverage");
-					okButton.setEnabled(true);
-					settings.setEnabled(true);	
-		        }});
-		    	// Keep gui responsive to user input.
-		    thread.setPriority(Thread.NORM_PRIORITY);  // 5, EDT = 6
-		    thread.start();			    
-	 }
+	
 	 
 	 
 
@@ -214,15 +111,15 @@ public class Gui extends JFrame {
 		GroupLayout contentPanelLayout = new GroupLayout((JComponent)contentPanel);
 		contentPanel.setLayout(contentPanelLayout);
 		{
-			textPane1 = new JTextPane();
-			textPane1.setEditable(false);
+			statusArea = new JTextPane();
+			statusArea.setEditable(false);
 		}
 				contentPanelLayout.setVerticalGroup(contentPanelLayout.createSequentialGroup()
-					.addComponent(textPane1, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
+					.addComponent(statusArea, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE));
 				contentPanelLayout.setHorizontalGroup(contentPanelLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(textPane1, 0, 321, Short.MAX_VALUE)
+					.addComponent(statusArea, 0, 321, Short.MAX_VALUE)
 					.addContainerGap());
 
 		//======== this ========
@@ -253,7 +150,7 @@ public class Gui extends JFrame {
 			{
 				configure = new JPanel();
 				dialogPane.add(configure, BorderLayout.EAST);
-				configure.setPreferredSize(new java.awt.Dimension(287, 282));
+				configure.setPreferredSize(new java.awt.Dimension(225, 245));
 			}
 			
 
@@ -344,7 +241,8 @@ public class Gui extends JFrame {
 				.addContainerGap(17, Short.MAX_VALUE));
 		}
 		config = new Config(set, configure);
-		configure.add(config);
+		configure.setLayout(new BorderLayout());
+		configure.add(config, BorderLayout.CENTER);
 		config.setPreferredSize(new java.awt.Dimension(280, 293));
 		configure.setVisible(false);
 		pack();
@@ -365,13 +263,26 @@ public class Gui extends JFrame {
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 	// Generated using JFormDesigner Evaluation license - Jon Andersen
+	
 	private JPanel configure;
 	private JButton settings;
 	private JTextField InfoArea;
+	public JButton getOkButton() {
+		return okButton;
+	}
+
+	public JButton getCancelButton() {
+		return cancelButton;
+	}
+
+	public JButton getSettings() {
+		return settings;
+	}
+
 	private JPanel progress;
 	private JPanel dialogPane;
 	private JPanel contentPanel;
-	private JTextPane textPane1;
+	private JTextPane statusArea;
 	private JPanel buttonBar;
 	private JButton okButton;
 	private JButton cancelButton;

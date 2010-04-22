@@ -1,10 +1,14 @@
-package model;
+package control;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Random;
+
+import model.Beverage;
+import model.Database;
+import model.HtmlParser;
 
 public class BeerFunctionality {
 	private Database db;
