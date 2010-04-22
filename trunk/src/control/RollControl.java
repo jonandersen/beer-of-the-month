@@ -66,7 +66,7 @@ public class RollControl {
 									+ beer.getStockCount() + "\n"
 									+ statusArea.getText());
 						}
-						q.add("Beer of the Month: " + beer.toString() + " in stock : " + beer.getStockCount());
+						q.add("Beer of the Month: " + beer.toString() + " in stock: " + beer.getStockCount());
 					} else {
 						Beverage beer;
 						if (set.getPriceLessOrEqualsThen() <= 0
@@ -117,7 +117,7 @@ public class RollControl {
 									+ wine.getStockCount() + "\n"
 									+ statusArea.getText());
 						}
-						q.add("Wine of the Month: " + wine);
+						q.add("Wine of the Month: " + wine + " in stock: " + wine.getStockCount());
 					} else {
 						Beverage wine = null;
 						if (set.getPriceLessOrEqualsThen() <= 0
@@ -140,8 +140,7 @@ public class RollControl {
 									+ wine.toString() + "\n"
 									+ statusArea.getText());
 						}
-						q.add("Wine of the Month: " + wine + " in stock : "
-								+ wine.getStockCount());
+						q.add("Wine of the Month: " + wine );
 					}
 				}
 				if (set.rollBeverage()) {
@@ -157,7 +156,7 @@ public class RollControl {
 								+ beverage.toString() + "\n"
 								+ statusArea.getText());
 					}
-					q.add("Beverage of the Month: " + beverage + " in stock : "
+					q.add("Beverage of the Month: " + beverage + " in stock: "
 							+ beverage.getStockCount());
 				}
 				if (set.bFB()) {
@@ -179,7 +178,7 @@ public class RollControl {
 							+ beverage.toString() + " In stock: "
 							+ beverage.getStockCount() + "\n"
 							+ statusArea.getText());
-					q.add("Most bang for the Buck: " + beverage + " in stock : "
+					q.add("Most bang for the Buck: " + beverage + " in stock: "
 							+ beverage.getStockCount());
 				}
 				while (!q.isEmpty()) {
