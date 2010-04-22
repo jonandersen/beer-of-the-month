@@ -150,14 +150,16 @@ public class RollControl {
 						statusArea.setText("Beverage of the Month: "
 								+ beverage.toString() + "\n"
 								+ statusArea.getText());
+						q.add("Beverage of the Month: " + beverage + " in stock: "
+								+ beverage.getStockCount());
 					} else {
 						beverage = bf.BeverageOfTheMonth();
 						statusArea.setText("Beverage of the Month: "
 								+ beverage.toString() + "\n"
 								+ statusArea.getText());
+						q.add("Beverage of the Month: " + beverage);
 					}
-					q.add("Beverage of the Month: " + beverage + " in stock: "
-							+ beverage.getStockCount());
+					
 				}
 				if (set.bFB()) {
 					Beverage beverage = null;
