@@ -190,7 +190,7 @@ public class Config extends JPanel{
 			{											
 				jLabel5 = new JLabel();
 				ImageIcon icon = new ImageIcon("Images/help.png");
-				jLabel5.setIcon(icon);
+				jLabel5.setIcon(icon);				
 				jLabel5.setToolTipText("Set a alco filter");
 				jPanel1.add(jLabel5);					
 				jLabel5.setBounds(112, 179, 91, 18);

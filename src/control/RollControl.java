@@ -52,7 +52,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n" + statusArea.getText());
 							}
-							q.add("Beer of the month: " + beer.toString());
+							q.add("Beer of the Month: " + beer.toString());
 						}else{
 							Beverage beer;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -82,7 +82,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n" + statusArea.getText());
 							}
-							q.add("Wine of the month: " + wine);
+							q.add("Wine of the Month: " + wine);
 						}else{
 							Beverage wine = null;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -95,7 +95,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Wine of the Month: " + wine.toString() +"\n" +  statusArea.getText());
 							}
-							q.add("Wine of the month: " + wine + wine.getStockCount());
+							q.add("Wine of the Month: " + wine + wine.getStockCount());
 						}
 					}
 					if(set.rollBeverage()){
@@ -107,7 +107,7 @@ public class RollControl {
 							beverage = bf.BeverageOfTheMonth();
 							statusArea.setText("Beverage of the Month: " + beverage.toString()  + "\n"+ statusArea.getText());
 						}
-						q.add("Beverage of the month: " + beverage + beverage.getStockCount());
+						q.add("Beverage of the Month: " + beverage + beverage.getStockCount());
 					}
 					if(set.bFB()){						
 						Beverage beverage = null;
@@ -119,13 +119,12 @@ public class RollControl {
 						}
 						statusArea.setText("Bang for the Buck in stock is " +
 								beverage.toString() + " In stock:" + beverage.getStockCount()+  "\n" +statusArea.getText());
-						q.add("Most bang for the buck: " + beverage + beverage.getStockCount());
-					}					
+						q.add("Most bang for the Buck: " + beverage + beverage.getStockCount());
+					}
 					while(!q.isEmpty()){
-						statusArea.setText(q.poll() + "\n" + statusArea.getText() );
+						statusArea.setText(q.poll() + "\n" + statusArea.getText());
 					}
 					statusArea.setText("Summary: \n" + statusArea.getText());
-					
 					infoArea.setText("Done evaluating, check above for beverage");
 					okButton.setEnabled(true);
 					settings.setEnabled(true);	
