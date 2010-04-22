@@ -183,7 +183,6 @@ public class RollControl {
 					q.add("Most bang for the Buck: " + beverage
 							+ beverage.getStockCount());
 				}
-				summary.setText("Summary: \n");
 				while (!q.isEmpty()) {
 					summary.setText(summary.getText() + q.poll() + "\n");
 				}
