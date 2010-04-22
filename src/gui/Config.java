@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -29,10 +30,10 @@ import javax.swing.WindowConstants;
 */
 public class Config extends JPanel{
 	private JPanel jPanel1;
-	private JLabel jLabel2;
-	private JLabel jLabel3;
 	private JLabel jLabel4;
 	private JLabel jLabel5;
+	private JButton priceHelp;
+	private JLabel price;
 	private JLabel jLabel7;
 	private JLabel jLabel6;
 	private JTextField alcoTextField2;
@@ -62,6 +63,175 @@ public class Config extends JPanel{
 		this.configure = configure;
 		initGUI();
 		this.setVisible(true);		
+		{
+			jPanel1 = new JPanel();
+			this.add(jPanel1);
+			jPanel1.setLayout(null);
+			jPanel1.setPreferredSize(new java.awt.Dimension(215, 237));
+			{
+				jBeer = new JCheckBox();
+				BoxLayout jBeerLayout = new BoxLayout(jBeer, javax.swing.BoxLayout.X_AXIS);
+				jBeer.setLayout(null);
+				jPanel1.add(jBeer, "North");
+				jBeer.setText("Beer");
+				jBeer.setBounds(6, 33, 57, 23);
+				jBeer.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						jBeerMouseClicked(evt);
+					}
+				});
+			}
+			{
+				jWine = new JCheckBox();
+				jPanel1.add(jWine);
+				BoxLayout jWineLayout = new BoxLayout(jWine, javax.swing.BoxLayout.X_AXIS);
+				jWine.setLayout(null);
+				jWine.setText("Wine");
+				jWine.setBounds(6, 59, 127, 23);
+				jWine.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						jWineMouseClicked(evt);
+					}
+				});
+			}
+			{
+				jBeverage = new JCheckBox();
+				jPanel1.add(jBeverage);
+				BoxLayout jBeverageLayout = new BoxLayout(jBeverage, javax.swing.BoxLayout.X_AXIS);
+				jBeverage.setLayout(null);
+				jBeverage.setText("Beverage");
+				jBeverage.setBounds(6, 85, 127, 20);
+				jBeverage.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						jBeverageMouseClicked(evt);
+					}
+				});
+			}
+			{
+				jOk = new JButton();
+				jPanel1.add(jOk, "East");
+				jOk.setText("Ok");
+				jOk.setBounds(6, 202, 51, 23);
+				jOk.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						jOkActionPerformed(evt);
+					}
+				});
+			}
+			{
+				jCancel = new JButton();
+				jPanel1.add(jCancel, "South");
+				jCancel.setText("Cancel");
+				jCancel.setBounds(62, 202, 77, 23);
+				jCancel.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						jCancelActionPerformed(evt);
+					}
+				});
+			}
+			{
+				jLager = new JCheckBox();
+				jPanel1.add(jLager);
+				jLager.setText("Check if in stock");
+				jLager.setBounds(74, 34, 129, 22);
+				jLager.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						jLagerMouseClicked(evt);
+					}
+				});
+			}
+			{
+				jLabel1 = new JLabel();
+				jPanel1.add(jLabel1);
+				jLabel1.setText("Type:");
+				jLabel1.setBounds(10, 11, 94, 15);
+				jLabel1.setFont(new java.awt.Font("AlArabiya",0,16));
+			}
+			{
+				jMBFB = new JCheckBox();
+				jPanel1.add(jMBFB);
+				jMBFB.setText("Most Bang for the Buck");
+				jMBFB.setBounds(6, 108, 137, 23);
+				jMBFB.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						jMBFBMouseClicked(evt);
+					}
+				});
+			}
+			{
+				priceTextField = new JTextField();
+				jPanel1.add(getPriceTextField());
+				priceTextField.setText(set.getPriceLessOrEqualsThen()+"");
+				priceTextField.setBounds(6, 134, 73, 20);
+				priceTextField.setToolTipText("Sets the maximum price. 0 to disable");
+				priceTextField.setSize(73, 18);
+			}
+			{
+				alcoTextField1 = new JTextField();
+				jPanel1.add(getAlcoTextField1());
+				alcoTextField1.setText(set.getAlco()[0]+"");
+				alcoTextField1.setBounds(6, 179, 29, 18);
+				alcoTextField1.setSize(30, 18);
+			}
+			{
+				volumeTextField1 = new JTextField();
+				jPanel1.add(volumeTextField1);
+				volumeTextField1.setText(set.getVolume()[0]+"");
+				volumeTextField1.setBounds(6, 157, 30, 18);
+			}
+			{
+				jLabel4 = new JLabel();
+				ImageIcon icon = new ImageIcon("Images/help.png");
+				jLabel4.setIcon(icon);
+				jLabel4.setToolTipText("Set a volume filter");
+				jPanel1.add(jLabel4);					
+				jLabel4.setBounds(112, 158, 85, 18);
+			}
+			{											
+				jLabel5 = new JLabel();
+				ImageIcon icon = new ImageIcon("Images/help.png");
+				jLabel5.setIcon(icon);
+				jLabel5.setToolTipText("Set a alco filter");
+				jPanel1.add(jLabel5);					
+				jLabel5.setBounds(112, 179, 91, 18);
+			}
+			{
+				volumeTextField2 = new JTextField();
+				jPanel1.add(volumeTextField2);
+				volumeTextField2.setText(set.getVolume()[1]+"");
+				volumeTextField2.setBounds(74, 157, 34, 18);
+				volumeTextField2.setSize(30, 18);
+			}
+			{
+				alcoTextField2 = new JTextField();
+				jPanel1.add(alcoTextField2);
+				alcoTextField2.setText(set.getAlco()[1]+"");
+				alcoTextField2.setBounds(75, 179, 34, 18);
+				alcoTextField2.setSize(30, 18);
+			}
+			{
+				jLabel6 = new JLabel();
+				jPanel1.add(jLabel6);
+				jLabel6.setText("<=x<=");
+				jLabel6.setBounds(36, 158, 43, 16);
+				jLabel6.setFont(new java.awt.Font("Segoe UI",0,12));
+			}
+			{
+				jLabel7 = new JLabel();
+				jPanel1.add(jLabel7);
+				jLabel7.setText("<=x<=");
+				jLabel7.setBounds(35, 180, 43, 17);
+				jLabel7.setSize(43, 16);
+			}
+			{	
+				ImageIcon icon = new ImageIcon("Images/help.png");
+				price = new JLabel();
+				jPanel1.add(price);
+				price.setIcon(icon);					
+				price.setToolTipText("Sets the maximum price. 0 to disable");
+				price.setBounds(91, 133, 81, 18);
+			}				
+		}			
 		setUp();
 		
 		
@@ -69,168 +239,6 @@ public class Config extends JPanel{
 	
 	private void initGUI() {
 		try {			
-			{
-				jPanel1 = new JPanel();
-				jPanel1.setLayout(null);
-				add(jPanel1, BorderLayout.CENTER);
-				jPanel1.setPreferredSize(new java.awt.Dimension(292, 283));
-				{
-					jBeer = new JCheckBox();
-					BoxLayout jBeerLayout = new BoxLayout(jBeer, javax.swing.BoxLayout.X_AXIS);
-					jBeer.setLayout(null);
-					jPanel1.add(jBeer, "North");
-					jBeer.setText("Beer");
-					jBeer.setBounds(6, 33, 127, 23);
-					jBeer.addMouseListener(new MouseAdapter() {
-						public void mouseClicked(MouseEvent evt) {
-							jBeerMouseClicked(evt);
-						}
-					});
-				}
-				{
-					jWine = new JCheckBox();
-					jPanel1.add(jWine);
-					BoxLayout jWineLayout = new BoxLayout(jWine, javax.swing.BoxLayout.X_AXIS);
-					jWine.setLayout(null);
-					jWine.setText("Wine");
-					jWine.setBounds(6, 59, 127, 23);
-					jWine.addMouseListener(new MouseAdapter() {
-						public void mouseClicked(MouseEvent evt) {
-							jWineMouseClicked(evt);
-						}
-					});
-				}
-				{
-					jBeverage = new JCheckBox();
-					jPanel1.add(jBeverage);
-					BoxLayout jBeverageLayout = new BoxLayout(jBeverage, javax.swing.BoxLayout.X_AXIS);
-					jBeverage.setLayout(null);
-					jBeverage.setText("Beverage");
-					jBeverage.setBounds(6, 85, 127, 20);
-					jBeverage.addMouseListener(new MouseAdapter() {
-						public void mouseClicked(MouseEvent evt) {
-							jBeverageMouseClicked(evt);
-						}
-					});
-				}
-				{
-					jOk = new JButton();
-					jPanel1.add(jOk, "East");
-					jOk.setText("Ok");
-					jOk.setBounds(12, 248, 51, 23);
-					jOk.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
-							jOkActionPerformed(evt);
-						}
-					});
-				}
-				{
-					jCancel = new JButton();
-					jPanel1.add(jCancel, "South");
-					jCancel.setText("Cancel");
-					jCancel.setBounds(68, 248, 77, 23);
-					jCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
-							jCancelActionPerformed(evt);
-						}
-					});
-				}
-				{
-					jLager = new JCheckBox();
-					jPanel1.add(jLager);
-					jLager.setText("Check if in stock");
-					jLager.setBounds(135, 34, 143, 20);
-					jLager.addMouseListener(new MouseAdapter() {
-						public void mouseClicked(MouseEvent evt) {
-							jLagerMouseClicked(evt);
-						}
-					});
-				}
-				{
-					jLabel1 = new JLabel();
-					jPanel1.add(jLabel1);
-					jLabel1.setText("Type:");
-					jLabel1.setBounds(10, 11, 94, 15);
-					jLabel1.setFont(new java.awt.Font("AlArabiya",0,16));
-				}
-				{
-					jMBFB = new JCheckBox();
-					jPanel1.add(jMBFB);
-					jMBFB.setText("Most Bang for the Buck");
-					jMBFB.setBounds(6, 108, 137, 23);
-					jMBFB.addMouseListener(new MouseAdapter() {
-						public void mouseClicked(MouseEvent evt) {
-							jMBFBMouseClicked(evt);
-						}
-					});
-				}
-				{
-					priceTextField = new JTextField();
-					jPanel1.add(getPriceTextField());
-					priceTextField.setText(set.getPriceLessOrEqualsThen()+"");
-					priceTextField.setBounds(10, 157, 73, 20);
-				}
-				{
-					jLabel2 = new JLabel();
-					jPanel1.add(jLabel2);
-					jLabel2.setText("Set a price filter for less or equal ");
-					jLabel2.setBounds(97, 151, 196, 21);
-				}
-				{
-					jLabel3 = new JLabel();
-					jPanel1.add(jLabel3);
-					jLabel3.setText("to this price, set zero to disable filter");
-					jLabel3.setBounds(97, 166, 196, 14);
-				}
-				{
-					alcoTextField1 = new JTextField();
-					jPanel1.add(getAlcoTextField1());
-					alcoTextField1.setText(set.getAlco()[0]+"");
-					alcoTextField1.setBounds(10, 219, 29, 20);
-				}
-				{
-					volumeTextField1 = new JTextField();
-					jPanel1.add(volumeTextField1);
-					volumeTextField1.setText(set.getVolume()[0]+"");
-					volumeTextField1.setBounds(10, 188, 29, 20);
-				}
-				{
-					jLabel4 = new JLabel();
-					jPanel1.add(jLabel4);
-					jLabel4.setText("Set a volume filter");
-					jLabel4.setBounds(128, 190, 179, 17);
-				}
-				{
-					jLabel5 = new JLabel();
-					jPanel1.add(jLabel5);
-					jLabel5.setText("Set a alco filter");
-					jLabel5.setBounds(128, 221, 166, 17);
-				}
-				{
-					volumeTextField2 = new JTextField();
-					jPanel1.add(volumeTextField2);
-					volumeTextField2.setText(set.getVolume()[1]+"");
-					volumeTextField2.setBounds(77, 188, 34, 20);
-				}
-				{
-					alcoTextField2 = new JTextField();
-					jPanel1.add(alcoTextField2);
-					alcoTextField2.setText(set.getAlco()[1]+"");
-					alcoTextField2.setBounds(77, 219, 34, 20);
-				}
-				{
-					jLabel6 = new JLabel();
-					jPanel1.add(jLabel6);
-					jLabel6.setText("<=x<=");
-					jLabel6.setBounds(38, 191, 43, 14);
-				}
-				{
-					jLabel7 = new JLabel();
-					jPanel1.add(jLabel7);
-					jLabel7.setText("<=x<=");
-					jLabel7.setBounds(39, 222, 43, 14);
-				}
-			}			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
