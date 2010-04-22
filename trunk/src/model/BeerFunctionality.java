@@ -55,24 +55,7 @@ public class BeerFunctionality {
 
 	public Beverage bangForTheBuck() {
 		List<Beverage> beverageList = db.getList();
-		double price, volume, alcohol, currentBang = 0, tempBang;
-		Beverage bestBang = null;
-		for (Beverage b : beverageList) {
-			String s = b.getPrice().replace(",", ".");
-			price = Double.parseDouble(s);
-			volume = Double.parseDouble(b.getVolume());
-			alcohol = Double.parseDouble(b.getAlcohol().replace("%", "")
-					.replace(",", "."));
-			tempBang = price / (volume * alcohol);
-			if (currentBang == 0) {
-				currentBang = tempBang;
-			}
-			if (tempBang < currentBang) {
-				bestBang = b;
-				currentBang = tempBang;
-			}
-		}
-		return bestBang;
+		return bang(beverageList);
 	}
 
 	private Beverage randomBeverage(List<Beverage> list) {
@@ -83,9 +66,19 @@ public class BeerFunctionality {
 		return list.get(rand.nextInt(list.size()));
 
 	}
-
-	private Beverage randomBeverageInStock(List<Beverage> list) throws IOException	{
-		
+	private boolean checkInStock(Beverage bev) throws IOException{
+		HtmlParser parse = new HtmlParser();
+		URL ur = null;
+		String s="";
+		ur = new URL("http://www.systembolaget.se/SokDrycker/Produkt?VaruNr="+bev.getId()+"&Butik=226&SokStrangar=");
+		s = parse.getHtmlSource(ur, bev.getId());
+		boolean instock = parse.isInHouse(s);
+		if(instock){
+			bev.setStockCount(parse.getStockCount(s));
+		}		
+		return instock;
+	}
+	private Beverage randomBeverageInStock(List<Beverage> list) throws IOException	{		
 		if (list == null) {
 			return null;
 		}
@@ -107,6 +100,46 @@ public class BeerFunctionality {
 		bev.setStockCount(parse.getStockCount(s));
 		return bev;
 
+	}
+
+	public Beverage bangForTheBuckInStock() throws IOException {		
+		List<Beverage> beverageList = db.getList();
+		return bfbs(beverageList);
+		
+	}
+	private Beverage bfbs(List<Beverage> beverageList) throws IOException{
+		Beverage bestBang = bang(beverageList);
+		if(bestBang == null){
+			return null;
+		}
+		if(checkInStock(bestBang)){
+			return bestBang;
+		}else{
+			System.out.println("Checked: " + bestBang.toString() + "wasn't in stock, sorry :(");
+			beverageList.remove(bestBang);
+			return bfbs(beverageList);
+		}
+	}
+	
+	private Beverage bang(List<Beverage> beverageList){
+		double price, volume, alcohol, currentBang = 0, tempBang;
+		Beverage bestBang = null;
+		for (Beverage b : beverageList) {
+			String s = b.getPrice().replace(",", ".");
+			price = Double.parseDouble(s);
+			volume = Double.parseDouble(b.getVolume());
+			alcohol = Double.parseDouble(b.getAlcohol().replace("%", "")
+					.replace(",", "."));
+			tempBang = price / (volume * alcohol);
+			if (currentBang == 0) {
+				currentBang = tempBang;
+			}
+			if (tempBang < currentBang) {
+				bestBang = b;
+				currentBang = tempBang;
+			}
+		}
+		return bestBang;
 	}
 
 }
