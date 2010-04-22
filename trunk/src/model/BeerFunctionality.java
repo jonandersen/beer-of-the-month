@@ -104,9 +104,9 @@ public class BeerFunctionality {
 
 	public Beverage bangForTheBuckInStock() throws IOException {		
 		List<Beverage> beverageList = db.getList();
-		return bfbs(beverageList);
-		
+		return bfbs(beverageList);		
 	}
+	
 	private Beverage bfbs(List<Beverage> beverageList) throws IOException{
 		Beverage bestBang = bang(beverageList);
 		if(bestBang == null){
