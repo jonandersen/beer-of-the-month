@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Enduro.makejar" default="copyImages" basedir=".">
+	<target name="clobber" description="remove all artifact files">
+		<delete dir="release"/>
+	</target>
+
+
+	<target name="compile" depends="clobber" description="compile the Java source code to class files">
+		<mkdir dir="classes" />
+		<javac srcdir="src/com/cloudgarden/layout : src/exception : src/gui : src/main : src/model : src/server" destdir="classes" />
+	</target>
+
+	<fileset dir="${server.src}" casesensitive="yes">
+		<include name="**/*.java" />
+		<exclude name="**/*Test*" />
+	</fileset>
+
+	<target name="jar" depends="compile" description="create a Jar file for the application">
+		<mkdir dir="release" />
+		<jar destfile="release/botm.jar">
+			<fileset dir="classes" includes="**/*.class" />
+			<manifest>
+				<attribute name="Main-Class" value="main.BotM" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="clean" depends="jar" description="Remove classes folder">
+		<delete dir="classes" />
+	</target>
+
+	<target name="copyImages" depends="clean" description="Copies manual to release folder">
+			<copy todir="release/Images">
+				<fileset dir="Images">
+					<include name="*" />
+				</fileset>
+			</copy>
+		</target>
+</project>

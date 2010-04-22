@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import server.Server;
@@ -166,16 +168,28 @@ public class Gui extends JFrame {
 					if(set.bFB()){						
 						Beverage beverage = null;
 						if(set.checkStock()){
-							try {
-								beverage = bf.bangForTheBuckInStock();
-							} catch (IOException e1) {					
-								e1.printStackTrace();
-								System.exit(0);
-							}	
+							boolean found = false;
+							ArrayList<Beverage> list = (ArrayList<Beverage>) bf.beverageList();
+							while (!found){
+									beverage = bf.bang(list);
+									try {
+										if(!bf.checkInStock(beverage)){
+												list.remove(beverage);		
+												textPane1.setText(textPane1.getText() + beverage.toString() + " wasn't in stock, the search continues..." + "\n");
+												
+										}else{
+											found = true;
+										}
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}				
+						
+							}
 						}else{							
 							beverage = bf.bangForTheBuck();							
 						}				
-						textPane1.setText(textPane1.getText() + "Most Bang for the Buck: " + beverage.toString() + "\n");
+						textPane1.setText(textPane1.getText() + "Bang for the Buck in stock is " + beverage.toString() + " In stock:" + beverage.getStockCount()+"\n");
 					}
 					
 					InfoArea.setText("Done evaluating, check above for beverage");
