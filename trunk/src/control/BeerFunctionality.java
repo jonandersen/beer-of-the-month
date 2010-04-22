@@ -62,7 +62,7 @@ public class BeerFunctionality {
 		return bang(beverageList);
 	}
 
-	private Beverage randomBeverage(List<Beverage> list) {
+	public Beverage randomBeverage(List<Beverage> list) {
 		if (list == null || list.isEmpty()) {
 			return null;
 		}
@@ -82,6 +82,7 @@ public class BeerFunctionality {
 		}		
 		return instock;
 	}
+	
 	private Beverage randomBeverageInStock(List<Beverage> list) throws IOException	{		
 		if (list == null) {
 			return null;
@@ -149,5 +150,8 @@ public class BeerFunctionality {
 	public List<Beverage> beverageList(){
 		return db.getList();
 	}
-
+	
+	public Database getDb(){
+		return db;
+	}
 }

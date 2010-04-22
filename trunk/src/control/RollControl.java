@@ -1,12 +1,15 @@
 package control;
 
+import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-
 import model.Beverage;
 import gui.Gui;
 import gui.Settings;
@@ -33,26 +36,23 @@ public class RollControl {
 	
 	 public void loadData(){
 		 Thread thread = new Thread(new Runnable() {
-		        public void run() {    
+		        public void run() {
+		        	Queue<String> q = new LinkedList<String>();
 		        	statusArea.setText("");			
 					if(set.rollBeer()){			
 						if(set.checkStock()){
 							Beverage beer = null;
-							try {
-								if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
-									beer = bf.BeerOfTheMonthInStock();
-								}else{
-									beer = bf.BeerOfTheMonthInStock(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
-								}
-							} catch (IOException e1) {					
-								e1.printStackTrace();
-								System.exit(0);
+							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
+								beer = checkStockRandom(bf.getDb().getBeerList());
+							}else{
+								beer = checkStockRandom(bf.getDb().getBeerList(set.getPriceLessOrEqualsThen(), set.getVolume(), set.getAlco()));									
 							}
 							if(beer==null){
-								statusArea.setText(statusArea.getText() + "Beer of the Month: "+ "Couldn't find one =(" + "\n");
+								statusArea.setText("Beer of the Month: "+ "Couldn't find one =("  + "\n"+ statusArea.getText());
 							}else{
-								statusArea.setText(statusArea.getText() + "Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n");
+								statusArea.setText("Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n" + statusArea.getText());
 							}
+							q.add("Beer of the month: " + beer.toString());
 						}else{
 							Beverage beer;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -62,32 +62,27 @@ public class RollControl {
 							}
 							
 							if(beer==null){
-								statusArea.setText(statusArea.getText() + "Beer of the Month: "+ "Couldn't find one =(" + "\n");
+								statusArea.setText("Beer of the Month: "+ "Couldn't find one =(" + "\n" + statusArea.getText());
 							}else{
-								statusArea.setText(statusArea.getText() + "Beer of the Month: "+ beer.toString() + "\n");
+								statusArea.setText("Beer of the Month: "+ beer.toString() +  "\n" + statusArea.getText());
 							}
-							
+							q.add("Beer of the month: " + beer);
 						}				
 					}
 					if(set.rollWine()){
 						if(set.checkStock()){
 							Beverage wine = null;
-							try {
-								if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
-									wine = bf.WineOfTheMonthInStock();
-								}else{
-									wine = bf.WineOfTheMonthInStock(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
-								}
-								 
-							} catch (IOException e1) {					
-								e1.printStackTrace();
-								System.exit(0);
+							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
+								wine = checkStockRandom(bf.getDb().getWineList());									
+							}else{
+								wine = checkStockRandom(bf.getDb().getWineList(set.getPriceLessOrEqualsThen(), set.getVolume(), set.getAlco()));
 							}
 							if(wine==null){
-								statusArea.setText(statusArea.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");
+								statusArea.setText("Wine of the Month: " + "Couldn't find one =("  +  "\n" + statusArea.getText());
 							}else{
-								statusArea.setText(statusArea.getText() + "Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n");
+								statusArea.setText("Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n" + statusArea.getText());
 							}
+							q.add("Wine of the month: " + wine);
 						}else{
 							Beverage wine = null;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -96,27 +91,23 @@ public class RollControl {
 								wine = bf.WineOfTheMonth(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
 							}
 							if(wine==null){
-								statusArea.setText(statusArea.getText() + "Wine of the Month: " + "Couldn't find one =(" + "\n");
+								statusArea.setText("Wine of the Month: " + "Couldn't find one =(" +  "\n" + statusArea.getText());
 							}else{
-								statusArea.setText(statusArea.getText() + "Wine of the Month: " + wine.toString() + "\n");
+								statusArea.setText("Wine of the Month: " + wine.toString() +"\n" +  statusArea.getText());
 							}
-								
-							}
+							q.add("Wine of the month: " + wine);
+						}
 					}
 					if(set.rollBeverage()){
-						if(set.checkStock()){
-							Beverage beverage = null;
-							try {
-								beverage = bf.BeverageOfTheMonthInStock();
-							} catch (IOException e1) {					
-								e1.printStackTrace();
-								System.exit(0);
-							}
-							statusArea.setText(statusArea.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
+						Beverage beverage = null;
+						if(set.checkStock()){							 
+							beverage = checkStockRandom(bf.getDb().getList());
+							statusArea.setText("Beverage of the Month: " + beverage.toString() + "\n" + statusArea.getText());
 						}else{
-							Beverage beverage = bf.BeverageOfTheMonth();
-							statusArea.setText(statusArea.getText() + "Beverage of the Month: " + beverage.toString() + "\n");
+							beverage = bf.BeverageOfTheMonth();
+							statusArea.setText("Beverage of the Month: " + beverage.toString()  + "\n"+ statusArea.getText());
 						}
+						q.add("Beverage of the month: " + beverage);
 					}
 					if(set.bFB()){						
 						Beverage beverage = null;
@@ -126,8 +117,15 @@ public class RollControl {
 						}else{							
 							beverage = bf.bangForTheBuck();							
 						}
-						statusArea.setText(statusArea.getText() + "Bang for the Buck in stock is " + beverage.toString() + " In stock:" + beverage.getStockCount()+"\n");
+						statusArea.setText("Bang for the Buck in stock is " +
+								beverage.toString() + " In stock:" + beverage.getStockCount()+  "\n" +statusArea.getText());
+						q.add("Most bang for the buck: " + beverage);
+					}					
+					while(!q.isEmpty()){
+						statusArea.setText(q.poll() + "\n" + statusArea.getText() );
 					}
+					statusArea.setText("Summary: \n" + statusArea.getText());
+					
 					infoArea.setText("Done evaluating, check above for beverage");
 					okButton.setEnabled(true);
 					settings.setEnabled(true);	
@@ -146,7 +144,8 @@ public class RollControl {
 				try {
 					if(!bf.checkInStock(beverage)){
 							list.remove(beverage);		
-							statusArea.setText(statusArea.getText() + beverage.toString() + " wasn't in stock, the search continues..." + "\n");
+							statusArea.setText("Not in stock: " + 
+									 beverage.toString() +  "\n" + statusArea.getText());
 							
 					}else{
 						found = true;
@@ -157,7 +156,26 @@ public class RollControl {
 				}	
 		}
 		return beverage;
-	 }
-	
-	
+	 }	 
+	 
+	 private Beverage checkStockRandom(ArrayList<Beverage> list){
+		 Beverage beverage = null;
+		 boolean found = false;
+		 while (!found){
+				beverage = bf.randomBeverage(list);
+				try {
+					if(!bf.checkInStock(beverage)){
+							list.remove(beverage);		
+							statusArea.setText("Not in stock: " 
+									+ beverage.toString()
+									 + "\n" + statusArea.getText());							
+					}else{
+						found = true;
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}	
+		}
+		return beverage;
+	 }	 
 }
