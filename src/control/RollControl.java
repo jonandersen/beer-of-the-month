@@ -36,111 +36,74 @@ public class RollControl {
 		summary = gui.getSummary();
 	}
 
-	public void loadData() {
-		Thread thread = new Thread(new Runnable() {
-			public void run() {
-				summary.setText("");
-				Queue<String> q = new LinkedList<String>();
-				statusArea.setText("");
-				if (set.rollBeer() && !set.bFB()) {
-					if (set.checkStock()) {
-						Beverage beer = null;
-						if (set.getPriceLessOrEqualsThen() <= 0
-								&& set.getVolume()[0] <= 0
-								&& set.getVolume()[1] <= 0
-								&& set.getAlco()[0] <= 0
-								&& set.getAlco()[1] <= 0) {
-							beer = checkStockRandom(bf.getDb().getBeerList());
-						} else {
-							beer = checkStockRandom(bf.getDb().getBeerList(
-									set.getPriceLessOrEqualsThen(),
-									set.getVolume(), set.getAlco()));
-						}
-						if (beer == null) {
-							statusArea.setText("Beer of the Month: "
-									+ "Couldn't find one =(" + "\n"
-									+ statusArea.getText());
-						} else {
-							statusArea.setText("Beer of the Month: "
-									+ beer.toString() + " In stock:"
-									+ beer.getStockCount() + "\n"
-									+ statusArea.getText());
-						}
-						q.add("Beer of the Month: " + beer.toString() + " in stock: " + beer.getStockCount());
-					} else {
-						Beverage beer;
-						if (set.getPriceLessOrEqualsThen() <= 0
-								&& set.getVolume()[0] <= 0
-								&& set.getVolume()[1] <= 0
-								&& set.getAlco()[0] <= 0
-								&& set.getAlco()[1] <= 0) {
-							beer = bf.BeerOfTheMonth();
-						} else {
-							beer = bf.BeerOfTheMonth(set
-									.getPriceLessOrEqualsThen(), set
-									.getVolume(), set.getAlco());
-						}
-
-						if (beer == null) {
-							statusArea.setText("Beer of the Month: "
-									+ "Couldn't find one =(" + "\n"
-									+ statusArea.getText());
-						} else {
-							statusArea.setText("Beer of the Month: "
-									+ beer.toString() + "\n"
-									+ statusArea.getText());
-						}
-						q.add("Beer of the month: " + beer);
+	
+	
+	 public void loadData(){
+		 Thread thread = new Thread(new Runnable() {
+		        public void run() {
+		        	Queue<String> q = new LinkedList<String>();
+		        	statusArea.setText("");	
+		        	bf.setKey(set.getStore());
+					if(set.rollBeer() && !set.bFB()){			
+						if(set.checkStock()){
+							Beverage beer = null;
+							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
+								beer = checkStockRandom(bf.getDb().getBeerList());
+							}else{
+								beer = checkStockRandom(bf.getDb().getBeerList(set.getPriceLessOrEqualsThen(), set.getVolume(), set.getAlco()));									
+							}
+							if(beer==null){
+								statusArea.setText("Beer of the Month: "+ "Couldn't find one =("  + "\n"+ statusArea.getText());
+							}else{
+								statusArea.setText("Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n" + statusArea.getText());
+							}
+							q.add("Beer of the Month: " + beer.toString());
+						}else{
+							Beverage beer;
+							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
+								 beer = bf.BeerOfTheMonth();
+							}else{
+								 beer = bf.BeerOfTheMonth(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
+							}
+							
+							if(beer==null){
+								statusArea.setText("Beer of the Month: "+ "Couldn't find one =(" + "\n" + statusArea.getText());
+							}else{
+								statusArea.setText("Beer of the Month: "+ beer.toString() +  "\n" + statusArea.getText());
+							}
+							q.add("Beer of the month: " + beer + beer.getStockCount());
+						}				
 					}
-				}
-				if (set.rollWine() && !set.bFB()) {
-					if (set.checkStock()) {
-						Beverage wine = null;
-						if (set.getPriceLessOrEqualsThen() <= 0
-								&& set.getVolume()[0] <= 0
-								&& set.getVolume()[1] <= 0
-								&& set.getAlco()[0] <= 0
-								&& set.getAlco()[1] <= 0) {
-							wine = checkStockRandom(bf.getDb().getWineList());
-						} else {
-							wine = checkStockRandom(bf.getDb().getWineList(
-									set.getPriceLessOrEqualsThen(),
-									set.getVolume(), set.getAlco()));
-						}
-						if (wine == null) {
-							statusArea.setText("Wine of the Month: "
-									+ "Couldn't find one =(" + "\n"
-									+ statusArea.getText());
-						} else {
-							statusArea.setText("Wine of the Month: "
-									+ wine.toString() + " In stock:"
-									+ wine.getStockCount() + "\n"
-									+ statusArea.getText());
-						}
-						q.add("Wine of the Month: " + wine + " in stock: " + wine.getStockCount());
-					} else {
-						Beverage wine = null;
-						if (set.getPriceLessOrEqualsThen() <= 0
-								&& set.getVolume()[0] <= 0
-								&& set.getVolume()[1] <= 0
-								&& set.getAlco()[0] <= 0
-								&& set.getAlco()[1] <= 0) {
-							wine = bf.WineOfTheMonth();
-						} else {
-							wine = bf.WineOfTheMonth(set
-									.getPriceLessOrEqualsThen(), set
-									.getVolume(), set.getAlco());
-						}
-						if (wine == null) {
-							statusArea.setText("Wine of the Month: "
-									+ "Couldn't find one =(" + "\n"
-									+ statusArea.getText());
-						} else {
-							statusArea.setText("Wine of the Month: "
-									+ wine.toString() + "\n"
-									+ statusArea.getText());
-						}
-						q.add("Wine of the Month: " + wine );
+					if(set.rollWine() && !set.bFB()){
+						if(set.checkStock()){
+							Beverage wine = null;
+							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
+								wine = checkStockRandom(bf.getDb().getWineList());									
+							}else{
+								wine = checkStockRandom(bf.getDb().getWineList(set.getPriceLessOrEqualsThen(), set.getVolume(), set.getAlco()));
+							}
+							if(wine==null){
+								statusArea.setText("Wine of the Month: " + "Couldn't find one =("  +  "\n" + statusArea.getText());
+							}else{
+								statusArea.setText("Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n" + statusArea.getText());
+							}
+							q.add("Wine of the Month: " + wine);
+						}else{
+							Beverage wine = null;
+							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
+								wine = bf.WineOfTheMonth();
+							}else{
+								wine = bf.WineOfTheMonth(set.getPriceLessOrEqualsThen(),set.getVolume(), set.getAlco());
+							}
+							if(wine==null){
+								statusArea.setText("Wine of the Month: " + "Couldn't find one =(" +  "\n" + statusArea.getText());
+							}else{
+								statusArea.setText("Wine of the Month: " + wine.toString() +"\n" +  statusArea.getText());
+							}
+							q.add("Wine of the Month: " + wine + wine.getStockCount());
+
+
+
 					}
 				}
 				if (set.rollBeverage()) {
@@ -159,7 +122,10 @@ public class RollControl {
 								+ statusArea.getText());
 						q.add("Beverage of the Month: " + beverage);
 					}
-					
+
+					q.add("Beverage of the Month: " + beverage
+							+ beverage.getStockCount());
+
 				}
 				if (set.bFB()) {
 					Beverage beverage = null;
@@ -180,7 +146,7 @@ public class RollControl {
 							+ beverage.toString() + " In stock: "
 							+ beverage.getStockCount() + "\n"
 							+ statusArea.getText());
-					q.add("Most bang for the Buck: " + beverage + " in stock: "
+					q.add("Most bang for the Buck: " + beverage
 							+ beverage.getStockCount());
 				}
 				while (!q.isEmpty()) {
