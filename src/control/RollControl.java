@@ -165,6 +165,9 @@ public class RollControl {
 		boolean found = false;
 		while (!found) {
 			beverage = bf.bang(list);
+			if(beverage == null){
+				return null;
+			}
 			try {
 				if (!bf.checkInStock(beverage)) {
 					list.remove(beverage);
@@ -187,6 +190,9 @@ public class RollControl {
 		boolean found = false;
 		while (!found) {
 			beverage = bf.randomBeverage(list);
+			if(beverage == null){
+				return null;
+			}
 			try {
 				if (!bf.checkInStock(beverage)) {
 					list.remove(beverage);
