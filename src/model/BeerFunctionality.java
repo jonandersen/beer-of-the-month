@@ -66,7 +66,7 @@ public class BeerFunctionality {
 		return list.get(rand.nextInt(list.size()));
 
 	}
-	private boolean checkInStock(Beverage bev) throws IOException{
+	public boolean checkInStock(Beverage bev) throws IOException{
 		HtmlParser parse = new HtmlParser();
 		URL ur = null;
 		String s="";
@@ -121,7 +121,7 @@ public class BeerFunctionality {
 		}
 	}
 	
-	private Beverage bang(List<Beverage> beverageList){
+	public Beverage bang(List<Beverage> beverageList){
 		double price, volume, alcohol, currentBang = 0, tempBang;
 		Beverage bestBang = null;
 		for (Beverage b : beverageList) {
@@ -140,6 +140,10 @@ public class BeerFunctionality {
 			}
 		}
 		return bestBang;
+	}
+	
+	public List<Beverage> beverageList(){
+		return db.getList();
 	}
 
 }
