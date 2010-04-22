@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -12,9 +13,17 @@ import model.HtmlParser;
 
 public class BeerFunctionality {
 	private Database db;
-
+	HashMap<String, String> bolag;
+	private String key;
+	
 	public BeerFunctionality(Database db) {
 		this.db = db;
+		this.bolag = new HashMap<String , String>();
+		bolag.put("Lund C", "226");
+		bolag.put("Lund MårtensTorget", "227");
+		bolag.put("Lund C", "225");
+		bolag.put("Hörby", "231");
+		
 	}
 
 	public Beverage BeerOfTheMonth() {
@@ -151,7 +160,16 @@ public class BeerFunctionality {
 		return db.getList();
 	}
 	
+	
+	
+	public void setKey(String key){
+		this.key = key;
+	}
+
+
+	
 	public Database getDb(){
 		return db;
 	}
+
 }
