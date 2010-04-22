@@ -9,6 +9,7 @@ public class Settings {
 	private int price;
 	private int[] volume;
 	private int[] alco;
+	private String store;
 	public Settings(){
 		beer = false;
 		wine = false;
@@ -17,6 +18,7 @@ public class Settings {
 		bfb = false;
 		alco = new int[2];
 		volume = new int[2];
+		store = "Lund C";
 	}
 	
 	public Boolean all(){
@@ -115,5 +117,12 @@ public class Settings {
 	public void setBFB(boolean b) {
 		bfb = b;
 		
+	}
+	public void setStore(String store){
+		this.store = store;
+	}
+	
+	public String getStore(){
+		return store;
 	}
 }
