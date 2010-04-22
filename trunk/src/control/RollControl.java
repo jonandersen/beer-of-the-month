@@ -42,6 +42,7 @@ public class RollControl {
 		 Thread thread = new Thread(new Runnable() {
 		        public void run() {
 		        	Queue<String> q = new LinkedList<String>();
+		        	summary.setText("");
 		        	statusArea.setText("");	
 		        	bf.setKey(set.getStore());
 					if(set.rollBeer() && !set.bFB()){			
@@ -57,7 +58,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Beer of the Month: "+ beer.toString() + " In stock:" + beer.getStockCount() + "\n" + statusArea.getText());
 							}
-							q.add("Beer of the Month: " + beer.toString());
+							q.add("Beer of the Month: " + beer.toString() +  " In stock: "  + beer.getStockCount());
 						}else{
 							Beverage beer;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -71,7 +72,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Beer of the Month: "+ beer.toString() +  "\n" + statusArea.getText());
 							}
-							q.add("Beer of the month: " + beer + beer.getStockCount());
+							q.add("Beer of the month: " + beer);
 						}				
 					}
 					if(set.rollWine() && !set.bFB()){
@@ -87,7 +88,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Wine of the Month: " + wine.toString() + " In stock:" + wine.getStockCount() + "\n" + statusArea.getText());
 							}
-							q.add("Wine of the Month: " + wine);
+							q.add("Wine of the Month: " + wine  + " In stock: " + wine.getStockCount());
 						}else{
 							Beverage wine = null;
 							if(set.getPriceLessOrEqualsThen() <= 0 && set.getVolume()[0] <=0 && set.getVolume()[1] <=0 && set.getAlco()[0]<=0 && set.getAlco()[1]<=0){
@@ -100,10 +101,7 @@ public class RollControl {
 							}else{
 								statusArea.setText("Wine of the Month: " + wine.toString() +"\n" +  statusArea.getText());
 							}
-							q.add("Wine of the Month: " + wine + wine.getStockCount());
-
-
-
+							q.add("Wine of the Month: " + wine);
 					}
 				}
 				if (set.rollBeverage()) {
@@ -113,7 +111,7 @@ public class RollControl {
 						statusArea.setText("Beverage of the Month: "
 								+ beverage.toString() + "\n"
 								+ statusArea.getText());
-						q.add("Beverage of the Month: " + beverage + " in stock: "
+						q.add("Beverage of the Month: " + beverage + " In stock: "
 								+ beverage.getStockCount());
 					} else {
 						beverage = bf.BeverageOfTheMonth();
@@ -122,10 +120,6 @@ public class RollControl {
 								+ statusArea.getText());
 						q.add("Beverage of the Month: " + beverage);
 					}
-
-					q.add("Beverage of the Month: " + beverage
-							+ beverage.getStockCount());
-
 				}
 				if (set.bFB()) {
 					Beverage beverage = null;
@@ -146,7 +140,7 @@ public class RollControl {
 							+ beverage.toString() + " In stock: "
 							+ beverage.getStockCount() + "\n"
 							+ statusArea.getText());
-					q.add("Most bang for the Buck: " + beverage
+					q.add("Most bang for the Buck: " + beverage + "In stock: " +
 							+ beverage.getStockCount());
 				}
 				while (!q.isEmpty()) {
