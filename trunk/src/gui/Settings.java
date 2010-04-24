@@ -1,6 +1,8 @@
 package gui;
 
-public class Settings {
+import java.util.Observable;
+
+public class Settings extends Observable{
 	private Boolean beer;
 	private Boolean wine;
 	private Boolean beverage;

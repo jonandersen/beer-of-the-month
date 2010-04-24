@@ -1,5 +1,7 @@
 package reworked;
 
+import gui.Settings;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,6 +16,7 @@ import reworked.RollControl.BotmListener;
 import reworked.RollControl.ExitListener;
 import reworked.RollControl.RollListener;
 import reworked.RollControl.RollSettingListener;
+import reworked.SettingsControl.BeerCheckBoxListener;
 import reworked.SettingsControl.CancelSettingListener;
 import reworked.SettingsControl.OkSettingListener;
 import reworked.SettingsControl.SettingListener;
@@ -36,6 +39,10 @@ public class View extends JFrame {
 	private JButton okSettings;
 	private JButton cancelSettings;
 	private Font heading;
+	private JCheckBox beer;
+	private JCheckBox wine;
+	private JCheckBox beverage;
+	private JCheckBox checkStock;
 
 	public View() {
 		super("view");
@@ -172,10 +179,10 @@ public class View extends JFrame {
 		JTabbedPane settingsTab = new JTabbedPane();
 		settingsPanel.setVisible(false);
 		//Checkboxes		
-		JCheckBox beer = new JCheckBox();
-		JCheckBox wine = new JCheckBox();
-		JCheckBox beverage = new JCheckBox();
-		JCheckBox checkStock = new JCheckBox();
+		beer = new JCheckBox();
+		wine = new JCheckBox();
+		beverage = new JCheckBox();
+		checkStock = new JCheckBox();
 		//Rolling tab
 		JPanel rollTab = new JPanel(new BorderLayout());
 		JPanel boxPanel = new JPanel(new GridLayout(4,1));
@@ -308,15 +315,33 @@ public class View extends JFrame {
 	}
 	public void addOkSettingListener(OkSettingListener okSettingListener) {
 		okSettings.addActionListener(okSettingListener);		
-	}
-
+	}	
+	
 	public void addRollSettingListener(RollSettingListener rollSettingListener) {
 
+	}
+	
+	public void addBeerCheckBoxListener(BeerCheckBoxListener beerCheckBoxListener){
+		beer.addActionListener(beerCheckBoxListener);
 	}
 
 	private void setButtonConstraint(JButton button) {
 		button.setVerticalTextPosition(SwingConstants.BOTTOM);
 		button.setHorizontalTextPosition(SwingConstants.CENTER);
+	}
+
+	public void setBeerCheckBox(boolean b) {
+		beer.setSelected(b);
+	}
+
+	public void setWineCheckBox(boolean b) {
+		wine.setSelected(b);
+		
+	}
+
+	public void setBeverageCheckBox(boolean b) {
+		beverage.setSelected(b);
+		
 	}
 
 	
