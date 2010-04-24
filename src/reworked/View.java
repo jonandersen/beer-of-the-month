@@ -8,215 +8,319 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
-import reworked.FridayControl.UpdateListener;
+
+import reworked.FridayControl.RefreshListener;
 import reworked.RollControl.BotmListener;
 import reworked.RollControl.ExitListener;
 import reworked.RollControl.RollListener;
-import reworked.RollControl.SettingListener;
+import reworked.RollControl.RollSettingListener;
+import reworked.SettingsControl.CancelSettingListener;
+import reworked.SettingsControl.OkSettingListener;
+import reworked.SettingsControl.SettingListener;
 
-public class View extends JFrame{
-	
+
+public class View extends JFrame {
+
 	private JButton rollButton;
 	private JButton settingsButton;
 	private JButton exitButton;
 	private JButton botmButton;
-	private JButton refreshButton;
-	private JButton fridayButton;
+	private JButton updateButton;
+	private JButton refreshFridayButton;
 	private JTextArea summaryTextArea;
 	private JTextArea recentHistoryTextArea;
 	private JTextField fridayStatusArea;
 	private JProgressBar progressBar;
 	private JTextField statusInfoArea;
+	private JPanel settingsPanel;
+	private JButton okSettings;
+	private JButton cancelSettings;
 	private Font heading;
-	
-	
-	public View(){
+
+	public View() {
 		super("view");
-		heading = new java.awt.Font("Malgun Gothic",1,17);
-		//Set Look & Feel
+		heading = new java.awt.Font("Malgun Gothic", 1, 17);
+		// Set Look & Feel
 		try {
-			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-		} catch(Exception e) {
+			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager
+					.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		this.setLayout(new BorderLayout());
-		
-		//InfoPanel
-		JPanel infoPanel = new JPanel(new GridLayout(2,1));
+
+		// InfoPanel
+		JPanel infoPanel = new JPanel(new GridLayout(2, 1));
 		infoPanel.setPreferredSize(new Dimension(600, 400));
-		
-		//SummaryPanel
-		JPanel summaryPanel = new JPanel(new BorderLayout());		
-		//SummaryLabel
+
+		// SummaryPanel
+		JPanel summaryPanel = new JPanel(new BorderLayout());
+		// SummaryLabel
 		JLabel summary = new JLabel("Summary");
 		summary.setFont(heading);
-		summaryPanel.add(summary, BorderLayout.NORTH);		
-		//SummaryTextArea
+		summaryPanel.add(summary, BorderLayout.NORTH);
+		// SummaryTextArea
 		summaryTextArea = new JTextArea();
 		summaryTextArea.setText("");
-		summaryPanel.add(summaryTextArea, BorderLayout.CENTER);		
-		//Adding SummaryPanel to InfoPane
+		summaryPanel.add(summaryTextArea, BorderLayout.CENTER);
+		// Adding SummaryPanel to InfoPane
 		infoPanel.add(summaryPanel);
-		
-		//RecentHistoryPanel
-		JPanel recentHistoryPanel = new JPanel(new BorderLayout());		
-		//RecentHistoryLabel
+
+		// RecentHistoryPanel
+		JPanel recentHistoryPanel = new JPanel(new BorderLayout());
+		// RecentHistoryLabel
 		JLabel recentHistory = new JLabel("Recent history");
 		recentHistory.setFont(heading);
-		recentHistoryPanel.add(recentHistory, BorderLayout.NORTH);		
-		//SummaryTextArea
+		recentHistoryPanel.add(recentHistory, BorderLayout.NORTH);
+		// SummaryTextArea
 		recentHistoryTextArea = new JTextArea();
 		recentHistoryTextArea.setText("");
-		recentHistoryPanel.add(recentHistoryTextArea, BorderLayout.CENTER);		
-		//Adding RecentHistoryPanel to InfoPanel
-		infoPanel.add(recentHistoryPanel);	
-		
-		//Adding info panel to the frame
+		recentHistoryPanel.add(recentHistoryTextArea, BorderLayout.CENTER);
+		// Adding RecentHistoryPanel to InfoPanel
+		infoPanel.add(recentHistoryPanel);
+
+		// Adding info panel to the frame
 		add(infoPanel, BorderLayout.CENTER);
-		
-		//TopPanel
-		JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0 , 0));
-		
-		//ButtonPanel
-		JPanel buttonBar = new JPanel(new FlowLayout(FlowLayout.LEADING, 0 , 0));
-		
-		//RollButton
+
+		// TopPanel
+		JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
+
+		// ButtonPanel
+		JPanel buttonBar = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
+
+		// RollButton
 		ImageIcon icon = new ImageIcon("Images/roll.png");
 		rollButton = new JButton("Roll");
 		rollButton.setIcon(icon);
 		setButtonConstraint(rollButton);
 		buttonBar.add(rollButton);
-		
-		//SettingsButton
-		icon = new ImageIcon("Images/settings.png");		
+
+		// SettingsButton
+		icon = new ImageIcon("Images/settings.png");
 		settingsButton = new JButton("Settings");
 		settingsButton.setIcon(icon);
 		setButtonConstraint(settingsButton);
 		buttonBar.add(settingsButton);
-		
-		//BeerOfMonthButton
+
+		// BeerOfMonthButton
 		icon = new ImageIcon("Images/botm.png");
 		botmButton = new JButton("Botm");
 		botmButton.setIcon(icon);
 		setButtonConstraint(botmButton);
 		buttonBar.add(botmButton);
-		
-		//RefreshButton				
-		icon = new ImageIcon("Images/refresh.png");		
-		refreshButton = new JButton("Refresh");
-		refreshButton.setIcon(icon);
-		setButtonConstraint(refreshButton);
-		buttonBar.add(refreshButton);
-		
-		//ExitButton
-		icon = new ImageIcon("Images/exit.png");		
+
+		// RefreshButton
+		icon = new ImageIcon("Images/update.png");
+		updateButton = new JButton("Update");
+		updateButton.setIcon(icon);
+		setButtonConstraint(updateButton);
+		buttonBar.add(updateButton);
+
+		// ExitButton
+		icon = new ImageIcon("Images/exit.png");
 		exitButton = new JButton("Exit");
 		exitButton.setIcon(icon);
 		setButtonConstraint(exitButton);
 		buttonBar.add(exitButton);
-		
-		
-		
-		//Adding ButtonPanel to the TopPanel
+
+		// Adding ButtonPanel to the TopPanel
 		topPanel.add(buttonBar);
-		
-		//Erdetfredag.dk panel
+
+		// Erdetfredag.dk panel
 		JPanel isFriday = new JPanel(new BorderLayout());
-		
-		//IsItFriday? label
+
+		// IsItFriday? label
 		JLabel isItFriday = new JLabel("Er det fredag?");
 		isFriday.add(isItFriday, BorderLayout.NORTH);
-		
-		//FridayStatus area
+
+		// FridayStatus area
 		fridayStatusArea = new JTextField();
 		fridayStatusArea.setEditable(false);
 		isFriday.add(fridayStatusArea, BorderLayout.CENTER);
-		
-		//FridayButton
-		fridayButton = new JButton("Update");
-		setButtonConstraint(fridayButton);
-		isFriday.add(fridayButton, BorderLayout.SOUTH);
-		
-		
-		
-		//Adding Erdetfredag.dk panel to the TopPanel
+
+		// FridayButton
+		refreshFridayButton = new JButton("Refresh");
+		setButtonConstraint(refreshFridayButton);
+		isFriday.add(refreshFridayButton, BorderLayout.SOUTH);
+
+		// Adding Erdetfredag.dk panel to the TopPanel
 		topPanel.add(isFriday);
-		
-		//Adding TopPanel to frame
+
+		// Adding TopPanel to frame
 		add(topPanel, BorderLayout.NORTH);
-		
-		//StatusPanel
+
+		// StatusPanel
 		JPanel statusPanel = new JPanel(new BorderLayout());
-		//StatusPanelLabel
-		JLabel statusLabel = new JLabel("Status");	
+		// StatusPanelLabel
+		JLabel statusLabel = new JLabel("Status");
 		statusPanel.add(statusLabel, BorderLayout.WEST);
-		//StatusInfoArea
+		// StatusInfoArea
 		statusInfoArea = new JTextField();
 		statusInfoArea.setEditable(false);
 		statusPanel.add(statusInfoArea, BorderLayout.CENTER);
-		//ProgressBar
+		// ProgressBar
 		progressBar = new JProgressBar();
 		progressBar.setStringPainted(true);
 		statusPanel.add(progressBar, BorderLayout.SOUTH);
-		//Adding StatusPanel to the frame
+		// Adding StatusPanel to the frame
 		add(statusPanel, BorderLayout.SOUTH);
 		
+		
+		//Settingspanel
+		settingsPanel = new JPanel(new BorderLayout());
+		JTabbedPane settingsTab = new JTabbedPane();
+		settingsPanel.setVisible(false);
+		//Checkboxes		
+		JCheckBox beer = new JCheckBox();
+		JCheckBox wine = new JCheckBox();
+		JCheckBox beverage = new JCheckBox();
+		JCheckBox checkStock = new JCheckBox();
+		//Rolling tab
+		JPanel rollTab = new JPanel(new BorderLayout());
+		JPanel boxPanel = new JPanel(new GridLayout(4,1));
+		//Checkboxes
+		boxPanel.add(beer);
+		boxPanel.add(wine);
+		boxPanel.add(beverage);
+		boxPanel.add(checkStock);
+		JPanel boxLabelPanel = new JPanel(new GridLayout(4,1));
+		//Checkboxes Labels
+		boxLabelPanel.add(new JLabel("Beer "));
+		boxLabelPanel.add(new JLabel("Wine "));
+		boxLabelPanel.add(new JLabel("Beverage "));
+		boxLabelPanel.add(new JLabel("Check stock "));
+		rollTab.add(boxLabelPanel, BorderLayout.WEST);
+		rollTab.add(boxPanel , BorderLayout.CENTER);
+		//Adding roll to settingsTab
+		settingsTab.addTab("Roll", rollTab);
+		
+		
+		
+		//Filter tab
+		JPanel filterPanel = new JPanel(new BorderLayout());
+		//FilterTextFields
+		JPanel filterTextPanel = new JPanel(new GridLayout(4,3));
+		JTextField price = new JTextField(3);		
+		filterTextPanel.add(price);
+		filterTextPanel.add(new JLabel());
+		filterTextPanel.add(new JLabel());
+		
+		JTextField volumeMin = new JTextField(3);
+		filterTextPanel.add(volumeMin);
+		filterTextPanel.add(new JLabel("<=x<="));
+		JTextField volumeMax = new JTextField(3);
+		filterTextPanel.add(volumeMax);
+		
+		JTextField alchoMin = new JTextField(3);		
+		filterTextPanel.add(alchoMin);
+		filterTextPanel.add(new JLabel("<=x<="));
+		JTextField alchoMax = new JTextField(3);		
+		filterTextPanel.add(alchoMax);
+		filterPanel.add(filterTextPanel, BorderLayout.EAST);
+		
+		//FilterLabelFields
+		JPanel filterLabelPanel = new JPanel(new GridLayout(4,1));
+		filterLabelPanel.add(new JLabel("Price "));
+		filterLabelPanel.add(new JLabel("Volume "));
+		filterLabelPanel.add(new JLabel("Alchol "));
+		filterPanel.add(filterLabelPanel, BorderLayout.WEST);
+		
+		
+		
+		//Adding filter to settingsTab
+		settingsTab.addTab("Filter", filterPanel);
+		
+		//Adding tabpanel to SettingsPanel
+		settingsPanel.add(settingsTab, BorderLayout.NORTH);
+		
+		//ButtonBarSettings
+		JPanel buttonBarSettings = new JPanel();
+		okSettings = new JButton("Ok");
+		cancelSettings = new JButton("Cancel");
+		buttonBarSettings.add(okSettings);
+		buttonBarSettings.add(cancelSettings);
+		settingsPanel.add(buttonBarSettings, BorderLayout.CENTER);
+		
+	
+		// Adding Settingspanel to the frame
+		add(settingsPanel, BorderLayout.EAST);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(getOwner());
 	}
-	
-	
-	
-	
+
 	public void setTotal(String total) {
 		summaryTextArea.setText(total);
-		recentHistoryTextArea.setText("Made a roll" + "\n" + recentHistoryTextArea.getText());
+		recentHistoryTextArea.setText("Made a roll" + "\n"
+				+ recentHistoryTextArea.getText());
 		progressBar.setStringPainted(false);
 		progressBar.setIndeterminate(true);
 	}
-	
-	public void setFriday(String answer){
-		fridayStatusArea.setText(answer);
-		recentHistoryTextArea.setText("Checked if it was friday" + "\n" + recentHistoryTextArea.getText());
+
+	public void setFriday(String answer) {
+		fridayStatusArea.setText(answer);	
 		statusInfoArea.setText("Updated");
+		progressBar.setStringPainted(true);
+		progressBar.setIndeterminate(false);
 	}
 	
-	public void setStatus(String status){
+	public void setRecentHistory(String history){
+		recentHistoryTextArea.setText(history + "\n"
+				+ recentHistoryTextArea.getText());
+	}
+	public void setShowSetting(boolean show){		
+		settingsPanel.setVisible(show);
+	}
+	
+	public void setStatus(String status) {
 		statusInfoArea.setText(status);
 	}
-	
-	
-	
-	
-	
 
 	public void addRollListener(RollListener rollListener) {
 		rollButton.addActionListener(rollListener);
 	}
-		
-	public void addExitListener(ExitListener exitListener){
+	
+	public boolean settingsIsVisible(){
+		return settingsPanel.isVisible();
+	}
+
+	public void addExitListener(ExitListener exitListener) {
 		exitButton.addActionListener(exitListener);
 	}
-	
-	public void addBotmListener(BotmListener botmListener){
+
+	public void addBotmListener(BotmListener botmListener) {
 		botmButton.addActionListener(botmListener);
 	}
-	
-	public void addSettingListener(SettingListener settingListener){
+
+	public void addSettingListener(SettingListener settingListener) {
 		settingsButton.addActionListener(settingListener);
 	}
-	
-	public void addUpdateListener(UpdateListener updateListener){
-		fridayButton.addActionListener(updateListener);
+
+	public void addRefreshListener(RefreshListener refreshListener) {
+		refreshFridayButton.addActionListener(refreshListener);
 	}
 	
-	private void setButtonConstraint(JButton button){
+	public void addCancelSettingListener(CancelSettingListener cancelSettingListener) {
+		cancelSettings.addActionListener(cancelSettingListener);		
+	}
+	public void addOkSettingListener(OkSettingListener okSettingListener) {
+		okSettings.addActionListener(okSettingListener);		
+	}
+
+	public void addRollSettingListener(RollSettingListener rollSettingListener) {
+
+	}
+
+	private void setButtonConstraint(JButton button) {
 		button.setVerticalTextPosition(SwingConstants.BOTTOM);
-	    button.setHorizontalTextPosition(SwingConstants.CENTER);
+		button.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
+
+	
+
+	
 
 }

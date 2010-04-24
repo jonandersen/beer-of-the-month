@@ -7,11 +7,14 @@ import java.util.Observer;
 
 public class RollControl extends Control{
 	private RollModel model;
+	
 	public RollControl(RollModel model, View view){
 		super(view);
 		this.model = model;
 		view.addRollListener(new RollListener());
 		view.addExitListener(new ExitListener());
+		view.addRollSettingListener(new RollSettingListener());
+		
 	}
 
 	
@@ -22,7 +25,9 @@ public class RollControl extends Control{
 		view.setTotal(String.valueOf(model.getTotal()));		
 	}
 	
-	public class SettingListener implements ActionListener{
+	
+	
+	public class RollSettingListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			
 		}
