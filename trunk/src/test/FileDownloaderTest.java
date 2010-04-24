@@ -4,11 +4,12 @@ package test;
 import java.io.File;
 import java.io.IOException;
 
-import model.FileDownloader;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import util.FileDownloader;
 
 import exception.BotMException;
 

@@ -9,12 +9,12 @@ import java.io.InputStreamReader;
 import control.BeerFunctionality;
 
 import server.Server;
+import util.FileDownloader;
+import util.FileParser;
 
 import model.BeerOfTheMonthSaver;
 import model.Beverage;
 import model.Database;
-import model.FileDownloader;
-import model.FileParser;
 
 import exception.BotMException;
 import gui.Gui;
