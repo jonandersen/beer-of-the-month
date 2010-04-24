@@ -8,20 +8,25 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
-import reworked.Control.BotmListener;
-import reworked.Control.ExitListener;
-import reworked.Control.RollListener;
-import reworked.Control.SettingListener;
+import reworked.FridayControl.UpdateListener;
+import reworked.RollControl.BotmListener;
+import reworked.RollControl.ExitListener;
+import reworked.RollControl.RollListener;
+import reworked.RollControl.SettingListener;
 
 public class View extends JFrame{
 	
 	private JButton rollButton;
 	private JButton settingsButton;
 	private JButton exitButton;
-	private JButton botmButton; 
+	private JButton botmButton;
+	private JButton refreshButton;
+	private JButton fridayButton;
 	private JTextArea summaryTextArea;
 	private JTextArea recentHistoryTextArea;
+	private JTextField fridayStatusArea;
 	private JProgressBar progressBar;
+	private JTextField statusInfoArea;
 	private Font heading;
 	
 	
@@ -49,6 +54,7 @@ public class View extends JFrame{
 		summaryPanel.add(summary, BorderLayout.NORTH);		
 		//SummaryTextArea
 		summaryTextArea = new JTextArea();
+		summaryTextArea.setText("");
 		summaryPanel.add(summaryTextArea, BorderLayout.CENTER);		
 		//Adding SummaryPanel to InfoPane
 		infoPanel.add(summaryPanel);
@@ -60,7 +66,8 @@ public class View extends JFrame{
 		recentHistory.setFont(heading);
 		recentHistoryPanel.add(recentHistory, BorderLayout.NORTH);		
 		//SummaryTextArea
-		recentHistoryTextArea = new JTextArea();		
+		recentHistoryTextArea = new JTextArea();
+		recentHistoryTextArea.setText("");
 		recentHistoryPanel.add(recentHistoryTextArea, BorderLayout.CENTER);		
 		//Adding RecentHistoryPanel to InfoPanel
 		infoPanel.add(recentHistoryPanel);	
@@ -68,7 +75,8 @@ public class View extends JFrame{
 		//Adding info panel to the frame
 		add(infoPanel, BorderLayout.CENTER);
 		
-			
+		//TopPanel
+		JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 0 , 0));
 		
 		//ButtonPanel
 		JPanel buttonBar = new JPanel(new FlowLayout(FlowLayout.LEADING, 0 , 0));
@@ -94,6 +102,13 @@ public class View extends JFrame{
 		setButtonConstraint(botmButton);
 		buttonBar.add(botmButton);
 		
+		//RefreshButton				
+		icon = new ImageIcon("Images/refresh.png");		
+		refreshButton = new JButton("Refresh");
+		refreshButton.setIcon(icon);
+		setButtonConstraint(refreshButton);
+		buttonBar.add(refreshButton);
+		
 		//ExitButton
 		icon = new ImageIcon("Images/exit.png");		
 		exitButton = new JButton("Exit");
@@ -103,8 +118,33 @@ public class View extends JFrame{
 		
 		
 		
-		//Adding ButtonPanel to the frame
-		add(buttonBar, BorderLayout.NORTH);
+		//Adding ButtonPanel to the TopPanel
+		topPanel.add(buttonBar);
+		
+		//Erdetfredag.dk panel
+		JPanel isFriday = new JPanel(new BorderLayout());
+		
+		//IsItFriday? label
+		JLabel isItFriday = new JLabel("Er det fredag?");
+		isFriday.add(isItFriday, BorderLayout.NORTH);
+		
+		//FridayStatus area
+		fridayStatusArea = new JTextField();
+		fridayStatusArea.setEditable(false);
+		isFriday.add(fridayStatusArea, BorderLayout.CENTER);
+		
+		//FridayButton
+		fridayButton = new JButton("Update");
+		setButtonConstraint(fridayButton);
+		isFriday.add(fridayButton, BorderLayout.SOUTH);
+		
+		
+		
+		//Adding Erdetfredag.dk panel to the TopPanel
+		topPanel.add(isFriday);
+		
+		//Adding TopPanel to frame
+		add(topPanel, BorderLayout.NORTH);
 		
 		//StatusPanel
 		JPanel statusPanel = new JPanel(new BorderLayout());
@@ -112,7 +152,7 @@ public class View extends JFrame{
 		JLabel statusLabel = new JLabel("Status");	
 		statusPanel.add(statusLabel, BorderLayout.WEST);
 		//StatusInfoArea
-		JTextField statusInfoArea = new JTextField();
+		statusInfoArea = new JTextField();
 		statusInfoArea.setEditable(false);
 		statusPanel.add(statusInfoArea, BorderLayout.CENTER);
 		//ProgressBar
@@ -138,6 +178,21 @@ public class View extends JFrame{
 		progressBar.setStringPainted(false);
 		progressBar.setIndeterminate(true);
 	}
+	
+	public void setFriday(String answer){
+		fridayStatusArea.setText(answer);
+		recentHistoryTextArea.setText("Checked if it was friday" + "\n" + recentHistoryTextArea.getText());
+		statusInfoArea.setText("Updated");
+	}
+	
+	public void setStatus(String status){
+		statusInfoArea.setText(status);
+	}
+	
+	
+	
+	
+	
 
 	public void addRollListener(RollListener rollListener) {
 		rollButton.addActionListener(rollListener);
@@ -153,6 +208,10 @@ public class View extends JFrame{
 	
 	public void addSettingListener(SettingListener settingListener){
 		settingsButton.addActionListener(settingListener);
+	}
+	
+	public void addUpdateListener(UpdateListener updateListener){
+		fridayButton.addActionListener(updateListener);
 	}
 	
 	private void setButtonConstraint(JButton button){

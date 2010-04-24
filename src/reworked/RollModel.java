@@ -2,12 +2,12 @@ package reworked;
 
 import java.util.Observable;
 
-public class Model extends Observable{
+public class RollModel extends Observable{
 	private int total;
 	
 	
 	
-	public Model(){
+	public RollModel(){
 		total = 0;
 	}
 

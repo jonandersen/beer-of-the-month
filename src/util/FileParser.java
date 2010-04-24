@@ -1,4 +1,4 @@
-package model;
+package util;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -11,6 +11,10 @@ import java.io.Reader;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.StringTokenizer;
+
+import model.ArticleInfo;
+import model.Beverage;
+import model.Database;
 
 
 

@@ -12,11 +12,12 @@ import java.util.HashMap;
 import model.ArticleInfo;
 import model.Beverage;
 import model.Database;
-import model.FileParser;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import util.FileParser;
 
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;

@@ -1,10 +1,11 @@
 package test;
 
 import static org.junit.Assert.*;
-import model.Parser;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import util.Parser;
 
 public class ParserTest {
 
