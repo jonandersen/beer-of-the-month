@@ -12,5 +12,8 @@ public class Main {
 		FridayModel fri = new FridayModel();
 		FridayControl freControl = new FridayControl(view, fri);		
 		fri.addObserver(freControl);
+		
+		SettingsControl set = new SettingsControl(view);
+		
 	}
 }

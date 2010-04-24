@@ -10,14 +10,15 @@ public class FridayControl extends Control{
 	public FridayControl(View view, FridayModel fre){
 		super(view);
 		this.fri = fre;
-		view.addUpdateListener(new UpdateListener());
+		view.addRefreshListener(new RefreshListener());
 	}
 	
 	public void update(Observable o, Object arg) {
 		view.setFriday(fri.getAnswer());
+		view.setRecentHistory("Checked if it was friday");
 	}
 	
-	public class UpdateListener implements ActionListener{
+	public class RefreshListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			fri.reCheck();
 		}
