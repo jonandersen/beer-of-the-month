@@ -1,10 +1,16 @@
 package reworked;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
+
+import model.Beverage;
+import model.Database;
 
 public class SettingsModel extends Observable {
 	private boolean[] list;
 	private boolean[] tempList;	
+	private Database db;
 	//Change if you add more settings (only booleans)
 	private static final int SIZE = 3;
 	public static final int BEER = 0;
@@ -12,7 +18,8 @@ public class SettingsModel extends Observable {
 	public static final int BEVERAGE = 2;
 	
 	
-	public SettingsModel(){
+	public SettingsModel(Database db){
+		this.db = db;
 		list = new boolean[SIZE];
 		tempList = new boolean[SIZE];
 		for(int i = 0; i < SIZE; i ++){
@@ -53,6 +60,20 @@ public class SettingsModel extends Observable {
 		}
 		setChanged();
 		notifyObservers();
+	}
+	
+	public ArrayList<Beverage> getForRoll(){
+		ArrayList<Beverage> bev = new ArrayList<Beverage>();
+		if(list[BEER]){
+			bev.addAll(db.getBeerList());
+		}
+		if(list[WINE]){
+			bev.addAll(db.getWineList());
+		}
+		if(list[BEVERAGE]){
+			return db.getList();
+		}
+		return bev;
 	}
 	
 	
