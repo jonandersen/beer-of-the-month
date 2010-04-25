@@ -12,10 +12,11 @@ public class SettingsModel extends Observable {
 	private boolean[] tempList;	
 	private Database db;
 	//Change if you add more settings (only booleans)
-	private static final int SIZE = 3;
+	private static final int SIZE = 4;
 	public static final int BEER = 0;
 	public static final int WINE = 1;
 	public static final int BEVERAGE = 2;
+	public static final int BFB = 3;
 	
 	
 	public SettingsModel(Database db){
@@ -74,6 +75,14 @@ public class SettingsModel extends Observable {
 			return db.getList();
 		}
 		return bev;
+	}
+	
+	public ArrayList<Beverage> getBangForBuck(){
+		if(list[BFB]){
+			return getForRoll();
+		}else{
+			return new ArrayList<Beverage>();
+		}		
 	}
 	
 	

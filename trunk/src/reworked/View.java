@@ -16,6 +16,7 @@ import reworked.RollControl.BotmListener;
 import reworked.RollControl.ExitListener;
 import reworked.RollControl.RollListener;
 import reworked.RollControl.RollSettingListener;
+import reworked.SettingsControl.BFBCheckBoxListener;
 import reworked.SettingsControl.BeerCheckBoxListener;
 import reworked.SettingsControl.CancelSettingListener;
 import reworked.SettingsControl.OkSettingListener;
@@ -43,6 +44,8 @@ public class View extends JFrame {
 	private JCheckBox wine;
 	private JCheckBox beverage;
 	private JCheckBox checkStock;
+	private JCheckBox bFB;
+	private static final int setSize = 5;
 
 	public View() {
 		super("view");
@@ -183,20 +186,23 @@ public class View extends JFrame {
 		wine = new JCheckBox();
 		beverage = new JCheckBox();
 		checkStock = new JCheckBox();
+		bFB = new JCheckBox();
 		//Rolling tab
 		JPanel rollTab = new JPanel(new BorderLayout());
-		JPanel boxPanel = new JPanel(new GridLayout(4,1));
+		JPanel boxPanel = new JPanel(new GridLayout(setSize,1));
 		//Checkboxes
 		boxPanel.add(beer);
 		boxPanel.add(wine);
 		boxPanel.add(beverage);
 		boxPanel.add(checkStock);
-		JPanel boxLabelPanel = new JPanel(new GridLayout(4,1));
+		boxPanel.add(bFB);
+		JPanel boxLabelPanel = new JPanel(new GridLayout(setSize,1));
 		//Checkboxes Labels
 		boxLabelPanel.add(new JLabel("Beer "));
 		boxLabelPanel.add(new JLabel("Wine "));
 		boxLabelPanel.add(new JLabel("Beverage "));
 		boxLabelPanel.add(new JLabel("Check stock "));
+		boxLabelPanel.add(new JLabel("Bang for the buck "));
 		rollTab.add(boxLabelPanel, BorderLayout.WEST);
 		rollTab.add(boxPanel , BorderLayout.CENTER);
 		//Adding roll to settingsTab
@@ -207,7 +213,7 @@ public class View extends JFrame {
 		//Filter tab
 		JPanel filterPanel = new JPanel(new BorderLayout());
 		//FilterTextFields
-		JPanel filterTextPanel = new JPanel(new GridLayout(4,3));
+		JPanel filterTextPanel = new JPanel(new GridLayout(setSize,3));
 		JTextField price = new JTextField(3);		
 		filterTextPanel.add(price);
 		filterTextPanel.add(new JLabel());
@@ -227,7 +233,7 @@ public class View extends JFrame {
 		filterPanel.add(filterTextPanel, BorderLayout.EAST);
 		
 		//FilterLabelFields
-		JPanel filterLabelPanel = new JPanel(new GridLayout(4,1));
+		JPanel filterLabelPanel = new JPanel(new GridLayout(setSize,1));
 		filterLabelPanel.add(new JLabel("Price "));
 		filterLabelPanel.add(new JLabel("Volume "));
 		filterLabelPanel.add(new JLabel("Alchol "));
@@ -262,16 +268,12 @@ public class View extends JFrame {
 	public void setTotal(String total) {
 		summaryTextArea.setText(total);
 		recentHistoryTextArea.setText("Made a roll" + "\n"
-				+ recentHistoryTextArea.getText());
-		progressBar.setStringPainted(false);
-		progressBar.setIndeterminate(true);
+				+ recentHistoryTextArea.getText());	
 	}
 
 	public void setFriday(String answer) {
 		fridayStatusArea.setText(answer);	
-		statusInfoArea.setText("Updated");
-		progressBar.setStringPainted(true);
-		progressBar.setIndeterminate(false);
+		statusInfoArea.setText("Updated");		
 	}
 	
 	public void setRecentHistory(String history){
@@ -342,6 +344,10 @@ public class View extends JFrame {
 	public void setBeverageCheckBox(boolean b) {
 		beverage.setSelected(b);
 		
+	}
+
+	public void addBFBCheckBoxListener(BFBCheckBoxListener bfbCheckBoxListener) {
+		bFB.addActionListener(bfbCheckBoxListener);
 	}
 
 	
