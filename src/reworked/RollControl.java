@@ -21,8 +21,8 @@ public class RollControl extends Control{
 	
 	
 	
-	public void update(Observable arg0, Object arg1) {
-		view.setTotal(model.getResult());	
+	public void update(Observable arg0, Object arg1) {		
+		view.setTotal(model.getResult() + "\n" + model.getBang());	
 	}
 	
 	
@@ -36,6 +36,7 @@ public class RollControl extends Control{
 	public class RollListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			model.roll();
+			model.calculateBang();
 		}
 	}
 	

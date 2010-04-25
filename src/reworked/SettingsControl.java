@@ -17,7 +17,8 @@ public class SettingsControl extends Control{
 		view.addSettingListener(new SettingListener());
 		view.addCancelSettingListener(new CancelSettingListener());
 		view.addOkSettingListener(new OkSettingListener());
-		view.addBeerCheckBoxListener(new BeerCheckBoxListener());		
+		view.addBeerCheckBoxListener(new BeerCheckBoxListener());	
+		view.addBFBCheckBoxListener(new BFBCheckBoxListener());		
 		set.addObserver(this);
 	}
 
@@ -48,15 +49,20 @@ public class SettingsControl extends Control{
 		public void actionPerformed(ActionEvent arg0) {
 			viewSettings("Closed settings tab, changes were saved", null);
 			set.save();
-			rollModel.setRollList(set.getForRoll());
-			
-			
+			rollModel.setRollList(set.getForRoll());	
+			rollModel.setBangList(set.getBangForBuck());
 		}	
 	}
 	
 	public class BeerCheckBoxListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			set.set(set.BEER, !set.get(set.BEER));
+		}	
+	}
+	
+	public class BFBCheckBoxListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			set.set(set.BFB, !set.get(set.BFB));
 		}	
 	}
 	
