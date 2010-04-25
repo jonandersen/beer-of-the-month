@@ -22,7 +22,7 @@ public class RollControl extends Control{
 	
 	
 	public void update(Observable arg0, Object arg1) {
-		view.setTotal(String.valueOf(model.getTotal()));		
+		view.setTotal(model.getResult());	
 	}
 	
 	
@@ -35,7 +35,7 @@ public class RollControl extends Control{
 	
 	public class RollListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			model.setTotal(model.getTotal() + 1);
+			model.roll();
 		}
 	}
 	
