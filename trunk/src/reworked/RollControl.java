@@ -21,13 +21,7 @@ public class RollControl extends Control{
 	public void update(Observable arg0, Object arg1) {	
 		if(arg1 != null){			
 			view.setRecentHistory("Not in stock: " + (String) arg1);
-		}else{
-			if(model.getResult().length() == 0){
-				view.setSummary(model.getBang());
-			}else{
-				view.setSummary(model.getResult() + "\n" + model.getBang());
-			}			
-		}			
+		}	
 	}
 	
 	
@@ -49,10 +43,12 @@ public class RollControl extends Control{
 						view.setButtonsEnabled(false);
 					}
 					try {
-						model.roll();
-						model.getMostBangForTheBuck();
+						String summary = model.roll();						
+						summary += model.getMostBangForTheBuck();
+						view.setSummary(summary);
 					} catch (BotMException e1) {				
 						view.setStatus(e1.toString());
+						return;
 					}
 					if(model.getCheckStock()){
 						view.setStatus("Evaluating important beer decisions");
