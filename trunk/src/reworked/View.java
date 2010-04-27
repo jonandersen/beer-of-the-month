@@ -180,8 +180,8 @@ public class View extends JFrame {
 		
 		
 		//Settingspanel
-		settingsPanel = new JPanel(new BorderLayout());
-		JTabbedPane settingsTab = new JTabbedPane();
+		settingsPanel = new JPanel(new BorderLayout());		
+		JTabbedPane settingsTab = new JTabbedPane();	
 		settingsPanel.setVisible(false);
 		//Checkboxes		
 		beer = new JCheckBox();
@@ -215,30 +215,42 @@ public class View extends JFrame {
 		//Filter tab
 		JPanel filterPanel = new JPanel(new BorderLayout());
 		//FilterTextFields
+		
+		//Row 1
 		JPanel filterTextPanel = new JPanel(new GridLayout(setSize,3));
 		JTextField price = new JTextField(3);		
 		filterTextPanel.add(price);
-		filterTextPanel.add(new JLabel());
+		filterTextPanel.add(new JLabel());	
 		filterTextPanel.add(new JLabel());
 		
+		
+		//Row 2
 		JTextField volumeMin = new JTextField(3);
 		filterTextPanel.add(volumeMin);
 		filterTextPanel.add(new JLabel("<=x<="));
 		JTextField volumeMax = new JTextField(3);
-		filterTextPanel.add(volumeMax);
+		filterTextPanel.add(volumeMax);	
 		
+		
+		//Row 3
 		JTextField alchoMin = new JTextField(3);		
 		filterTextPanel.add(alchoMin);
 		filterTextPanel.add(new JLabel("<=x<="));
 		JTextField alchoMax = new JTextField(3);		
 		filterTextPanel.add(alchoMax);
+		
+		//Row 4
+		filterTextPanel.add(new JLabel());
+		filterTextPanel.add(new JLabel());
+		filterTextPanel.add(new JLabel());
+		
 		filterPanel.add(filterTextPanel, BorderLayout.EAST);
 		
 		//FilterLabelFields
 		JPanel filterLabelPanel = new JPanel(new GridLayout(setSize,1));
 		filterLabelPanel.add(new JLabel("Price "));
 		filterLabelPanel.add(new JLabel("Volume "));
-		filterLabelPanel.add(new JLabel("Alchol "));
+		filterLabelPanel.add(new JLabel("Alcohol "));		
 		filterPanel.add(filterLabelPanel, BorderLayout.WEST);
 		
 		
