@@ -12,10 +12,12 @@ public class RollModel extends Observable {
 	private String bang;
 	private List<Beverage> rollList;
 	private List<Beverage> bangList;
+	private boolean checkStock;
 
 	public RollModel() {
 		result = "Nothing rolled";
 		bang = "";
+		checkStock = false;
 	}
 
 	public void setRollList(List<Beverage> list) {
@@ -73,6 +75,14 @@ public class RollModel extends Observable {
 	
 	public String getBang(){
 		return bang;
+	}
+
+	public void setCheckStock(boolean b) {
+		checkStock = b;
+	}
+	
+	public boolean getCheckStock(){
+		return checkStock;
 	}
 
 }

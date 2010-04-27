@@ -18,7 +18,8 @@ public class SettingsControl extends Control{
 		view.addCancelSettingListener(new CancelSettingListener());
 		view.addOkSettingListener(new OkSettingListener());
 		view.addBeerCheckBoxListener(new BeerCheckBoxListener());	
-		view.addBFBCheckBoxListener(new BFBCheckBoxListener());		
+		view.addBFBCheckBoxListener(new BFBCheckBoxListener());	
+		view.addCheckStockCheckBoxListener(new CheckStockCheckBoxListener());
 		set.addObserver(this);
 	}
 
@@ -59,9 +60,16 @@ public class SettingsControl extends Control{
 		}	
 	}
 	
+	public class CheckStockCheckBoxListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			set.set(set.STOCK, !set.get(set.STOCK));
+		}	
+	}
+	
 	public class BFBCheckBoxListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			set.set(set.BFB, !set.get(set.BFB));
+			rollModel.setCheckStock(set.get(set.STOCK));
 		}	
 	}
 	

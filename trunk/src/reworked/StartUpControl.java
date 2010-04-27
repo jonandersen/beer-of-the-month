@@ -6,13 +6,11 @@ import java.util.Observable;
 
 import model.Database;
 
-public class StartUpControl extends Control{
-	private View view;	
+public class StartUpControl extends Control{	
 	private StartUpModel model;
 	
 	public StartUpControl(View view, StartUpModel model) {
-		super(view);	
-		this.view = view;
+		super(view);			
 		this.model = model;
 		model.addObserver(this);
 		

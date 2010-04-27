@@ -11,14 +11,15 @@ import java.awt.GridLayout;
 import javax.swing.*;
 
 
+import reworked.ExitControl.ExitListener;
 import reworked.FridayControl.RefreshListener;
 import reworked.RollControl.BotmListener;
-import reworked.RollControl.ExitListener;
 import reworked.RollControl.RollListener;
 import reworked.RollControl.RollSettingListener;
 import reworked.SettingsControl.BFBCheckBoxListener;
 import reworked.SettingsControl.BeerCheckBoxListener;
 import reworked.SettingsControl.CancelSettingListener;
+import reworked.SettingsControl.CheckStockCheckBoxListener;
 import reworked.SettingsControl.OkSettingListener;
 import reworked.SettingsControl.SettingListener;
 
@@ -334,9 +335,7 @@ public class View extends JFrame {
 
 	}
 	
-	public void addBeerCheckBoxListener(BeerCheckBoxListener beerCheckBoxListener){
-		beer.addActionListener(beerCheckBoxListener);
-	}
+	
 
 	private void setButtonConstraint(JButton button) {
 		button.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -353,10 +352,21 @@ public class View extends JFrame {
 	}
 
 	public void setBeverageCheckBox(boolean b) {
-		beverage.setSelected(b);
-		
+		beverage.setSelected(b);		
 	}
-
+	
+	public void setCheckStocCheckBox(boolean b){
+		checkStock.setSelected(b);
+	}
+	
+	public void addBeerCheckBoxListener(BeerCheckBoxListener beerCheckBoxListener){
+		beer.addActionListener(beerCheckBoxListener);
+	}
+	
+	public void addCheckStockCheckBoxListener(CheckStockCheckBoxListener checkStockCheckBoxListener){
+		checkStock.addActionListener(checkStockCheckBoxListener);
+	}
+	
 	public void addBFBCheckBoxListener(BFBCheckBoxListener bfbCheckBoxListener) {
 		bFB.addActionListener(bfbCheckBoxListener);
 	}
