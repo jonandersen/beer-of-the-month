@@ -2,7 +2,8 @@ package test;
 
 
 import static org.junit.Assert.*;
-import gui.Settings;
+
+import oldcrap.Settings;
 
 import org.junit.Before;
 import org.junit.Test;

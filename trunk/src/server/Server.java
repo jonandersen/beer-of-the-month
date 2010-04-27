@@ -8,7 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import control.BeerFunctionality;
+import oldcrap.BeerFunctionality;
+
 
 import model.Beverage;
 import model.Database;

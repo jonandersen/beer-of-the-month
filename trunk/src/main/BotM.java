@@ -6,7 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
-import control.BeerFunctionality;
+import oldcrap.BeerFunctionality;
+import oldcrap.Gui;
+import oldcrap.LoadingScreen;
+
 
 import server.Server;
 import util.FileDownloader;
@@ -17,8 +20,6 @@ import model.Beverage;
 import model.Database;
 
 import exception.BotMException;
-import gui.Gui;
-import gui.LoadingScreen;
 
 
 public class BotM {
