@@ -29,10 +29,10 @@ public class RollModel extends Observable {
 		this.rollList = list;
 	}
 
-	public void roll() throws BotMException {
+	public String roll() throws BotMException {
 		if (rollList == null || rollList.size() == 0) {
 			result = "";
-			//return "";
+			return "";
 		} else {
 			Random rand = new Random();
 			Beverage rolled = rollList.get(rand.nextInt(rollList.size()));
@@ -58,20 +58,14 @@ public class RollModel extends Observable {
 					}
 				}
 				result = rolled.toString() + " instock : " + i;
-				//return result;
+				return result;
 			} else {
 				result = rolled.toString();
-				//return result;
+				return result;
 			}
 		}
-		setChanged();
-		notifyObservers();
 	}
-
-	public String getResult() {
-		return result;
-	}
-
+	
 	public void setBangList(List<Beverage> bangForBuck) {
 		bangList = bangForBuck;
 		if (bangList == null || bangList.size() == 0) {
@@ -79,9 +73,10 @@ public class RollModel extends Observable {
 		}
 	}
 
-	public void getMostBangForTheBuck() throws BotMException {
+	public String getMostBangForTheBuck() throws BotMException {
 		if (bangList == null || bangList.size() == 0) {
 			bang = "";
+			return "";
 		} else {
 			Beverage bev = calculateBang();
 			if(bev != null){
@@ -110,11 +105,10 @@ public class RollModel extends Observable {
 				}
 				if(bev != null){
 					bang = bev.toString() + " instock : " + i;
-				}
-			}	
-		}
-		setChanged();
-		notifyObservers();
+				}				
+			}
+			return bang;
+		}		
 	}
 	
 	private Beverage calculateBang(){
@@ -138,10 +132,6 @@ public class RollModel extends Observable {
 		return bestBang;
 	}
 	 
-
-	public String getBang() {
-		return bang;
-	}
 
 	public void setCheckStock(boolean b) {
 		checkStock = b;
