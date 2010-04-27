@@ -32,22 +32,21 @@ public class SettingsControl extends Control{
 	
 	public class SettingListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {			
-			viewSettings("Closed settings tab, no changes were made",
-					"Opened settings tab");
+			viewSettings("Closed settings tab, no changes were made");
 			set.dispatch();
 		}
 	}
 	
 	public class CancelSettingListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-			viewSettings("Closed settings tab, no changes were made", null);
+			viewSettings("Closed settings tab, no changes were made");
 			set.dispatch();
 		}	
 	}
 	
 	public class OkSettingListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-			viewSettings("Closed settings tab, changes were saved", null);
+			viewSettings("Closed settings tab, changes were saved");
 			set.save();
 			rollModel.setRollList(set.getForRoll());	
 			rollModel.setBangList(set.getBangForBuck());
@@ -66,11 +65,9 @@ public class SettingsControl extends Control{
 		}	
 	}
 	
-	private void viewSettings(String close, String open){
+	private void viewSettings(String close){
 		if(view.settingsIsVisible()){
 			view.setRecentHistory(close);
-		}else{
-			view.setRecentHistory(open);
 		}
 		view.setShowSetting(!view.settingsIsVisible());
 	}

@@ -1,0 +1,38 @@
+package reworked;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+
+import model.Database;
+
+public class StartUpControl extends Control{
+	private View view;	
+	private StartUpModel model;
+	
+	public StartUpControl(View view, StartUpModel model) {
+		super(view);	
+		this.view = view;
+		this.model = model;
+		model.addObserver(this);
+		
+	}
+
+	public void initiate(){
+		view.setEnabled(false);
+		view.setRecentHistory("Downloading and building database");
+		view.setStatus("Downloading database, please wait");
+		model.initiate();
+		view.setEnabled(true);
+		view.setSummary("Database downloaded and created successfully \n" +
+				"Database contains " + model.getDatabaseSize() + " beverages");
+		view.setStatus("Done");
+		view.setRecentHistory("Database built");
+		
+	}
+	
+	public void update(Observable arg0, Object arg1) {
+		view.setProgress(model.getProgress());
+		
+	}	
+}

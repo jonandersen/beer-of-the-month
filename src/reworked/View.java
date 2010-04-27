@@ -73,6 +73,7 @@ public class View extends JFrame {
 		// SummaryTextArea
 		summaryTextArea = new JTextArea();
 		summaryTextArea.setText("");
+		summaryTextArea.setEditable(false);
 		summaryPanel.add(summaryTextArea, BorderLayout.CENTER);
 		// Adding SummaryPanel to InfoPane
 		infoPanel.add(summaryPanel);
@@ -86,6 +87,7 @@ public class View extends JFrame {
 		// SummaryTextArea
 		recentHistoryTextArea = new JTextArea();
 		recentHistoryTextArea.setText("");
+		recentHistoryTextArea.setEditable(false);
 		recentHistoryPanel.add(recentHistoryTextArea, BorderLayout.CENTER);
 		// Adding RecentHistoryPanel to InfoPanel
 		infoPanel.add(recentHistoryPanel);
@@ -265,15 +267,12 @@ public class View extends JFrame {
 		setLocationRelativeTo(getOwner());
 	}
 
-	public void setTotal(String total) {
-		summaryTextArea.setText(total);
-		recentHistoryTextArea.setText("Made a roll" + "\n"
-				+ recentHistoryTextArea.getText());	
+	public void setSummary(String total) {
+		summaryTextArea.setText(total);		
 	}
 
 	public void setFriday(String answer) {
-		fridayStatusArea.setText(answer);	
-		statusInfoArea.setText("Updated");		
+		fridayStatusArea.setText(answer);
 	}
 	
 	public void setRecentHistory(String history){
@@ -348,6 +347,10 @@ public class View extends JFrame {
 
 	public void addBFBCheckBoxListener(BFBCheckBoxListener bfbCheckBoxListener) {
 		bFB.addActionListener(bfbCheckBoxListener);
+	}
+
+	public void setProgress(int progress) {
+		progressBar.setValue(progress);		
 	}
 
 	

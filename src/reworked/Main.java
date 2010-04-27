@@ -13,23 +13,6 @@ public class Main {
 
 	public static void main(String[] args){
 		Database db = new Database();
-		File file = new File(System.getProperty("java.io.tmpdir")
-                + "/systembolaget.xls");
-		FileDownloader fd = new FileDownloader("http://www.systembolaget.se/Applikationer/Knap"
-				+ "par/Press/Alla+Artiklar?Format=Excel", file);	
-		Thread t = new Thread(fd);
-		t.start();
-		while(!fd.done()){
-					
-		}		
-		FileParser fp;
-		try {
-			fp = new FileParser(db, new BufferedReader(new InputStreamReader(
-					new FileInputStream(file), "iso-8859-1")));
-			fp.parse();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		RollModel model = new RollModel();
 		View view = new View();
@@ -43,6 +26,14 @@ public class Main {
 		
 		SettingsModel setM = new SettingsModel(db);
 		SettingsControl set = new SettingsControl(view,model,setM);
+		
+		
+		
+		StartUpModel sum = new StartUpModel(db);
+		StartUpControl suc = new StartUpControl(view, sum);
+		
+		//Must be last!!
+		suc.initiate();
 		
 	}
 }

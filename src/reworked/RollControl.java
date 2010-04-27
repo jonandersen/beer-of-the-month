@@ -22,7 +22,7 @@ public class RollControl extends Control{
 	
 	
 	public void update(Observable arg0, Object arg1) {		
-		view.setTotal(model.getResult() + "\n" + model.getBang());	
+		view.setSummary(model.getResult() + "\n" + model.getBang());	
 	}
 	
 	
