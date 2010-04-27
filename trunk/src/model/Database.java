@@ -67,6 +67,10 @@ public class Database {
 		}
 		return list;
 	}
+	
+	public int getSize(){
+		return map.size();
+	}
 
 	private ArrayList<Beverage> getList(String type, int price, int[] volume,
 			int[] alco) {
