@@ -16,12 +16,14 @@ import reworked.FridayControl.RefreshListener;
 import reworked.RollControl.BotmListener;
 import reworked.RollControl.RollListener;
 import reworked.RollControl.RollSettingListener;
-import reworked.SettingsControl.BFBCheckBoxListener;
+import reworked.SettingsControl.BangForBuckCheckBoxListener;
 import reworked.SettingsControl.BeerCheckBoxListener;
+import reworked.SettingsControl.BeverageCheckBoxListener;
 import reworked.SettingsControl.CancelSettingListener;
 import reworked.SettingsControl.CheckStockCheckBoxListener;
 import reworked.SettingsControl.OkSettingListener;
 import reworked.SettingsControl.SettingListener;
+import reworked.SettingsControl.WineCheckBoxListener;
 
 
 public class View extends JFrame {
@@ -166,7 +168,7 @@ public class View extends JFrame {
 		// StatusPanel
 		JPanel statusPanel = new JPanel(new BorderLayout());
 		// StatusPanelLabel
-		JLabel statusLabel = new JLabel("Status");
+		JLabel statusLabel = new JLabel("Current status ");
 		statusPanel.add(statusLabel, BorderLayout.WEST);
 		// StatusInfoArea
 		statusInfoArea = new JTextField();
@@ -359,6 +361,14 @@ public class View extends JFrame {
 		checkStock.setSelected(b);
 	}
 	
+	public void setBangForBuckCheckBox(boolean b){
+		bFB.setSelected(b);
+	}
+	
+	public void addBangForBuckCheckBoxListener(BangForBuckCheckBoxListener bangForBuckCheckBoxListener){
+		bFB.addActionListener(bangForBuckCheckBoxListener);
+	}
+	
 	public void addBeerCheckBoxListener(BeerCheckBoxListener beerCheckBoxListener){
 		beer.addActionListener(beerCheckBoxListener);
 	}
@@ -366,13 +376,23 @@ public class View extends JFrame {
 	public void addCheckStockCheckBoxListener(CheckStockCheckBoxListener checkStockCheckBoxListener){
 		checkStock.addActionListener(checkStockCheckBoxListener);
 	}
-	
-	public void addBFBCheckBoxListener(BFBCheckBoxListener bfbCheckBoxListener) {
-		bFB.addActionListener(bfbCheckBoxListener);
-	}
 
 	public void setProgress(int progress) {
 		progressBar.setValue(progress);		
+	}
+
+	public void setButtonsEnabled(boolean b) {
+		rollButton.setEnabled(b);
+		settingsButton.setEnabled(b);
+	}
+
+	public void addWineCheckBoxListener(WineCheckBoxListener wineCheckBoxListener) {
+		wine.addActionListener(wineCheckBoxListener);
+		
+	}
+
+	public void addBeverageCheckBoxListener(BeverageCheckBoxListener beverageCheckBoxListener) {
+		beverage.addActionListener(beverageCheckBoxListener);
 	}
 
 	

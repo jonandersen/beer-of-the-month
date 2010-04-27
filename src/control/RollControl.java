@@ -155,9 +155,6 @@ public class RollControl {
 				settings.setEnabled(true);
 			}
 		});
-		// Keep gui responsive to user input.
-		thread.setPriority(Thread.NORM_PRIORITY); // 5, EDT = 6
-		thread.start();
 	}
 
 	private Beverage checkStock(ArrayList<Beverage> list) {

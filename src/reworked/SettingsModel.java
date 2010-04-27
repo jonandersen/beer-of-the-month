@@ -15,11 +15,11 @@ public class SettingsModel extends Observable {
 	//UPDATE THE SIZE IF YOU CHANGE
 	private static final int SIZE = 5;	
 	
-	public static final int BEER = 0;
-	public static final int WINE = 1;
-	public static final int BEVERAGE = 2;
-	public static final int BFB = 3;
-	public static final int STOCK = 4;
+	public final int BEER = 0;
+	public final int WINE = 1;
+	public final int BEVERAGE = 2;
+	public final int BFB = 3;
+	public final int STOCK = 4;
 	
 	
 	public SettingsModel(Database db){
