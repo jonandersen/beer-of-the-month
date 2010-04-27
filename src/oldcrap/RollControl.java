@@ -1,4 +1,4 @@
-package control;
+package oldcrap;
 
 import java.awt.Font;
 import java.io.IOException;
@@ -11,9 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+
 import model.Beverage;
-import gui.Gui;
-import gui.Settings;
 
 public class RollControl {
 	private JTextPane statusArea;

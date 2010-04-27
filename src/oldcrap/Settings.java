@@ -1,4 +1,4 @@
-package gui;
+package oldcrap;
 
 import java.util.Observable;
 

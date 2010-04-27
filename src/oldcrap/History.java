@@ -1,4 +1,4 @@
-package gui;
+package oldcrap;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 import javax.swing.ComboBoxModel;

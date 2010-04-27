@@ -12,12 +12,13 @@ import model.ArticleInfo;
 import model.Beverage;
 import model.Database;
 
+import oldcrap.BeerFunctionality;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import util.HtmlParser;
 
-import control.BeerFunctionality;
 
 
 

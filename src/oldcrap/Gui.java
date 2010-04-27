@@ -1,9 +1,7 @@
-package gui;
+package oldcrap;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import control.BeerFunctionality;
-import control.RollControl;
 
 import java.awt.*;
 import java.awt.event.*;
