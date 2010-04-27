@@ -12,11 +12,14 @@ public class SettingsModel extends Observable {
 	private boolean[] tempList;	
 	private Database db;
 	//Change if you add more settings (only booleans)
-	private static final int SIZE = 4;
+	//UPDATE THE SIZE IF YOU CHANGE
+	private static final int SIZE = 5;	
+	
 	public static final int BEER = 0;
 	public static final int WINE = 1;
 	public static final int BEVERAGE = 2;
 	public static final int BFB = 3;
+	public static final int STOCK = 4;
 	
 	
 	public SettingsModel(Database db){

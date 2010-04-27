@@ -11,8 +11,7 @@ public class RollControl extends Control{
 	public RollControl(RollModel model, View view){
 		super(view);
 		this.model = model;
-		view.addRollListener(new RollListener());
-		view.addExitListener(new ExitListener());
+		view.addRollListener(new RollListener());		
 		view.addRollSettingListener(new RollSettingListener());
 		
 	}
@@ -44,13 +43,5 @@ public class RollControl extends Control{
 		public void actionPerformed(ActionEvent e) {
 			
 		}
-	}
-	
-	public class ExitListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			System.exit(0);
-			
-		}
-		
 	}
 }

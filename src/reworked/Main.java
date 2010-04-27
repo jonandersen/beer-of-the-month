@@ -27,7 +27,7 @@ public class Main {
 		SettingsModel setM = new SettingsModel(db);
 		SettingsControl set = new SettingsControl(view,model,setM);
 		
-		
+		ExitControl exit = new ExitControl(view);
 		
 		StartUpModel sum = new StartUpModel(db);
 		StartUpControl suc = new StartUpControl(view, sum);
