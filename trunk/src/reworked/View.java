@@ -446,6 +446,11 @@ public class View extends JFrame {
 		
 	}
 
+	public void setRollButtonText(String string) {
+		rollButton.setText(string);
+		
+	}
+
 	
 
 	

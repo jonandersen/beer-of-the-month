@@ -36,6 +36,11 @@ public class SettingsControl extends Control{
 		view.setCheckStocCheckBox(set.get(set.STOCK));
 		view.setBangForBuckCheckBox(set.get(set.BFB));
 		view.setRollRadioButton(set.get(set.ROLL));
+		if(set.get(set.ROLL)){
+			view.setRollButtonText("Roll");
+		}else{
+			view.setRollButtonText("BFB");
+		}
 	}
 	
 	
