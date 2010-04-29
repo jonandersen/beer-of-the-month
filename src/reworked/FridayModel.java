@@ -27,7 +27,7 @@ public class FridayModel extends Observable{
 		public void reCheck(){
 			calendar = Calendar.getInstance();
 			weekday = calendar.get(Calendar.DAY_OF_WEEK);
-			if(weekday == 5){
+			if(weekday == 6){
 				answer = "Ja";
 			}else{
 				answer = "Nej";
@@ -35,20 +35,6 @@ public class FridayModel extends Observable{
 			setChanged();
 			notifyObservers();
 		}
-		
-//		private void check(){		
-//			ScriptEngineManager manager = new ScriptEngineManager();
-//		    ScriptEngine engine = manager.getEngineByName("javascript");
-//		    try {
-//		      engine.put("name", "abcde");
-//		      engine.eval("var output = '';for (i = 0; i <= name.length; i++) {"
-//		          + "  output = name.charAt(i)+'-' + output" + "}");
-//		      String name = (String) engine.get("output");
-//		      System.out.println(name);
-//		    } catch (ScriptException e) {
-//		      System.err.println(e);
-//		    }
-//		}
 		
 		public String getAnswer(){
 			return answer;
