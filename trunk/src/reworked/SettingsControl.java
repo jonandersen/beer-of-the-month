@@ -19,10 +19,13 @@ public class SettingsControl extends Control{
 		view.addOkSettingListener(new OkSettingListener());
 		view.addBeerCheckBoxListener(new BeerCheckBoxListener());	
 		view.addWineCheckBoxListener(new WineCheckBoxListener());
-		view.addBangForBuckCheckBoxListener(new BangForBuckCheckBoxListener());	
+		view.addBangForBuckRadioButtonListener(new BangForBuckRadioButtonListener());	
+		view.addRollRadioButtonListener(new RollRadioButtonListener());
 		view.addCheckStockCheckBoxListener(new CheckStockCheckBoxListener());
 		view.addBeverageCheckBoxListener(new BeverageCheckBoxListener());
 		set.addObserver(this);
+		set.set(set.BFB, true);
+		set.save();
 	}
 
 	
@@ -32,6 +35,7 @@ public class SettingsControl extends Control{
 		view.setBeverageCheckBox(set.get(set.BEVERAGE));
 		view.setCheckStocCheckBox(set.get(set.STOCK));
 		view.setBangForBuckCheckBox(set.get(set.BFB));
+		view.setRollRadioButton(set.get(set.ROLL));
 	}
 	
 	
@@ -58,7 +62,7 @@ public class SettingsControl extends Control{
 				rollModel.setBangList(set.getBangForBuck());
 				rollModel.setRollList(null);
 			}else{
-				rollModel.setRollList(set.getForRoll());
+				rollModel.setRollList(set.getRoll());
 				rollModel.setBangList(null);
 			}	
 		}	
@@ -76,9 +80,17 @@ public class SettingsControl extends Control{
 		}	
 	}
 	
-	public class BangForBuckCheckBoxListener implements ActionListener{
+	public class BangForBuckRadioButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {			
+			set.set(set.BFB, !set.get(set.BFB));
+			set.set(set.ROLL, !set.get(set.ROLL));
+		}	
+	}
+	
+	public class RollRadioButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-			set.set(set.BFB, !set.get(set.BFB));			
+			set.set(set.ROLL, !set.get(set.ROLL));
+			set.set(set.BFB, !set.get(set.BFB));
 		}	
 	}
 	
