@@ -13,13 +13,14 @@ public class SettingsModel extends Observable {
 	private Database db;
 	//Change if you add more settings (only booleans)
 	//UPDATE THE SIZE IF YOU CHANGE
-	private static final int SIZE = 5;	
+	private  final int SIZE = 6;	
 	
 	public final int BEER = 0;
 	public final int WINE = 1;
 	public final int BEVERAGE = 2;
 	public final int BFB = 3;
 	public final int STOCK = 4;
+	public  final int ROLL = 5;	
 	
 	
 	public SettingsModel(Database db){
@@ -66,7 +67,15 @@ public class SettingsModel extends Observable {
 		notifyObservers();
 	}
 	
-	public ArrayList<Beverage> getForRoll(){
+	public ArrayList<Beverage> getRoll(){
+		if(list[ROLL]){
+			return getForRoll();
+		}else{
+			return new ArrayList<Beverage>();
+		}
+	}
+	
+	private ArrayList<Beverage> getForRoll(){
 		ArrayList<Beverage> bev = new ArrayList<Beverage>();
 		if(list[BEER]){
 			bev.addAll(db.getBeerList());

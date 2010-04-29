@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.*;
@@ -17,12 +19,13 @@ import reworked.FridayControl.RefreshListener;
 import reworked.RollControl.BotmListener;
 import reworked.RollControl.RollListener;
 import reworked.RollControl.RollSettingListener;
-import reworked.SettingsControl.BangForBuckCheckBoxListener;
+import reworked.SettingsControl.BangForBuckRadioButtonListener;
 import reworked.SettingsControl.BeerCheckBoxListener;
 import reworked.SettingsControl.BeverageCheckBoxListener;
 import reworked.SettingsControl.CancelSettingListener;
 import reworked.SettingsControl.CheckStockCheckBoxListener;
 import reworked.SettingsControl.OkSettingListener;
+import reworked.SettingsControl.RollRadioButtonListener;
 import reworked.SettingsControl.SettingListener;
 import reworked.SettingsControl.WineCheckBoxListener;
 
@@ -48,7 +51,8 @@ public class View extends JFrame {
 	private JCheckBox wine;
 	private JCheckBox beverage;
 	private JCheckBox checkStock;
-	private JCheckBox bFB;
+	private JRadioButton bangForBuck;
+	private JRadioButton roll;
 	private static final int setSize = 5;
 
 	public View() {
@@ -191,28 +195,27 @@ public class View extends JFrame {
 		beer = new JCheckBox();
 		wine = new JCheckBox();
 		beverage = new JCheckBox();
-		checkStock = new JCheckBox();
-		bFB = new JCheckBox();
+		checkStock = new JCheckBox();		
 		//Rolling tab
 		JPanel rollTab = new JPanel(new BorderLayout());
 		JPanel boxPanel = new JPanel(new GridLayout(setSize,1));
-		//Checkboxes
+		//Checkboxes		
 		boxPanel.add(beer);
 		boxPanel.add(wine);
 		boxPanel.add(beverage);
 		boxPanel.add(checkStock);
-		boxPanel.add(bFB);
+		//boxPanel.add(bFB);
 		JPanel boxLabelPanel = new JPanel(new GridLayout(setSize,1));
-		//Checkboxes Labels
+		//Checkboxes Labels		
 		boxLabelPanel.add(new JLabel("Beer "));
 		boxLabelPanel.add(new JLabel("Wine "));
 		boxLabelPanel.add(new JLabel("Beverage "));
 		boxLabelPanel.add(new JLabel("Check stock "));
-		boxLabelPanel.add(new JLabel("Bang for the buck "));
+		//boxLabelPanel.add(new JLabel("Bang for the buck "));
 		rollTab.add(boxLabelPanel, BorderLayout.WEST);
 		rollTab.add(boxPanel , BorderLayout.CENTER);
 		//Adding roll to settingsTab
-		settingsTab.addTab("Roll", rollTab);
+		settingsTab.addTab("Type", rollTab);
 		
 		
 		
@@ -265,15 +268,52 @@ public class View extends JFrame {
 		//Adding tabpanel to SettingsPanel
 		settingsPanel.add(settingsTab, BorderLayout.NORTH);
 		
+		//RadioButtons 
+		JPanel rollBang = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		
+		bangForBuck = new JRadioButton();
+		roll = new JRadioButton();
+		bangForBuck.setSelected(true);
+		ButtonGroup rollBangGroup = new ButtonGroup();		
+		rollBangGroup.add(bangForBuck);		
+		rollBangGroup.add(roll);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 3;
+		rollBang.add(new JLabel("Bang for the buck: "), c);	
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 3;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		rollBang.add(new JLabel("Random: "), c);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 1;
+		c.gridwidth = 1;
+		rollBang.add(bangForBuck, c);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 3;
+		c.gridy = 1;
+		c.gridwidth = 1;
+		rollBang.add(roll, c);		
 		//ButtonBarSettings
 		JPanel buttonBarSettings = new JPanel();
 		okSettings = new JButton("Ok");
 		cancelSettings = new JButton("Cancel");
 		buttonBarSettings.add(okSettings);
 		buttonBarSettings.add(cancelSettings);
-		settingsPanel.add(buttonBarSettings, BorderLayout.CENTER);
 		
-	
+		//Bottom settings 
+		JPanel bottomBarSettings = new JPanel(new BorderLayout());
+		bottomBarSettings.add(rollBang, BorderLayout.NORTH);
+		bottomBarSettings.add(buttonBarSettings, BorderLayout.CENTER);
+		
+		settingsPanel.add(bottomBarSettings, BorderLayout.CENTER);
+		
 		// Adding Settingspanel to the frame
 		add(settingsPanel, BorderLayout.EAST);
 		
@@ -363,11 +403,15 @@ public class View extends JFrame {
 	}
 	
 	public void setBangForBuckCheckBox(boolean b){
-		bFB.setSelected(b);
+		bangForBuck.setSelected(b);
 	}
 	
-	public void addBangForBuckCheckBoxListener(BangForBuckCheckBoxListener bangForBuckCheckBoxListener){
-		bFB.addActionListener(bangForBuckCheckBoxListener);
+	public void setRollRadioButton(boolean b){
+		roll.setSelected(b);
+	}
+	
+	public void addBangForBuckRadioButtonListener(BangForBuckRadioButtonListener bangForBuckCheckBoxListener){
+		bangForBuck.addActionListener(bangForBuckCheckBoxListener);
 	}
 	
 	public void addBeerCheckBoxListener(BeerCheckBoxListener beerCheckBoxListener){
@@ -394,6 +438,12 @@ public class View extends JFrame {
 
 	public void addBeverageCheckBoxListener(BeverageCheckBoxListener beverageCheckBoxListener) {
 		beverage.addActionListener(beverageCheckBoxListener);
+	}
+
+	public void addRollRadioButtonListener(RollRadioButtonListener rollRadioButtonListener) {
+		roll.addActionListener(rollRadioButtonListener);
+		
+		
 	}
 
 	
