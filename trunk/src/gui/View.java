@@ -1,4 +1,4 @@
-package reworked;
+package gui;
 
 
 import java.awt.BorderLayout;
@@ -11,23 +11,24 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
+import control.ExitControl.ExitListener;
+import control.FridayControl.RefreshListener;
+import control.RollControl.BotmListener;
+import control.RollControl.RollListener;
+import control.RollControl.RollSettingListener;
+import control.SettingsControl.BangForBuckRadioButtonListener;
+import control.SettingsControl.BeerCheckBoxListener;
+import control.SettingsControl.BeverageCheckBoxListener;
+import control.SettingsControl.CancelSettingListener;
+import control.SettingsControl.CheckStockCheckBoxListener;
+import control.SettingsControl.OkSettingListener;
+import control.SettingsControl.RollRadioButtonListener;
+import control.SettingsControl.SettingListener;
+import control.SettingsControl.WineCheckBoxListener;
+
 import oldcrap.Settings;
 
 
-import reworked.ExitControl.ExitListener;
-import reworked.FridayControl.RefreshListener;
-import reworked.RollControl.BotmListener;
-import reworked.RollControl.RollListener;
-import reworked.RollControl.RollSettingListener;
-import reworked.SettingsControl.BangForBuckRadioButtonListener;
-import reworked.SettingsControl.BeerCheckBoxListener;
-import reworked.SettingsControl.BeverageCheckBoxListener;
-import reworked.SettingsControl.CancelSettingListener;
-import reworked.SettingsControl.CheckStockCheckBoxListener;
-import reworked.SettingsControl.OkSettingListener;
-import reworked.SettingsControl.RollRadioButtonListener;
-import reworked.SettingsControl.SettingListener;
-import reworked.SettingsControl.WineCheckBoxListener;
 
 
 public class View extends JFrame {

@@ -243,10 +243,7 @@ public class Gui extends JFrame {
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 	
-	private void jItemHistoryActionPerformed(ActionEvent evt) {
-		String[] hist = {"Breznak", "Oktoberöl"};
-		new History(hist);
-	}
+
 	
 	private void settingsActionPerformed(ActionEvent evt) {			
 		

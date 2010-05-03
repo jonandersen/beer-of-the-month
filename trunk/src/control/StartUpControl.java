@@ -1,10 +1,14 @@
-package reworked;
+package control;
+
+import gui.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+
 import model.Database;
+import model.StartUpModel;
 
 public class StartUpControl extends Control{	
 	private StartUpModel model;

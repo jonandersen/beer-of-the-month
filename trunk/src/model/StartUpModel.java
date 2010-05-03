@@ -1,4 +1,4 @@
-package reworked;
+package model;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +9,6 @@ import java.util.Observable;
 import util.FileDownloader;
 import util.FileParser;
 
-import model.Database;
 
 public class StartUpModel extends Observable{
 	private Database db;

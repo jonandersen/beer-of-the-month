@@ -1,4 +1,4 @@
-package reworked;
+package model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +10,6 @@ import exception.BotMException;
 
 import util.StockChecker;
 
-import model.Beverage;
 
 public class RollModel extends Observable {
 	private String result;
