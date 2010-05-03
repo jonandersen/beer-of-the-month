@@ -1,11 +1,15 @@
-package reworked;
+package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import model.RollModel;
+
+
 import exception.BotMException;
+import gui.View;
 
 public class RollControl extends Control{
 	private RollModel model;

@@ -1,8 +1,13 @@
-package reworked;
+package control;
+
+import gui.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+
+import model.FridayModel;
+
 
 public class FridayControl extends Control{
 	private FridayModel fri;

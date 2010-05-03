@@ -1,11 +1,9 @@
-package reworked;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import model.Beverage;
-import model.Database;
 
 public class SettingsModel extends Observable {
 	private boolean[] list;

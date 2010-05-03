@@ -1,8 +1,11 @@
-package reworked;
+package control;
+
+import gui.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+
 
 public class ExitControl extends Control {
 	

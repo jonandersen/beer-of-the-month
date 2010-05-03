@@ -1,10 +1,16 @@
-package reworked;
+package control;
 
 
+
+import gui.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+
+import model.RollModel;
+import model.SettingsModel;
+
 
 public class SettingsControl extends Control{	
 	private SettingsModel set;

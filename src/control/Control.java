@@ -1,5 +1,8 @@
-package reworked;
+package control;
+import gui.View;
+
 import java.util.Observer;
+
 
 
 public abstract class Control implements Observer{	

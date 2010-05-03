@@ -1,13 +1,26 @@
-package reworked;
+package main;
+
+import gui.View;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
+
+import control.ExitControl;
+import control.FridayControl;
+import control.RollControl;
+import control.SettingsControl;
+import control.StartUpControl;
+
 import util.FileDownloader;
 import util.FileParser;
 import model.Database;
+import model.FridayModel;
+import model.RollModel;
+import model.SettingsModel;
+import model.StartUpModel;
 
 public class Main {
 
