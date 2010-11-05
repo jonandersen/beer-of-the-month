@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 
+import control.BotmControl;
 import control.ExitControl;
 import control.FridayControl;
 import control.RollControl;
@@ -16,6 +17,7 @@ import control.StartUpControl;
 
 import util.FileDownloader;
 import util.FileParser;
+import model.BotmModel;
 import model.Database;
 import model.FridayModel;
 import model.RollModel;
@@ -27,11 +29,16 @@ public class Main {
 	public static void main(String[] args){
 		Database db = new Database();
 		
+	
+		
 		RollModel model = new RollModel();
 		View view = new View();
 		
 		RollControl control = new RollControl(model, view);
 		model.addObserver(control);
+		
+		BotmModel bm = new BotmModel();
+		BotmControl bc = new BotmControl(view, bm);
 		
 		FridayModel fri = new FridayModel();
 		FridayControl freControl = new FridayControl(view, fri);		

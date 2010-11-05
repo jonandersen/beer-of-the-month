@@ -66,10 +66,4 @@ public class RollControl extends Control{
 			thread.start();
 		}
 	}
-	
-	public class BotmListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-		}
-	}
 }

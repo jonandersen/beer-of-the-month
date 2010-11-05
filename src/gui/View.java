@@ -13,7 +13,7 @@ import javax.swing.*;
 
 import control.ExitControl.ExitListener;
 import control.FridayControl.RefreshListener;
-import control.RollControl.BotmListener;
+import control.BotmControl.BotmListener;
 import control.RollControl.RollListener;
 import control.RollControl.RollSettingListener;
 import control.SettingsControl.BangForBuckRadioButtonListener;
@@ -45,6 +45,9 @@ public class View extends JFrame {
 	private JProgressBar progressBar;
 	private JTextField statusInfoArea;
 	private JPanel settingsPanel;
+	private JPanel botmPanel;
+	private JPanel rightPanel;
+	private JTextArea botmText;
 	private JButton okSettings;
 	private JButton cancelSettings;
 	private Font heading;
@@ -187,6 +190,22 @@ public class View extends JFrame {
 		// Adding StatusPanel to the frame
 		add(statusPanel, BorderLayout.SOUTH);
 		
+		//RightPanel
+		rightPanel = new JPanel(new BorderLayout());
+		
+		
+		//Settingspanel
+		botmPanel = new JPanel(new BorderLayout());				
+		botmPanel.setVisible(false);
+		botmText = new JTextArea();	
+		
+		botmText.setPreferredSize(new Dimension(600, 400));
+		
+		botmPanel.add(botmText);		
+		rightPanel.add(botmPanel, BorderLayout.WEST);
+	
+		
+		
 		
 		//Settingspanel
 		settingsPanel = new JPanel(new BorderLayout());		
@@ -316,7 +335,9 @@ public class View extends JFrame {
 		settingsPanel.add(bottomBarSettings, BorderLayout.CENTER);
 		
 		// Adding Settingspanel to the frame
-		add(settingsPanel, BorderLayout.EAST);
+		rightPanel.add(settingsPanel, BorderLayout.EAST);
+		
+		add(rightPanel, BorderLayout.EAST);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
@@ -336,8 +357,22 @@ public class View extends JFrame {
 		recentHistoryTextArea.setText(history + "\n"
 				+ recentHistoryTextArea.getText());
 	}
-	public void setShowSetting(boolean show){		
+	public void setShowSetting(boolean show){
+		botmPanel.setVisible(false);
+		rightPanel.setVisible(show);
 		settingsPanel.setVisible(show);
+		
+	}
+	
+	public void setShowBotm(boolean show){		
+		settingsPanel.setVisible(false);
+		rightPanel.setVisible(show);
+		botmPanel.setVisible(show);
+		
+	}
+	
+	public boolean botmIsVisible(){
+		return botmPanel.isVisible();
 	}
 	
 	public void setStatus(String status) {
@@ -449,6 +484,11 @@ public class View extends JFrame {
 
 	public void setRollButtonText(String string) {
 		rollButton.setText(string);
+		
+	}
+
+	public void setBotmText(String currentBeer) {
+		botmText.setText(currentBeer);
 		
 	}
 
