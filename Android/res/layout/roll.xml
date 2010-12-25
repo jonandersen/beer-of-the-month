@@ -6,13 +6,7 @@
 	android:id="@+id/LinearLayout01" 
 	android:orientation="vertical">
 	<EditText
-		android:text="Hihih" 
-		android:id="@+id/Info" 
-		android:singleLine="false" 
-		android:layout_width="fill_parent" 
-		android:layout_height="fill_parent"
-		android:layout_weight="1"		
-		android:editable="false" android:focusable="false" android:gravity="left"/>
+		android:id="@+id/Info" android:layout_weight="1" android:layout_width="fill_parent" android:singleLine="false" android:gravity="left" android:editable="false" android:focusable="false" android:layout_height="fill_parent"/>
 	<Button			
 		android:text="Roll" 
 		android:id="@+id/Roll" 

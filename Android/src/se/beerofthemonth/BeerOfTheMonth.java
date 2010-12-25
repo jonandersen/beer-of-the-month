@@ -1,6 +1,9 @@
 package se.beerofthemonth;
 
-import android.app.Activity;
+
+import util.FileDownloader;
+import android.util.Log;
+import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -35,11 +38,28 @@ public class BeerOfTheMonth extends TabActivity {
                           res.getDrawable(R.drawable.ic_tab_community))
                       .setContent(intent);
         tabHost.addTab(spec);
-
         
-        tabHost.setCurrentTab(0);
-
-
-        
+        tabHost.setCurrentTab(0);         
+        onStartUp();
+    }
+    
+    
+    public void onStartUp(){
+    	ProgressDialog progress = new ProgressDialog(this);
+		progress.setCancelable(true);
+		progress.setMessage("Downloading and parsing information");
+		progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		progress.setProgress(0);	
+		progress.show();		
+		
+		String file = "systembolaget.xls";
+		String url = "http://www.systembolaget.se/Applikationer/Knap"
+			+ "par/Press/Alla+Artiklar?Format=Excel";
+		
+		FileDownloader fd = new FileDownloader(url, file, progress, this);
+		
+		fd.start();
+		
+		//progress.dismiss();
     }
 }
