@@ -6,17 +6,17 @@
 	android:id="@+id/LinearLayout01" 
 	android:orientation="vertical">
 	<EditText
-		android:text="" 
-		android:id="@+id/EditText01" 
+		android:text="Hihih" 
+		android:id="@+id/Info" 
 		android:singleLine="false" 
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent"
 		android:layout_weight="1"		
-		android:editable="false" android:focusable="false"/>
+		android:editable="false" android:focusable="false" android:gravity="left"/>
 	<Button			
 		android:text="Roll" 
-		android:id="@+id/Button01" 
+		android:id="@+id/Roll" 
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_height="wrap_content"		
 	/>
 </LinearLayout>
