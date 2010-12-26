@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Observable;
 
 import se.beerofthemonth.BeerOfTheMonth;
 
@@ -16,42 +17,49 @@ import android.content.Context;
 
 import exception.BotMException;
 
-public class FileDownloader extends Thread {	
-	private ProgressDialog progress;
-	private String urlpath;
-	private String file;
-	private BeerOfTheMonth beerOfTheMonth;
+public class FileDownloader extends Observable implements Runnable {	
+	private URL url;
+	private FileOutputStream fos;	
+	public final static int DONE = -1;
 	
-	public FileDownloader(String urlpath, String file, ProgressDialog progress, BeerOfTheMonth beerOfTheMonth){		
-		this.progress = progress;
-		this.urlpath = urlpath;
-		this.file = file;
-		this.beerOfTheMonth = beerOfTheMonth;
+	public FileDownloader( FileOutputStream fos, URL url){			
+		this.fos = fos;
+		this.url = url;		
+	}
+	
+	public int getFileSize(){		
+		URLConnection conn = null;
+		try {
+			conn = url.openConnection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		double fileSize = conn.getContentLength();		
+		return (int)fileSize;
 	}
 	public void DownloadFile() throws BotMException {
-		try {
-			URL url = new URL(urlpath);
-			URLConnection conn = url.openConnection();
-			double total = conn.getContentLength();
-			progress.setMax((int) total);
-			BufferedInputStream bis = new BufferedInputStream(new URL(urlpath).openStream());			
-			FileOutputStream fos = beerOfTheMonth.openFileOutput(file, Context.MODE_PRIVATE);				
+		try {				
+			BufferedInputStream bis = new BufferedInputStream(url.openStream());							
 			BufferedOutputStream  bos = new BufferedOutputStream(fos, 1024);			
 			byte[] buf = new byte[4 * 1024];
 			int bytesRead;			
 			while ((bytesRead = bis.read(buf)) != -1) {
-				bos.write(buf, 0, bytesRead);							
-				progress.incrementProgressBy(bytesRead);		
+				bos.write(buf, 0, bytesRead);
+				setChanged();
+				notifyObservers(bytesRead);					
 			}			
 			bos.close();
 			bis.close();
+			setChanged();
+			notifyObservers(-1);
 			//TODO Fix these
 		} catch (MalformedURLException e) {			
 			throw new BotMException("The url is wrong");
 		} catch (IOException e) {			
 			throw new BotMException("I/O problem");
 		} 
-	}
+	}	
 	
 	public void run() {
 		try {			
