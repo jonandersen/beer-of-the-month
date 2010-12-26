@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import java.util.Observable;
 import java.util.Observer;
 
+import model.BuildDatabaseModel;
 import model.Database;
 
 import util.FileDownloader;
@@ -25,7 +26,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TabHost;
 
-public class BeerOfTheMonth extends TabActivity implements Observer {
+public class BeerOfTheMonth extends TabActivity {
 	private ProgressDialog progress;
 	private String file = "systembolaget.xls";
 	private String urlpath = "http://www.systembolaget.se/Applikationer/Knap"
@@ -84,46 +85,17 @@ public class BeerOfTheMonth extends TabActivity implements Observer {
 		progress.setProgress(0);	
 		progress.show();				
 		
-		FileOutputStream fos = null;			
-		URL url = null;
+		FileOutputStream fos = null;	
 		try {
 			fos = openFileOutput(file, Context.MODE_PRIVATE);
-			url = new URL(urlpath);			
+				
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		
-		FileDownloader fd = new FileDownloader(fos, url);
-		fd.addObserver(this);
-		
-		progress.setMax(fd.getFileSize());		
-		
-		Thread download = new Thread(fd);
+		} 		
+	
 		db = new Database();
-		download.start();		
+		BuildDatabaseModel dbm = new BuildDatabaseModel(db, progress, fos);
+		dbm.start();	
     }
-    
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		int bytesRead = ((Integer)arg1);
-		if(bytesRead != FileDownloader.DONE){
-			progress.incrementProgressBy(bytesRead);
-		}else{
-			FileParser fp;
-			try {
-				fp = new FileParser(db, new BufferedReader(new InputStreamReader(
-						new FileInputStream(file), "iso-8859-1")));
-				fp.parse();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}			
-			progress.dismiss();
-		}
-		
-		
-	}
 }

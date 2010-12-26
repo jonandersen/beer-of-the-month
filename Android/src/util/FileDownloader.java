@@ -17,10 +17,10 @@ import android.content.Context;
 
 import exception.BotMException;
 
-public class FileDownloader extends Observable implements Runnable {	
+public class FileDownloader extends Observable{	
 	private URL url;
-	private FileOutputStream fos;	
-	public final static int DONE = -1;
+	private FileOutputStream fos;
+	private int read;
 	
 	public FileDownloader( FileOutputStream fos, URL url){			
 		this.fos = fos;
@@ -46,28 +46,21 @@ public class FileDownloader extends Observable implements Runnable {
 			int bytesRead;			
 			while ((bytesRead = bis.read(buf)) != -1) {
 				bos.write(buf, 0, bytesRead);
+				read = bytesRead;
 				setChanged();
-				notifyObservers(bytesRead);					
+				notifyObservers();					
 			}			
 			bos.close();
 			bis.close();
-			setChanged();
-			notifyObservers(-1);
 			//TODO Fix these
 		} catch (MalformedURLException e) {			
 			throw new BotMException("The url is wrong");
 		} catch (IOException e) {			
 			throw new BotMException("I/O problem");
 		} 
-	}	
-	
-	public void run() {
-		try {			
-			DownloadFile();			
-		} catch (BotMException e) {			
-			System.err.println("An error occured: " + e.getMessage());
-			System.exit(-1);
-		}		
 	}
-
+	
+	public int getReadBytes(){
+		return read;
+	}
 }
